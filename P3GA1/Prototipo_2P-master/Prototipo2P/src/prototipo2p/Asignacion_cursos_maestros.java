@@ -20,7 +20,7 @@ public class Asignacion_cursos_maestros extends javax.swing.JInternalFrame {
     
     String BD = "jdbc:mysql://localhost/siu";
     String Usuario = "root";
-    String Clave = "Cagada1234";
+    String Clave = "6182";
     
     public Asignacion_cursos_maestros() {
         initComponents();
