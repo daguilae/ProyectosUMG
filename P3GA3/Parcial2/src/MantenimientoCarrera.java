@@ -24,7 +24,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
         initComponents();
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select nombre_facultad from  facultades");
             ResultSet rs = pst.executeQuery();
 
@@ -200,7 +200,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
         try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update carreras set nombre_carrera = ? , codigo_facultad= ? , estatus_carrera=?  where codigo_carrera = " + codigo);
 
           
@@ -232,7 +232,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into carreras values(?,?,?,?)");
 
             pst.setString(1, txt_id.getText().trim());
@@ -263,7 +263,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
             return;
         }
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from carreras where codigo_carrera = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
@@ -292,7 +292,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from carreras where codigo_carrera = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -319,7 +319,7 @@ public class MantenimientoCarrera extends javax.swing.JInternalFrame {
 
     private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_facultad from facultades where nombre_facultad= ?");
             pst.setString(1, cbox.getSelectedItem().toString());
 
