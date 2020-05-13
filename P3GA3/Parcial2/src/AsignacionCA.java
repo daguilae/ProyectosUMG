@@ -99,25 +99,25 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbox_carrera = new javax.swing.JComboBox<>();
-        cbox_sede = new javax.swing.JComboBox<>();
+        cbox_carrera = new javax.swing.JComboBox<String>();
+        cbox_sede = new javax.swing.JComboBox<String>();
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cbox_j = new javax.swing.JComboBox<>();
-        cbox_sec = new javax.swing.JComboBox<>();
+        cbox_j = new javax.swing.JComboBox<String>();
+        cbox_sec = new javax.swing.JComboBox<String>();
         lb3 = new javax.swing.JLabel();
         lb4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbox_aula = new javax.swing.JComboBox<>();
-        cbox_curso = new javax.swing.JComboBox<>();
+        cbox_aula = new javax.swing.JComboBox<String>();
+        cbox_curso = new javax.swing.JComboBox<String>();
         lb5 = new javax.swing.JLabel();
         lb6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        cbox_alum = new javax.swing.JComboBox<>();
+        cbox_alum = new javax.swing.JComboBox<String>();
         lb7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -208,6 +208,12 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nota");
 
+        txt_n.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nActionPerformed(evt);
+            }
+        });
+
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +245,12 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         });
 
         jLabel4.setText("Codigo");
+
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,9 +312,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cbox_carrera, 0, 219, Short.MAX_VALUE)
-                                .addComponent(cbox_sede, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbox_carrera, javax.swing.GroupLayout.Alignment.LEADING, 0, 219, Short.MAX_VALUE)
+                            .addComponent(cbox_sede, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb1)
@@ -645,16 +656,17 @@ try{
             String codigo = txtbuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ? where id = " + codigo);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set id =?,codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id = " + codigo);
 
-            pst.setString(1, lb1.getText().trim());
-            pst.setString(2, lb2.getText().trim());
-            pst.setString(3, lb3.getText().trim());
-            pst.setString(4, lb4.getText().trim());
-            pst.setString(5, lb5.getText().trim());
-            pst.setString(6, lb6.getText().trim());
-            pst.setString(7, lb7.getText().trim());
-            pst.setString(8, txt_n.getText().trim());
+            pst.setString(1, txt_id.getText().trim());
+            pst.setString(2, lb1.getText().trim());
+            pst.setString(3, lb2.getText().trim());
+            pst.setString(4, lb3.getText().trim());
+            pst.setString(5, lb4.getText().trim());
+            pst.setString(6, lb5.getText().trim());
+            pst.setString(7, lb6.getText().trim());
+            pst.setString(8, lb7.getText().trim());
+            pst.setString(9, txt_n.getText().trim());
             pst.executeUpdate();
 
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -680,11 +692,19 @@ try{
             txtbuscado.setText("");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "NO SE PUDO MODIFICAR.", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void txt_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
