@@ -1,4 +1,4 @@
-CREATE DATABASE siu;
+create DATABASE siu;
 USE siu;
 -- -----------------------------------------------------
 -- Table `educativo`.`Alumnos`
@@ -100,8 +100,8 @@ CREATE TABLE jornadas
 -- Table `educativo`.`Asignacion_cursos_alumnos`
 -- -----------------------------------------------------
 CREATE TABLE asignacioncursosalumnos
-(
-	id varchar(5),
+( 
+  id_Alumno varchar(5),
   codigo_carrera VARCHAR(5),
   codigo_sede VARCHAR(5),
   codigo_jornada VARCHAR(5),
@@ -110,7 +110,7 @@ CREATE TABLE asignacioncursosalumnos
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
   nota_asignacioncursoalumnos FLOAT(10,2), 
-  PRIMARY KEY (id,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
+  PRIMARY KEY (id_Alumno,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
   FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
@@ -124,7 +124,7 @@ CREATE TABLE asignacioncursosalumnos
 -- -----------------------------------------------------
 CREATE TABLE asignacioncursosmastros
 (
-id varchar(5),
+  id_Maestro varchar(5),
   codigo_carrera VARCHAR(5),
   codigo_sede VARCHAR(5),
   codigo_jornada VARCHAR(5),
@@ -132,7 +132,7 @@ id varchar(5),
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
   codigo_maestro VARCHAR(5),
-  PRIMARY KEY (id,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso),
+  PRIMARY KEY (id_Maestro,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
   FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
@@ -141,4 +141,19 @@ id varchar(5),
   FOREIGN KEY (codigo_curso) REFERENCES cursos(codigo_curso),
   FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+  
+   create table Laboratorios
+  (
+    Codigo_Laboratorio varchar(5) primary key,
+    Nombre_Laboratorio varchar(100),
+    Nota_Laboratorio float,
+    
+    id_Alumno varchar(5),
+    id_Maestro varchar(5),
+    
+    foreign key(id_Alumno) references asignacioncursosalumnos(id_Alumno),
+    foreign key(id_Maestro) references asignacioncursosmastros(id_Maestro)
+  )ENGINE = InnoDB DEFAULT CHARSET=latin1;
+  
 
+  select *from Laboratorios;
