@@ -193,7 +193,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
         try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update maestros set nombre_maestro = ? , direccion_maestro= ? , telefono_maetro=? , email_maestro= ?, estatus_maestro= ?  where codigo_maestro = " + codigo);
 
             pst.setString(1, txt_nombre.getText().trim());
@@ -227,7 +227,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into maestros values(?,?,?,?,?,?)");
 
             pst.setString(1, txt_id.getText().trim());
@@ -261,7 +261,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
             return;
         }
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from maestros where codigo_maestro = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
@@ -292,7 +292,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from maestros where codigo_maestro = ?");
 
             pst.setString(1, txtbuscado.getText().trim());

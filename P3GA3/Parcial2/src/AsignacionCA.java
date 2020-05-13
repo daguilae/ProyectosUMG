@@ -21,7 +21,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     public AsignacionCA() {
         initComponents();
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select nombre_carrera from carreras");
             ResultSet rs = pst.executeQuery();
             
@@ -373,7 +373,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
     private void cbox_carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_carreraActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_carrera from carreras where nombre_carrera= ?");
             pst.setString(1, cbox_carrera.getSelectedItem().toString());
 
@@ -396,7 +396,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     private void cbox_sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_sedeActionPerformed
 
         try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_sede from sedes where nombre_sede= ?");
             pst.setString(1, cbox_sede.getSelectedItem().toString());
 
@@ -418,7 +418,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
     private void cbox_jActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_jActionPerformed
 try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_jornada from jornadas where nombre_jornada= ?");
             pst.setString(1, cbox_j.getSelectedItem().toString());
 
@@ -438,7 +438,7 @@ try{
 
     private void cbox_secActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_secActionPerformed
       try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_seccion from secciones where nombre_seccion= ?");
             pst.setString(1, cbox_sec.getSelectedItem().toString());
 
@@ -458,7 +458,7 @@ try{
 
     private void cbox_aulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_aulaActionPerformed
       try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_aula from aulas where nombre_aula= ?");
             pst.setString(1, cbox_aula.getSelectedItem().toString());
 
@@ -480,7 +480,7 @@ try{
 
     private void cbox_cursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_cursoActionPerformed
    try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select codigo_curso from cursos where nombre_curso= ?");
             pst.setString(1, cbox_curso.getSelectedItem().toString());
 
@@ -501,7 +501,7 @@ try{
 
     private void cbox_alumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_alumActionPerformed
      try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+           Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select carnet_alumno from alumnos where nombre_alumno= ?");
             pst.setString(1, cbox_alum.getSelectedItem().toString());
 
@@ -522,7 +522,7 @@ try{
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, txt_id.getText().trim());
             pst.setString(2, lb1.getText().trim());
@@ -569,7 +569,7 @@ try{
             return;
         }
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from asignacioncursosalumnos where id = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
@@ -603,7 +603,7 @@ try{
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from asignacioncursosalumnos where id = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -644,7 +644,7 @@ try{
         try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Polo.2015");
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ? where id = " + codigo);
 
             pst.setString(1, lb1.getText().trim());

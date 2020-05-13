@@ -19,6 +19,10 @@ private MantenimientoMaestro ventanaMaestro;
 private MantenimientoSeccion ventanaSeccion;
 private MantenimientoSede ventanaSede;
 private AsignacionCA ventanaAsignacion;
+
+ public static String BD = "jdbc:mysql://localhost/siu";
+ public static String Usuario = "root";
+ public static String Contraseña = "Langas798";
      
     /**
      * Creates new form Principal
