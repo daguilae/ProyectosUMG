@@ -22,7 +22,7 @@ private AsignacionCA ventanaAsignacion;
 
  public static String BD = "jdbc:mysql://localhost/siu";
  public static String Usuario = "root";
- public static String Contraseña = "Langas798";
+ public static String Contraseña = "Polo.2015";
      
     /**
      * Creates new form Principal

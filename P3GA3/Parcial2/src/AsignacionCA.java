@@ -645,7 +645,7 @@ try{
             String codigo = txtbuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ? where id = " + codigo);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id = " + codigo);
 
             pst.setString(1, lb1.getText().trim());
             pst.setString(2, lb2.getText().trim());
@@ -680,6 +680,7 @@ try{
             txtbuscado.setText("");
 
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "NO SE PUDO MODIFICAR.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
