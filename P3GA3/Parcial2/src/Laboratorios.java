@@ -213,7 +213,7 @@ public class Laboratorios extends javax.swing.JInternalFrame {
             String ID = txt_Buscar.getText().trim();
             
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update Laboratorios set Codigo_Laboratorio = ?,Nombre_Laboratorio = ?, Nota_Laboratorio = ?,id_Alumno = ?,id_Maestro where Codigo_Laboratorio = " + ID);
+            PreparedStatement pst = cn.prepareStatement("update Laboratorios set Codigo_Laboratorio = ?,Nombre_Laboratorio = ?, Nota_Laboratorio = ?,id_Alumno = ?,id_Maestro=? where Codigo_Laboratorio = " + ID);
             
             pst.setString(1, txt_Codigo_Laboratorio.getText().trim());
             pst.setString(2, txt_Nombre_Laboratorio.getText().trim());
