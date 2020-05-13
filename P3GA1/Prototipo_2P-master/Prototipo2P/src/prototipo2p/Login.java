@@ -53,11 +53,11 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prototipo2p/userp.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/userp.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prototipo2p/keyp.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/keyp.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         txtUsuario.setBackground(new java.awt.Color(25, 71, 86));
@@ -72,7 +72,7 @@ public class Login extends javax.swing.JFrame {
 
         btnIniciar.setBackground(new java.awt.Color(0, 153, 153));
         btnIniciar.setForeground(new java.awt.Color(0, 153, 153));
-        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prototipo2p/flechap.png"))); // NOI18N
+        btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flechap.png"))); // NOI18N
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
@@ -90,18 +90,19 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 39));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prototipo2p/fondologin.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondologin.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "admin");
+            PreparedStatement pst = cn.prepareStatement("select * from usuarios where usuario = ?");
             
             pst.setString(1, txtUsuario.getText().trim());
             //pst.setString(2,txtContraseña.getText().trim());
