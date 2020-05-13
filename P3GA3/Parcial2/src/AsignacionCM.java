@@ -149,9 +149,13 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                                     .addComponent(txt_Codigo_Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_Codigo_Aula, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5))
+<<<<<<< HEAD
+                                .addGap(0, 23, Short.MAX_VALUE)))
+=======
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)))
+>>>>>>> ZapataJ
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Buscar)
                         .addGap(48, 48, 48))
@@ -349,7 +353,10 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+<<<<<<< HEAD
+=======
     private javax.swing.JLabel label_status;
+>>>>>>> ZapataJ
     private javax.swing.JTextField txt_Buscar;
     private javax.swing.JTextField txt_Codigo_Aula;
     private javax.swing.JTextField txt_Codigo_Carrera;
