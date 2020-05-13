@@ -19,10 +19,12 @@ private MantenimientoMaestro ventanaMaestro;
 private MantenimientoSeccion ventanaSeccion;
 private MantenimientoSede ventanaSede;
 private AsignacionCA ventanaAsignacion;
+private AsignacionCM ventanaAsignacionM;
+private Laboratorios ventanaLaboratorios;
 
  public static String BD = "jdbc:mysql://localhost/siu";
  public static String Usuario = "root";
- public static String Contraseña = "Polo.2015";
+ public static String Contraseña = "Langas798";
      
     /**
      * Creates new form Principal
@@ -49,6 +51,8 @@ private AsignacionCA ventanaAsignacion;
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         Mfacultades = new javax.swing.JMenuItem();
@@ -100,6 +104,22 @@ private AsignacionCA ventanaAsignacion;
             }
         });
         jMenu4.add(jMenuItem13);
+
+        jMenuItem1.setText("Asignacion cursis a Maestros");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuItem2.setText("Laboratorios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
 
@@ -273,6 +293,18 @@ ventanaP.add(ventanaMaestro);
 ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        ventanaAsignacionM = new AsignacionCM();
+        ventanaP.add(ventanaAsignacionM);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ventanaLaboratorios = new Laboratorios();
+        ventanaP.add(ventanaLaboratorios);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -326,7 +358,9 @@ ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
