@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Login.java</file>
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Asignacion_cursos_alumno.java</file>
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Cursos.java</file>
@@ -18,6 +19,10 @@
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Sedes.java</file>
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Facultades.java</file>
             <file>file:/D:/Proyectos_Git/SUI_AL2/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Secciones.java</file>
+=======
+            <file>file:/C:/Users/Quemé%20Alvarez/Desktop/ALEATORIO/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Inicio.java</file>
+            <file>file:/C:/Users/Quemé%20Alvarez/Desktop/ALEATORIO/P3GA1/Prototipo_2P-master/Prototipo2P/src/prototipo2p/Login.java</file>
+>>>>>>> 317a9cacc37b42f8e4c2faf8708816abf8e4a304
         </group>
     </open-files>
 </project-private>
