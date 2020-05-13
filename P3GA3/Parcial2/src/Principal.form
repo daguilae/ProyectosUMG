@@ -196,6 +196,9 @@
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="ventanaP">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="Rachel Barrios 9959-18-649" noResource="true"/>
       </Properties>
 

@@ -22,9 +22,9 @@ private AsignacionCA ventanaAsignacion;
 private AsignacionCM ventanaAsignacionM;
 private Laboratorios ventanaLaboratorios;
 
- public static String BD = "jdbc:mysql://localhost/siu";
+ public static String BD = "jdbc:mysql://127.0.0.1:3306/siu";
  public static String Usuario = "root";
- public static String Contraseña = "Langas798";
+ public static String Contraseña = "";
      
     /**
      * Creates new form Principal
@@ -76,6 +76,7 @@ private Laboratorios ventanaLaboratorios;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rachel Barrios 9959-18-649");
 
+        ventanaP.setBackground(new java.awt.Color(51, 51, 51));
         ventanaP.setName("Rachel Barrios 9959-18-649"); // NOI18N
 
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
@@ -316,7 +317,7 @@ ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
