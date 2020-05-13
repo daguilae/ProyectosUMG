@@ -14,12 +14,13 @@ import javax.swing.table.DefaultTableModel;
  * @author ranbr
  */
 public class MantenimientoAlumno extends javax.swing.JInternalFrame {
-String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_alumno","telefono_alumno ","email_alumno","estatus_alumno"};
+String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_alumno","telefono_alumno","email_alumno","estatus_alumno"};
     /**
      * Creates new form Mantenimiento
      */
     public MantenimientoAlumno() {
         initComponents();
+        MostrarDB("alumnos");
     }
 
     /**
@@ -116,6 +117,8 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
 
             }
         ));
+        tblAlumnos.setGridColor(new java.awt.Color(255, 255, 255));
+        tblAlumnos.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane1.setViewportView(tblAlumnos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -276,7 +279,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
             pst.setString(6, "A");
         
             pst.executeUpdate();
-            MostrarDB("Alumnos");
+            MostrarDB("alumnos");
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
             txt_id.setText("");
@@ -337,7 +340,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
 
             pst.setString(1, txtbuscado.getText().trim());
             pst.executeUpdate();
-
+            MostrarDB("alumnos");
             txtbuscado.setText("");
 
             JOptionPane.showMessageDialog(this, "REGISTRO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -374,7 +377,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
             pst.setString(4, txt_email.getText().trim());
              pst.setString(5, txt_estatus.getText().trim());
             pst.executeUpdate();
-
+            MostrarDB("alumnos");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
             btnEliminar.setEnabled(false);
