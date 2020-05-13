@@ -41,7 +41,7 @@ public class Login extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
         btnIniciar = new javax.swing.JButton();
         btnRegistro = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         contra.setText("jLabel3");
 
@@ -54,55 +54,57 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/userp.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/keyp.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
-        txtUsuario.setBackground(new java.awt.Color(25, 71, 86));
-        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setBorder(null);
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 97, -1));
+        txtUsuario.setBackground(new java.awt.Color(204, 255, 255));
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 140, 30));
 
-        txtContraseña.setBackground(new java.awt.Color(11, 112, 112));
-        txtContraseña.setForeground(new java.awt.Color(255, 255, 255));
-        txtContraseña.setBorder(null);
-        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 97, -1));
+        txtContraseña.setBackground(new java.awt.Color(204, 255, 255));
+        txtContraseña.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtContraseña.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 140, 30));
 
-        btnIniciar.setBackground(new java.awt.Color(0, 153, 153));
-        btnIniciar.setForeground(new java.awt.Color(0, 153, 153));
+        btnIniciar.setBackground(new java.awt.Color(128, 128, 185));
+        btnIniciar.setForeground(new java.awt.Color(128, 128, 185));
         btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flechap.png"))); // NOI18N
+        btnIniciar.setBorder(null);
+        btnIniciar.setBorderPainted(false);
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 86, 77, -1));
+        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 77, -1));
 
-        btnRegistro.setBackground(new java.awt.Color(153, 255, 204));
+        btnRegistro.setBackground(new java.awt.Color(141, 141, 208));
         btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnRegistro.setText("Registrarse");
+        btnRegistro.setBorder(null);
+        btnRegistro.setBorderPainted(false);
         btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 39));
+        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 80, 39));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondologin.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-620, -480, 1000, 760));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "admin");
-            PreparedStatement pst = cn.prepareStatement("select * from usuarios where usuario = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = ?");
             
             pst.setString(1, txtUsuario.getText().trim());
             //pst.setString(2,txtContraseña.getText().trim());
@@ -168,6 +170,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -183,7 +186,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel contra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel pass;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
