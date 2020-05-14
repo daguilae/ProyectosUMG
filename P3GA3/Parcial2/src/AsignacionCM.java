@@ -55,6 +55,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_Buscar = new javax.swing.JTextField();
         jButton_Buscar = new javax.swing.JButton();
+        label_status = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -141,11 +142,20 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                                         .addComponent(jButton_Eliminar))
                                     .addComponent(txt_Codigo_Sede, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_Codigo_Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_Codigo_Aula, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
                                     .addComponent(jLabel5))
+<<<<<<< HEAD
                                 .addGap(0, 23, Short.MAX_VALUE)))
+=======
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)))
+>>>>>>> ZapataJ
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Buscar)
                         .addGap(48, 48, 48))
@@ -197,11 +207,14 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_Codigo_Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_Codigo_Aula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_Codigo_Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Codigo_Aula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -214,18 +227,115 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("select * from asignacioncursosmastros where id_maestro = ?");
+            pst.setString(1, txt_Buscar.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                txt_ID_Asignacion_Maestros.setText(rs.getString("id_Maestro"));
+                txt_Codigo_Carrera.setText(rs.getString("codigo_carrera"));
+                txt_Codigo_Sede.setText(rs.getString("codigo_sede"));
+                txt_Codigo_Jornada.setText(rs.getString("codigo_jornada"));
+                txt_Codigo_Seccion.setText(rs.getString("codigo_seccion"));
+                txt_Codigo_Aula.setText(rs.getString("codigo_aula"));
+                txt_Codigo_Curso.setText(rs.getString("codigo_curso"));
+                txt_Codigo_Maestro.setText(rs.getString("codigo_maestro"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Asignacion de Maestro no registrado.");
+            }
+            
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jButton_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarActionPerformed
         // TODO add your handling code here:
+        try {
+             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("delete from asignacioncursosmastros where id_Maestro = ?");
+            
+            pst.setString(1, txt_Buscar.getText().trim());
+            pst.executeUpdate();
+            
+            txt_ID_Asignacion_Maestros.setText("");
+            txt_Codigo_Carrera.setText("");
+            txt_Codigo_Sede.setText("");
+            txt_Codigo_Jornada.setText("");
+            txt_Codigo_Seccion.setText("");
+            txt_Codigo_Aula.setText("");
+            txt_Codigo_Curso.setText("");
+            txt_Codigo_Maestro.setText("");
+            txt_Buscar.setText("");
+            
+            label_status.setText("Registro eliminado.");
+            
+        } catch (Exception e) 
+        {
+            System.out.println(e);
+        }
+        
     }//GEN-LAST:event_jButton_EliminarActionPerformed
 
     private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
         // TODO add your handling code here:
+         try {
+            String ID = txt_Buscar.getText().trim();
+            
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosmastros set id_Maestro = ?,codigo_carrera = ?, codigo_sede = ?,codigo_jornada = ?,codigo_seccion=?,codigo_aula=?,codigo_curso=?,codigo_maestro=? where id_Maestro = " + ID);
+            
+            pst.setString(1, txt_ID_Asignacion_Maestros.getText().trim());
+            pst.setString(2, txt_Codigo_Carrera.getText().trim());
+            pst.setString(3, txt_Codigo_Sede.getText().trim());
+            pst.setString(4, txt_Codigo_Jornada.getText().trim());
+            pst.setString(5, txt_Codigo_Seccion.getText().trim());
+            pst.setString(6, txt_Codigo_Aula.getText().trim());
+            pst.setString(7, txt_Codigo_Curso.getText().trim());
+            pst.setString(8, txt_Codigo_Maestro.getText().trim());
+            pst.executeUpdate();
+            
+            label_status.setText("Modificación exitosa.");
+            
+        } catch (Exception e) 
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton_ModificarActionPerformed
 
     private void jButton_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IngresarActionPerformed
         // TODO add your handling code here:
+                try{
+            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosmastros values(?,?,?,?,?,?,?,?)");
+            
+            pst.setString(1, txt_ID_Asignacion_Maestros.getText().trim());
+            pst.setString(2, txt_Codigo_Carrera.getText().trim());
+            pst.setString(3, txt_Codigo_Sede.getText().trim());
+            pst.setString(4, txt_Codigo_Jornada.getText().trim());
+            pst.setString(5, txt_Codigo_Seccion.getText().trim());
+            pst.setString(6, txt_Codigo_Aula.getText().trim());
+            pst.setString(7, txt_Codigo_Curso.getText().trim());
+            pst.setString(8, txt_Codigo_Maestro.getText().trim());
+            pst.executeUpdate();
+            
+            txt_ID_Asignacion_Maestros.setText("");
+            txt_Codigo_Carrera.setText("");
+            txt_Codigo_Sede.setText("");
+            txt_Codigo_Jornada.setText("");
+            txt_Codigo_Seccion.setText("");
+            txt_Codigo_Aula.setText("");
+            txt_Codigo_Curso.setText("");
+            txt_Codigo_Maestro.setText("");
+            label_status.setText("Registro exitoso.");
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton_IngresarActionPerformed
 
 
@@ -243,6 +353,10 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel label_status;
+>>>>>>> ZapataJ
     private javax.swing.JTextField txt_Buscar;
     private javax.swing.JTextField txt_Codigo_Aula;
     private javax.swing.JTextField txt_Codigo_Carrera;
