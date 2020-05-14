@@ -95,15 +95,16 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 80, 39));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-620, -480, 1000, 760));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-620, -480, 990, 760));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "admin");
             PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = ?");
             
             pst.setString(1, txtUsuario.getText().trim());

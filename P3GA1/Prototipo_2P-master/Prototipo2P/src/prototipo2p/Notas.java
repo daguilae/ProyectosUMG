@@ -38,7 +38,6 @@ public class Notas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         txt_codigocurso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txt_codigoalumno = new javax.swing.JTextField();
@@ -60,17 +59,17 @@ public class Notas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tbl_notas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lbl_incremento = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Notas");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Codigo Alumno:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 47, -1, -1));
 
         txt_codigocurso.setBackground(new java.awt.Color(204, 255, 255));
         txt_codigocurso.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -212,13 +211,13 @@ public class Notas extends javax.swing.JInternalFrame {
         Tbl_notas.setBackground(new java.awt.Color(204, 255, 255));
         Tbl_notas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Carnet Alumno", "Codigo Curso", "Tipo Nota", "Nota"
+                "Codigo Nota", "Carnet Alumno", "Codigo Curso", "Nombre Curso", "Tipo Nota", "Nota"
             }
         ));
         Tbl_notas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -228,13 +227,28 @@ public class Notas extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(Tbl_notas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 58, 515, 96));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 58, 550, 130));
 
         jLabel1.setText("Buscar Curso");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
+        getContentPane().add(lbl_incremento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 100, 20));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -330, 1000, 780));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Carnet Alumno:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 47, -1, -1));
+
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Para modificar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. modificar los campos necesarios\n4. y darle click al boton Modificar.");
+        jScrollPane2.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 350, 120));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -340, 970, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,18 +272,22 @@ public class Notas extends javax.swing.JInternalFrame {
             ResultSet rss4 = pstt4.executeQuery();
 
             DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("codigo_notas");
             modelo.addColumn("carnet_alumno");
             modelo.addColumn("codigo_curso");
+            modelo.addColumn("nombre_curso");
             modelo.addColumn("tipo_nota");
             modelo.addColumn("nota");
 
             Tbl_notas.setModel(modelo);
-            String[] dato = new String[4];
+            String[] dato = new String[6];
             while (rss4.next()) {
                 dato[0] = rss4.getString(1);
                 dato[1] = rss4.getString(2);
                 dato[2] = rss4.getString(3);
                 dato[3] = rss4.getString(4);
+                dato[4] = rss4.getString(5);
+                dato[5] = rss4.getString(6);
 
                 modelo.addRow(dato);
             }
@@ -283,16 +301,20 @@ public class Notas extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //Codigo que permite insertar registros en al base de datos
         try {
-            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pst = cn.prepareStatement("insert into notas values(?,?,?,?)");
 
-            pst.setString(1, txt_codigoalumno.getText().trim());
-            pst.setString(2, txt_codigocurso.getText().trim());
-            pst.setString(3, txt_tiponota.getText().trim());
-            pst.setString(4, txt_nota.getText().trim());
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("insert into notas values(?,?,?,?,?,?)");
+
+            pst.setString(1, "0");
+            pst.setString(2, txt_codigoalumno.getText().trim());
+            pst.setString(3, txt_codigocurso.getText().trim());
+            pst.setString(4, txt_nombrecurso.getText().trim());
+            pst.setString(5, txt_tiponota.getText().trim());
+            pst.setString(6, txt_nota.getText().trim());
 
             pst.executeUpdate();
 
+            lbl_incremento.setText("");
             txt_codigoalumno.setText("");
             txt_codigocurso.setText("");
             txt_nombrecurso.setText("");
@@ -308,23 +330,28 @@ public class Notas extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //Codigo que permite modificar registros en la base de datos
         try {
-            String ID = txt_buscar.getText().trim();
+            String ID = lbl_incremento.getText().trim();
 
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pst = cn.prepareStatement("update notas set carnet_alumno= ?, codigo_curso=?, tipo_nota=?, nota=? where carnet_alumno = " + ID);
+            PreparedStatement pst = cn.prepareStatement("update notas set codigo_notas=?, carnet_alumno= ?, codigo_curso=?, nombre_curso=?, tipo_nota=?, nota=? where codigo_notas = " + ID);
 
-            pst.setString(1, txt_codigoalumno.getText().trim());
-            pst.setString(2, txt_codigocurso.getText().trim());
-            pst.setString(3, txt_tiponota.getText().trim());
-            pst.setString(4, txt_nota.getText().trim());
+            pst.setString(1, lbl_incremento.getText().trim());
+            pst.setString(2, txt_codigoalumno.getText().trim());
+            pst.setString(3, txt_codigocurso.getText().trim());
+            pst.setString(4, txt_nombrecurso.getText().trim());
+
+            pst.setString(5, txt_tiponota.getText().trim());
+            pst.setString(6, txt_nota.getText().trim());
 
             pst.executeUpdate();
 
+            lbl_incremento.setText("");
             txt_codigoalumno.setText("");
             txt_codigocurso.setText("");
             txt_nombrecurso.setText("");
             txt_tiponota.setText("");
             txt_nota.setText("");
+            txt_buscar.setText("");
 
             lbl_estatus.setText("Modificación Exitosa.");
 
@@ -333,7 +360,27 @@ public class Notas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+//Codigo que permite borrar registros en la base de datos
+        try {
 
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("delete from notas where codigo_notas = ?");
+
+            pst.setString(1, lbl_incremento.getText().trim());
+            pst.executeUpdate();
+
+            lbl_incremento.setText("");
+            txt_codigoalumno.setText("");
+            txt_codigocurso.setText("");
+            txt_nombrecurso.setText("");
+            txt_tiponota.setText("");
+            txt_nota.setText("");
+            txt_buscar.setText("");
+
+            JOptionPane.showMessageDialog(this, "¡ELIMINACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en eliminación", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_tiponotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tiponotaActionPerformed
@@ -369,10 +416,12 @@ public class Notas extends javax.swing.JInternalFrame {
     private void Tbl_notasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tbl_notasMouseClicked
         //para seleccionar el dato y mostrarlo en los txt
         int seleccionar = Tbl_notas.rowAtPoint(evt.getPoint());
-        txt_codigoalumno.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 0)));
-        txt_codigocurso.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 1)));
-        txt_tiponota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 2)));
-        txt_nota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 3)));
+        lbl_incremento.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 0)));
+        txt_codigoalumno.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 1)));
+        txt_codigocurso.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 2)));
+        txt_nombrecurso.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 3)));
+        txt_tiponota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 4)));
+        txt_nota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 5)));
 
     }//GEN-LAST:event_Tbl_notasMouseClicked
 
@@ -389,16 +438,19 @@ public class Notas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbl_estatus;
+    private javax.swing.JLabel lbl_incremento;
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_codigoalumno;
     private javax.swing.JTextField txt_codigocurso;

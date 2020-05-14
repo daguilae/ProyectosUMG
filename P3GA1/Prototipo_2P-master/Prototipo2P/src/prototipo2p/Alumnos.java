@@ -20,7 +20,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     
     String BD = "jdbc:mysql://localhost/siu";
     String Usuario = "root";
-    String Clave = "6182";
+    String Clave = "admin";
     
     public Alumnos() {
         initComponents();
@@ -184,7 +184,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
         getContentPane().add(txt_estatusalumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 111, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, -300, 1000, 760));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-370, -300, 970, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

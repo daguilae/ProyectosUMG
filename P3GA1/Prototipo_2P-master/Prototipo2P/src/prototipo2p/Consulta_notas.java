@@ -26,11 +26,11 @@ public class Consulta_notas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBuscar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_Nomina = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tbl_notas = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -38,54 +38,102 @@ public class Consulta_notas extends javax.swing.JInternalFrame {
         setTitle("Consulta Notas");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBuscar.setBackground(new java.awt.Color(141, 141, 208));
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/busquedap.png"))); // NOI18N
-        btnBuscar.setBorder(null);
-        btnBuscar.setBorderPainted(false);
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 50, 40));
-
         txtBuscar.setBackground(new java.awt.Color(204, 255, 255));
         txtBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 56, 30));
-
-        tbl_Nomina.setBackground(new java.awt.Color(204, 255, 255));
-        tbl_Nomina.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Codigo Curso", "Curso", "ID Alumno", "Tipo", "Nota"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbl_Nomina);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 556, 220));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Ingrese su número de carnet");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        Tbl_notas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Codigo Curso", "Nombre Curso", "Nombre Curso", "Tipo Nota", "Nota"
+            }
+        ));
+        Tbl_notas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tbl_notasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Tbl_notas);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 550, 130));
+
+        jButton4.setBackground(new java.awt.Color(141, 141, 208));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/busquedap.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 50, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-430, -470, 1000, 780));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -470, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Tbl_notasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tbl_notasMouseClicked
+        //para seleccionar el dato y mostrarlo en los txt
+        /*
+        int seleccionar = Tbl_notas.rowAtPoint(evt.getPoint());
+        lbl_incremento.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 0)));
+        txt_codigoalumno.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 1)));
+        txt_codigocurso.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 2)));
+        txt_nombrecurso.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 3)));
+        txt_tiponota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 4)));
+        txt_nota.setText(String.valueOf(Tbl_notas.getValueAt(seleccionar, 5)));*/
+    }//GEN-LAST:event_Tbl_notasMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       /* try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pstt4 = cn.prepareStatement("select * from notas");
+            ResultSet rss4 = pstt4.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("codigo_notas");
+            modelo.addColumn("carnet_alumno");
+            modelo.addColumn("codigo_curso");
+            modelo.addColumn("nombre_curso");
+            modelo.addColumn("tipo_nota");
+            modelo.addColumn("nota");
+
+            Tbl_notas.setModel(modelo);
+            String[] dato = new String[6];
+            while (rss4.next()) {
+                dato[0] = rss4.getString(1);
+                dato[1] = rss4.getString(2);
+                dato[2] = rss4.getString(3);
+                dato[3] = rss4.getString(4);
+                dato[4] = rss4.getString(5);
+                dato[5] = rss4.getString(6);
+
+                modelo.addRow(dato);
+            }
+
+        } catch (Exception e) {
+
+        }*/
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JTable Tbl_notas;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbl_Nomina;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
