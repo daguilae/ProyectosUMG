@@ -1,6 +1,9 @@
 package prototipo2p;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 
 
 
@@ -30,6 +33,7 @@ public class Inicio extends javax.swing.JFrame {
     private Maestros ventana_ma;
     private Asignacion_cursos_alumno venta_as2;
     private Asignacion_cursos_maestros ventana_as1;
+    private Notas ventana_notas;
     
     public Inicio() {
         initComponents();
@@ -44,7 +48,13 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icon= new ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"));
+        Image image= icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -76,11 +86,11 @@ public class Inicio extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 874, Short.MAX_VALUE)
+            .addGap(0, 1088, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Catalogos");
@@ -178,6 +188,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu3.add(jMenuItem15);
 
         jMenuItem16.setText("Ingreso de Notas");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem16);
 
         jMenuItem17.setText("Recepcion Actas de Registro");
@@ -334,6 +349,13 @@ public class Inicio extends javax.swing.JFrame {
         ventana_as1= new Asignacion_cursos_maestros();
         jDesktopPane1.add(ventana_as1);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+       
+        ventana_notas= new Notas();
+        jDesktopPane1.add(ventana_notas);
+        
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
