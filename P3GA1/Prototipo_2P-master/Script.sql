@@ -1,6 +1,8 @@
-DROP DATABASE siu;
+#DROP DATABASE siu;
 CREATE DATABASE siu;
 USE siu;
+
+select * from usuarios;
 -- -----------------------------------------------------
 -- Table `educativo`.`Alumnos`
 -- -----------------------------------------------------
@@ -142,3 +144,25 @@ CREATE TABLE asignacioncursosmastros
   FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
+-- ------------------
+-- Tabla de Notas
+-- ------------------
+CREATE TABLE notas
+(
+  codigo_notas int primary key auto_increment,
+  carnet_alumno VARCHAR(5),
+  codigo_curso VARCHAR(5),
+  nombre_curso VARCHAR(50),
+  tipo_nota VARCHAR(50),
+  nota int
+)ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+
+-- -----------------------------------------------------
+-- Table `educativo`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE usuarios
+(
+usuario VARCHAR(60) primary key,
+contraseña varchar(60) not null
+  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
