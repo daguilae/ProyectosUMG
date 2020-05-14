@@ -104,7 +104,7 @@ public class Login extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "admin");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Cagada1234");
             PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = ?");
             
             pst.setString(1, txtUsuario.getText().trim());
@@ -127,6 +127,7 @@ public class Login extends javax.swing.JFrame {
                     
             if(c1==c2){
                     new Inicio().setVisible(true);
+                    this.dispose();
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
