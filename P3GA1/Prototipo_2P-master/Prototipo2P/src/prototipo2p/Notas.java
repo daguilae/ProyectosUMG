@@ -251,7 +251,7 @@ public class Notas extends javax.swing.JInternalFrame {
         jTextArea1.setText("                        Para modificar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. Modificar los campos necesarios\n4. Darle click al boton Modificar (Icono del \n    Lápiz).");
         jScrollPane2.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 350, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 350, 130));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -273,6 +273,7 @@ public class Notas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_nombrecursoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
         try {
 
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
@@ -289,9 +290,9 @@ public class Notas extends javax.swing.JInternalFrame {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                
+
                 DefaultTableModel modelo = new DefaultTableModel();
-                
+
                 modelo.addColumn("codigo_notas");
                 modelo.addColumn("carnet_alumno");
                 modelo.addColumn("codigo_curso");
@@ -300,7 +301,7 @@ public class Notas extends javax.swing.JInternalFrame {
                 modelo.addColumn("nota");
 
                 Tbl_notas.setModel(modelo);
-                
+
                 String[] dato = new String[6];
 
                 while (rss4.next()) {
@@ -314,10 +315,8 @@ public class Notas extends javax.swing.JInternalFrame {
                     modelo.addRow(dato);
 
                 }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Alumno no RegistradoBray");
+            } else {
+                JOptionPane.showMessageDialog(null, "Alumno no Registrado");
             }
 
         } catch (Exception e) {
@@ -349,9 +348,10 @@ public class Notas extends javax.swing.JInternalFrame {
             txt_tiponota.setText("");
             txt_nota.setText("");
 
-            lbl_estatus.setText("Registro exitoso.");
-        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en registro", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -381,10 +381,15 @@ public class Notas extends javax.swing.JInternalFrame {
             txt_nota.setText("");
             txt_buscar.setText("");
 
-            lbl_estatus.setText("Modificación Exitosa.");
+            JOptionPane.showMessageDialog(this, "¡MODIFICACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
+            //Tabla();
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, "Error en modificación", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
+
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
