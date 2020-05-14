@@ -145,7 +145,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                                     .addComponent(txt_Codigo_Aula, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 23, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Buscar)
                         .addGap(48, 48, 48))
@@ -231,24 +231,10 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Buscar;
-    private javax.swing.JButton jButton_Buscar1;
     private javax.swing.JButton jButton_Eliminar;
-    private javax.swing.JButton jButton_Eliminar1;
     private javax.swing.JButton jButton_Ingresar;
-    private javax.swing.JButton jButton_Ingresar1;
     private javax.swing.JButton jButton_Modificar;
-    private javax.swing.JButton jButton_Modificar1;
-    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -257,24 +243,14 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel label_status1;
     private javax.swing.JTextField txt_Buscar;
-    private javax.swing.JTextField txt_Buscar1;
     private javax.swing.JTextField txt_Codigo_Aula;
-    private javax.swing.JTextField txt_Codigo_Aula1;
     private javax.swing.JTextField txt_Codigo_Carrera;
-    private javax.swing.JTextField txt_Codigo_Carrera1;
     private javax.swing.JTextField txt_Codigo_Curso;
-    private javax.swing.JTextField txt_Codigo_Curso1;
     private javax.swing.JTextField txt_Codigo_Jornada;
-    private javax.swing.JTextField txt_Codigo_Jornada1;
     private javax.swing.JTextField txt_Codigo_Maestro;
-    private javax.swing.JTextField txt_Codigo_Maestro1;
     private javax.swing.JTextField txt_Codigo_Seccion;
-    private javax.swing.JTextField txt_Codigo_Seccion1;
     private javax.swing.JTextField txt_Codigo_Sede;
-    private javax.swing.JTextField txt_Codigo_Sede1;
     private javax.swing.JTextField txt_ID_Asignacion_Maestros;
-    private javax.swing.JTextField txt_ID_Asignacion_Maestros1;
     // End of variables declaration//GEN-END:variables
 }
