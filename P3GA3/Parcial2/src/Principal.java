@@ -29,9 +29,9 @@ public class Principal extends javax.swing.JFrame {
     private AsignacionCM ventanaAsignacionM;
     private Laboratorios ventanaLaboratorios;
 
-    public static String BD = "jdbc:mysql://127.0.0.1:3306/siu";
-    public static String Usuario = "rex";
-    public static String Contraseña = "Polloloco900";
+    public static String BD = "jdbc:mysql://localhost/siu";
+    public static String Usuario = "root";
+    public static String Contraseña = "Langas798";
 
     /**
      * Creates new form Principal
