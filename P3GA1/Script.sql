@@ -147,11 +147,14 @@ CREATE TABLE asignacioncursosmastros
 -- ------------------
 CREATE TABLE notas
 (
+  codigo_notas int primary key auto_increment,
   carnet_alumno VARCHAR(5),
   codigo_curso VARCHAR(5),
+  nombre_curso VARCHAR(50),
   tipo_nota VARCHAR(50),
   nota int
 )ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
 
 -- -----------------------------------------------------
 -- Table `educativo`.`Usuarios`
