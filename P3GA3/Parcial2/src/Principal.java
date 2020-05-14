@@ -30,8 +30,8 @@ public class Principal extends javax.swing.JFrame {
     private Laboratorios ventanaLaboratorios;
 
     public static String BD = "jdbc:mysql://localhost/siu";
-    public static String Usuario = "root";
-    public static String Contraseña = "Langas798";
+    public static String Usuario = "rex";
+    public static String Contraseña = "polloloco900";
 
     /**
      * Creates new form Principal
@@ -52,8 +52,8 @@ public class Principal extends javax.swing.JFrame {
 
    
     public static ResultSet getTablaUsuarios(String Consulta){
-        Connection cn = getConnection();
-        Statement st ;
+        Connection cn = getConeccion();
+        Statement st = null ;
         ResultSet datos=null;
        
         try{
@@ -122,6 +122,7 @@ public void Panel(){
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -171,7 +172,16 @@ public void Panel(){
         );
         ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jMenu8.setText("Abrir");
+        jMenu8.setText("Bitacora Usuarios");
+
+        jMenuItem4.setText("Usuarios");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem4);
+
         jMenuBar1.add(jMenu8);
 
         jMenu3.setText("Catalogos");
@@ -433,6 +443,22 @@ public void Panel(){
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        
+
+        ConsultaRegistro ventana = new ConsultaRegistro();
+        Panel();
+         ventanaP.add(ventana);
+        ventanaP.add(jLabel1);  
+
+
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -492,6 +518,7 @@ public void Panel(){
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JDesktopPane ventanaP;

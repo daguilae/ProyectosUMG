@@ -26,6 +26,7 @@ public class Registrarse1 extends javax.swing.JFrame {
      */
     public Registrarse1() {
         initComponents();
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -261,6 +262,11 @@ public class Registrarse1 extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        /* Registrarse1 frame = new  Registrarse1();
+      frame.setSize(500, 500);
+      frame.setLocationRelativeTo(null);
+     frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+      frame.setVisible(true);*/
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
