@@ -8,29 +8,73 @@
  *
  * @author ranbr
  */
+import java.util.Timer;
+import java.util.TimerTask;
 public class Principal extends javax.swing.JFrame {
-private MantenimientoAlumno ventanaAlumno;
-private MantenimientoAula ventanaAula;
-private MantenimientoCarrera ventanaCarrera;
-private MantenimientoCurso ventanaCurso;
-private MantenimientoFacultad ventanaFacultad;
-private MantenimientoJornada ventanaJornada;
-private MantenimientoMaestro ventanaMaestro;
-private MantenimientoSeccion ventanaSeccion;
-private MantenimientoSede ventanaSede;
-private AsignacionCA ventanaAsignacion;
 
- public static String BD = "jdbc:mysql://localhost/siu";
- public static String Usuario = "root";
- public static String Contraseña = "Langas798";
-     
+    private MantenimientoAlumno ventanaAlumno;
+    private MantenimientoAula ventanaAula;
+    private MantenimientoCarrera ventanaCarrera;
+    private MantenimientoCurso ventanaCurso;
+    private MantenimientoFacultad ventanaFacultad;
+    private MantenimientoJornada ventanaJornada;
+    private MantenimientoMaestro ventanaMaestro;
+    private MantenimientoSeccion ventanaSeccion;
+    private MantenimientoSede ventanaSede;
+    private AsignacionCA ventanaAsignacion;
+    private AsignacionCM ventanaAsignacionM;
+    private Laboratorios ventanaLaboratorios;
+
+    public static String BD = "jdbc:mysql://127.0.0.1:3306/siu";
+    public static String Usuario = "root";
+    public static String Contraseña = "Polo.2015";
+
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-    }
+        this.setLocationRelativeTo(null);
+        Timer tiempoDeAnuncio = new Timer();
 
+        TimerTask task = new TimerTask() {
+            int tiempo = 0;
+
+            @Override
+            public void run() {
+
+                if (tiempo == 1) {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo0.jpg")));
+                   
+                } else if (tiempo == 2) {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo5.jpg")));
+                 
+
+                }
+                else if (tiempo == 3) {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo4.jpg")));
+                     
+
+                }
+                else if (tiempo == 4) {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg")));
+                      tiempo = 0;
+
+                }
+
+                tiempo++;
+            }
+        };
+        tiempoDeAnuncio.schedule(task, 10, 4000);
+    }
+public void Panel(){
+    ventanaP.removeAll();
+       ventanaP.repaint();
+       ventanaP.revalidate();
+        
+       ventanaP.repaint();
+        ventanaP.revalidate();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,11 +88,14 @@ private AsignacionCA ventanaAsignacion;
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         ventanaP = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         Mfacultades = new javax.swing.JMenuItem();
@@ -70,19 +117,27 @@ private AsignacionCA ventanaAsignacion;
         jMenuItem7.setText("jMenuItem7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Rachel Barrios 9959-18-649");
+        setTitle("GRUPO 3 - SIU");
 
+        ventanaP.setBackground(new java.awt.Color(51, 51, 51));
         ventanaP.setName("Rachel Barrios 9959-18-649"); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
+        jLabel1.setFocusable(false);
+
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
+            .addGroup(ventanaPLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ventanaPLayout.setVerticalGroup(
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
         );
 
         jMenu8.setText("Abrir");
@@ -100,6 +155,22 @@ private AsignacionCA ventanaAsignacion;
             }
         });
         jMenu4.add(jMenuItem13);
+
+        jMenuItem1.setText("Asignacion cursis a Maestros");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuItem2.setText("Laboratorios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
 
@@ -210,68 +281,122 @@ private AsignacionCA ventanaAsignacion;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-dispose();
+        dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void MAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAlumnosActionPerformed
-ventanaAlumno= new MantenimientoAlumno();
-ventanaP.add(ventanaAlumno);
+        ventanaAlumno = new MantenimientoAlumno();
+         Panel();
+        ventanaP.add(ventanaAlumno);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MAlumnosActionPerformed
 
     private void MfacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MfacultadesActionPerformed
-ventanaFacultad= new MantenimientoFacultad();
-ventanaP.add(ventanaFacultad);
+        ventanaFacultad = new MantenimientoFacultad();
+        Panel();
+        ventanaP.add(ventanaFacultad);
+        ventanaP.add(jLabel1);
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_MfacultadesActionPerformed
 
     private void MCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCarrerasActionPerformed
-ventanaCarrera= new MantenimientoCarrera();
-ventanaP.add(ventanaCarrera);
+        ventanaCarrera = new MantenimientoCarrera();
+
+        Panel();
+        ventanaP.add(ventanaCarrera);
+        ventanaP.add(jLabel1);
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_MCarrerasActionPerformed
 
     private void MCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MCursosActionPerformed
-ventanaCurso= new MantenimientoCurso();
-ventanaP.add(ventanaCurso);
+        ventanaCurso = new MantenimientoCurso();
+       
+        Panel();
+         ventanaP.add(ventanaCurso);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MCursosActionPerformed
 
     private void MSeccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MSeccionesActionPerformed
-ventanaSeccion= new MantenimientoSeccion();
-ventanaP.add(ventanaSeccion);
+        ventanaSeccion = new MantenimientoSeccion();
+       
+         Panel();
+         ventanaP.add(ventanaSeccion);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MSeccionesActionPerformed
 
     private void MSedesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MSedesActionPerformed
-ventanaSede= new MantenimientoSede();
-ventanaP.add(ventanaSede);
+        ventanaSede = new MantenimientoSede();
+        
+        
+         Panel();
+        ventanaP.add(ventanaSede);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MSedesActionPerformed
 
     private void MAulasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAulasActionPerformed
-ventanaAula= new MantenimientoAula();
-ventanaP.add(ventanaAula);
+        ventanaAula = new MantenimientoAula();
+      
+        
+        Panel();
+          ventanaP.add(ventanaAula);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MAulasActionPerformed
 
     private void MJornadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MJornadasActionPerformed
-ventanaJornada= new MantenimientoJornada();
-ventanaP.add(ventanaJornada);
+        ventanaJornada = new MantenimientoJornada();
+       
+         Panel();
+          ventanaP.add(ventanaJornada);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MJornadasActionPerformed
 
     private void MMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MMaestrosActionPerformed
-ventanaMaestro= new MantenimientoMaestro();
-ventanaP.add(ventanaMaestro);
+        ventanaMaestro = new MantenimientoMaestro();
+       
+        Panel();
+         ventanaP.add(ventanaMaestro);
+        ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MMaestrosActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-  ventanaAsignacion= new AsignacionCA();
-ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
+        ventanaAsignacion = new AsignacionCA();
+        Panel();
+         ventanaP.add(ventanaAsignacion);
+        ventanaP.add(jLabel1);      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+
+        ventanaAsignacionM = new AsignacionCM();
+        Panel();
+        ventanaP.add(ventanaAsignacionM);
+        ventanaP.add(jLabel1);    
+        
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ventanaLaboratorios = new Laboratorios();
+       
+        
+         Panel();
+         ventanaP.add(ventanaLaboratorios);
+        ventanaP.add(jLabel1); 
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +409,7 @@ ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -318,6 +443,7 @@ ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
     private javax.swing.JMenuItem MSecciones;
     private javax.swing.JMenuItem MSedes;
     private javax.swing.JMenuItem Mfacultades;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -326,7 +452,9 @@ ventanaP.add(ventanaAsignacion);      // TODO add your handling code here:
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

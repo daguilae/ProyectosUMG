@@ -15,6 +15,7 @@ CREATE TABLE alumnos
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
 -- -----------------------------------------------------
+
 -- Table `educativo`.`REGISTRO LOGIN`
 -- -----------------------------------------------------
 create table usuarios 
@@ -26,6 +27,7 @@ CorreoUsuario varchar (40) not null
 
 )ENGINE=INNODB DEFAULT CHARSET=latin1;
 -- -----------------------------------------------------
+
 -- Table `educativo`.`Maestros`
 -- -----------------------------------------------------
 CREATE TABLE maestros
