@@ -123,13 +123,6 @@ public void Panel(){
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuConsulta = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         Mfacultades = new javax.swing.JMenuItem();
         MMaestros = new javax.swing.JMenuItem();
@@ -140,6 +133,13 @@ public void Panel(){
         MSedes = new javax.swing.JMenuItem();
         MAulas = new javax.swing.JMenuItem();
         MJornadas = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuConsulta = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
@@ -184,45 +184,7 @@ public void Panel(){
 
         jMenuBar1.add(jMenu8);
 
-        jMenu3.setText("Catalogos");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Procesos");
-
-        jMenuItem13.setText("Asignacion cursos a Alumnos");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem13);
-
-        jMenuItem1.setText("Asignacion cursis a Maestros");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
-
-        jMenuItem2.setText("Laboratorios");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Informes");
-
-        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
-        jMenu5.add(jMenuConsulta);
-
-        jMenuBar1.add(jMenu5);
-
-        jMenu6.setText("Herramientas");
+        jMenu6.setText("Catalogos");
 
         Mfacultades.setText("Mantenimiento Facultades");
         Mfacultades.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +259,44 @@ public void Panel(){
         jMenu6.add(MJornadas);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu5.setText("Informes");
+
+        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
+        jMenu5.add(jMenuConsulta);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Procesos");
+
+        jMenuItem13.setText("Asignacion cursos a Alumnos");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
+
+        jMenuItem1.setText("Asignacion cursis a Maestros");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuItem2.setText("Laboratorios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu3.setText("Herramientas");
+        jMenuBar1.add(jMenu3);
 
         jMenu7.setText("Ayuda");
         jMenuBar1.add(jMenu7);
