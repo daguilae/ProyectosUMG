@@ -581,13 +581,13 @@ try{
         }
         try{
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("select * from asignacioncursosalumnos where id = ?");
+            PreparedStatement pst = cn.prepareStatement("select * from asignacioncursosalumnos where id_Alumno = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
-                txt_id.setText(rs.getString("id"));
+                txt_id.setText(rs.getString("id_Alumno"));
                 lb1.setText(rs.getString("codigo_carrera"));
                 lb2.setText(rs.getString("codigo_sede"));
                 lb3.setText(rs.getString("codigo_jornada"));
@@ -615,7 +615,7 @@ try{
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("delete from asignacioncursosalumnos where id = ?");
+            PreparedStatement pst = cn.prepareStatement("delete from asignacioncursosalumnos where id_Alumno = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
             pst.executeUpdate();
@@ -656,7 +656,7 @@ try{
             String codigo = txtbuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set id =?,codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id = " + codigo);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set id_Alumno =?,codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
 
             pst.setString(1, txt_id.getText().trim());
             pst.setString(2, lb1.getText().trim());
