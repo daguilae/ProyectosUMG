@@ -23,7 +23,7 @@ public class Notas extends javax.swing.JInternalFrame {
      */
     String BD = "jdbc:mysql://localhost/siu";
     String Usuario = "root";
-    String Clave = "Cagada1234";
+    String Clave = "admin";
 
     public Notas() {
         initComponents();
@@ -208,7 +208,6 @@ public class Notas extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 66, 55, 40));
 
-        Tbl_notas.setBackground(new java.awt.Color(204, 255, 255));
         Tbl_notas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -226,6 +225,14 @@ public class Notas extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(Tbl_notas);
+        if (Tbl_notas.getColumnModel().getColumnCount() > 0) {
+            Tbl_notas.getColumnModel().getColumn(0).setHeaderValue("Codigo Nota");
+            Tbl_notas.getColumnModel().getColumn(1).setHeaderValue("Carnet Alumno");
+            Tbl_notas.getColumnModel().getColumn(2).setHeaderValue("Codigo Curso");
+            Tbl_notas.getColumnModel().getColumn(3).setHeaderValue("Nombre Curso");
+            Tbl_notas.getColumnModel().getColumn(4).setHeaderValue("Tipo Nota");
+            Tbl_notas.getColumnModel().getColumn(5).setHeaderValue("Nota");
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 58, 550, 130));
 
@@ -241,10 +248,10 @@ public class Notas extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Para modificar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. modificar los campos necesarios\n4. y darle click al boton Modificar.");
+        jTextArea1.setText("                        Para modificar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. Modificar los campos necesarios\n4. Darle click al boton Modificar (Icono del \n    Lápiz).");
         jScrollPane2.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 350, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 350, 130));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoform.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -266,30 +273,50 @@ public class Notas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_nombrecursoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
         try {
+
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pstt4 = cn.prepareStatement("select * from notas");
+
+            PreparedStatement pstt4 = cn.prepareStatement("select * from notas where carnet_alumno=?");
+            pstt4.setString(1, txt_buscar.getText().trim());
+
             ResultSet rss4 = pstt4.executeQuery();
 
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("codigo_notas");
-            modelo.addColumn("carnet_alumno");
-            modelo.addColumn("codigo_curso");
-            modelo.addColumn("nombre_curso");
-            modelo.addColumn("tipo_nota");
-            modelo.addColumn("nota");
+            // hacer la copia del query para que la tabla empiece desde 1
+            PreparedStatement ps = cn.prepareStatement("select * from notas where carnet_alumno=?");
+            ps.setString(1, txt_buscar.getText().trim());
 
-            Tbl_notas.setModel(modelo);
-            String[] dato = new String[6];
-            while (rss4.next()) {
-                dato[0] = rss4.getString(1);
-                dato[1] = rss4.getString(2);
-                dato[2] = rss4.getString(3);
-                dato[3] = rss4.getString(4);
-                dato[4] = rss4.getString(5);
-                dato[5] = rss4.getString(6);
+            ResultSet rs = ps.executeQuery();
 
-                modelo.addRow(dato);
+            if (rs.next()) {
+
+                DefaultTableModel modelo = new DefaultTableModel();
+
+                modelo.addColumn("codigo_notas");
+                modelo.addColumn("carnet_alumno");
+                modelo.addColumn("codigo_curso");
+                modelo.addColumn("nombre_curso");
+                modelo.addColumn("tipo_nota");
+                modelo.addColumn("nota");
+
+                Tbl_notas.setModel(modelo);
+
+                String[] dato = new String[6];
+
+                while (rss4.next()) {
+                    dato[0] = rss4.getString(1);
+                    dato[1] = rss4.getString(2);
+                    dato[2] = rss4.getString(3);
+                    dato[3] = rss4.getString(4);
+                    dato[4] = rss4.getString(5);
+                    dato[5] = rss4.getString(6);
+
+                    modelo.addRow(dato);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Alumno no Registrado");
             }
 
         } catch (Exception e) {
@@ -321,9 +348,10 @@ public class Notas extends javax.swing.JInternalFrame {
             txt_tiponota.setText("");
             txt_nota.setText("");
 
-            lbl_estatus.setText("Registro exitoso.");
-        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en registro", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -353,10 +381,15 @@ public class Notas extends javax.swing.JInternalFrame {
             txt_nota.setText("");
             txt_buscar.setText("");
 
-            lbl_estatus.setText("Modificación Exitosa.");
+            JOptionPane.showMessageDialog(this, "¡MODIFICACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
+            //Tabla();
         } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, "Error en modificación", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
+
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
