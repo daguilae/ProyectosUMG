@@ -8,6 +8,10 @@
  *
  * @author ranbr
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Timer;
 import java.util.TimerTask;
 public class Principal extends javax.swing.JFrame {
@@ -32,6 +36,33 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    
+   public static Connection getConeccion(){
+        Connection cn = null;
+        try{
+            Class.forName(BD);
+            cn=DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            
+        }catch(Exception e){
+            System.out.println(String.valueOf(e));}
+        return cn;
+        
+         
+    }
+
+   
+    public static ResultSet getTablaUsuarios(String Consulta){
+        Connection cn = getConnection();
+        Statement st ;
+        ResultSet datos=null;
+       
+        try{
+            datos=st.executeQuery((Consulta));
+        }catch(Exception e){ System.out.print(e.toString());}
+        return datos;
+    
+    }
+    
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -97,6 +128,7 @@ public void Panel(){
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuConsulta = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         Mfacultades = new javax.swing.JMenuItem();
         MMaestros = new javax.swing.JMenuItem();
@@ -125,8 +157,6 @@ public void Panel(){
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
         jLabel1.setFocusable(false);
 
-        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
@@ -139,6 +169,7 @@ public void Panel(){
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
         );
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu8.setText("Abrir");
         jMenuBar1.add(jMenu8);
@@ -175,6 +206,10 @@ public void Panel(){
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Informes");
+
+        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
+        jMenu5.add(jMenuConsulta);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Herramientas");
@@ -452,6 +487,7 @@ public void Panel(){
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuConsulta;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
