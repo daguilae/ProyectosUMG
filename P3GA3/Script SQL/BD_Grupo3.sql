@@ -1,5 +1,6 @@
 create DATABASE siu;
 USE siu;
+#drop database siu;
 -- -----------------------------------------------------
 -- Table `educativo`.`Alumnos`
 -- -----------------------------------------------------
@@ -168,5 +169,5 @@ CREATE TABLE asignacioncursosmastros
     foreign key(id_Maestro) references asignacioncursosmastros(id_Maestro)
   )ENGINE = InnoDB DEFAULT CHARSET=latin1;
   
-
+  select *from usuarios;
   select *from Laboratorios;
