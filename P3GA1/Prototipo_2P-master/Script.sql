@@ -1,8 +1,6 @@
-#DROP DATABASE siu;
+-- DROP DATABASE siu;
 CREATE DATABASE siu;
 USE siu;
-
-select * from usuarios;
 -- -----------------------------------------------------
 -- Table `educativo`.`Alumnos`
 -- -----------------------------------------------------
@@ -165,4 +163,4 @@ CREATE TABLE usuarios
 (
 usuario VARCHAR(60) primary key,
 contraseña varchar(60) not null
-  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
