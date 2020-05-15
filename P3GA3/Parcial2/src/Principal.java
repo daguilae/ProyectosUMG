@@ -49,19 +49,6 @@ public class Principal extends javax.swing.JFrame {
         
          
     }
-
-   
-    public static ResultSet getTablaUsuarios(String Consulta){
-        Connection cn = getConnection();
-        Statement st ;
-        ResultSet datos=null;
-       
-        try{
-            datos=st.executeQuery((Consulta));
-        }catch(Exception e){ System.out.print(e.toString());}
-        return datos;
-    
-    }
     
     public Principal() {
         initComponents();

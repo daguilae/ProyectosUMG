@@ -131,6 +131,11 @@ String[] NombresColumnasSedes = {"codigo_sede" ,"nombre_sede" ,"estatus_sede"};
         ));
         tblSedes.setGridColor(new java.awt.Color(255, 255, 255));
         tblSedes.setSelectionBackground(new java.awt.Color(102, 204, 255));
+        tblSedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSedesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblSedes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -232,7 +237,7 @@ String[] NombresColumnasSedes = {"codigo_sede" ,"nombre_sede" ,"estatus_sede"};
 
             pst.setString(1, txtbuscado.getText().trim());
             pst.executeUpdate();
-MostrarDB("sedes");
+            MostrarDB("sedes");
             txtbuscado.setText("");
 
             JOptionPane.showMessageDialog(this, "REGISTRO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -339,6 +344,10 @@ MostrarDB("sedes");
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblSedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSedesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSedesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

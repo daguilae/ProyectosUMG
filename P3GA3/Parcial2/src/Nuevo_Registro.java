@@ -23,6 +23,7 @@ public class Nuevo_Registro extends javax.swing.JFrame {
      */
     public Nuevo_Registro() {
         initComponents();
+
     }
 
     /**
