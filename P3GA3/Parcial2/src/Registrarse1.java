@@ -187,7 +187,7 @@ public class Registrarse1 extends javax.swing.JFrame {
 
     private void kButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton4ActionPerformed
   
-       NUEVO_REGISTRO1 ventana = new NUEVO_REGISTRO1();
+       Nuevo_Registro ventana = new Nuevo_Registro();
        ventana.setVisible(true);
        this.dispose();
 // TODO add your handling code here:
