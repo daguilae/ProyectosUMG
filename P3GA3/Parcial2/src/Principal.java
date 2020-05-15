@@ -144,6 +144,8 @@ public void Panel(){
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
         jLabel1.setFocusable(false);
 
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
@@ -156,7 +158,6 @@ public void Panel(){
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
         );
-        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu8.setText("Abrir");
         jMenuBar1.add(jMenu8);
