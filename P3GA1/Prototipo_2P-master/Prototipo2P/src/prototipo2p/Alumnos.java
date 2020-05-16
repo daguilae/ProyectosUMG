@@ -242,7 +242,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("                        Para modificar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. Modificar los campos necesarios\n4. Darle click al boton Modificar (Icono del \n    Lápiz).");
+        jTextArea1.setText("                 Para modificar/ Eliminar:\n1. Debe buscar el carnet del alumno\n2. Luego seleccionar la fila de la tabla \n3. Modificar los campos necesarios\n4. Darle click al boton Modificar (Icono del \n    Lápiz).");
         jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
