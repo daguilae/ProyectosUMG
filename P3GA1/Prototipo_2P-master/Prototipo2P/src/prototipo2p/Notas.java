@@ -238,7 +238,7 @@ public class Notas extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscar Curso");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
-        getContentPane().add(lbl_incremento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 100, 20));
+        getContentPane().add(lbl_incremento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, 0));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Carnet Alumno:");
