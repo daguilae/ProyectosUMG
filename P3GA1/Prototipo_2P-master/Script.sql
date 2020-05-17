@@ -101,6 +101,7 @@ CREATE TABLE jornadas
 -- -----------------------------------------------------
 -- Table `educativo`.`Asignacion_cursos_alumnos`
 -- -----------------------------------------------------
+-- drop table asignacioncursosalumnos;
 CREATE TABLE asignacioncursosalumnos
 (
   codigo_carrera VARCHAR(5),
@@ -110,7 +111,7 @@ CREATE TABLE asignacioncursosalumnos
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
-  nota_asignacioncursoalumnos FLOAT(10,2), 
+  -- nota_asignacioncursoalumnos FLOAT(10,2), 
   PRIMARY KEY (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
