@@ -450,8 +450,19 @@ public class Carreras extends javax.swing.JInternalFrame {
         int seleccionar = tbl_carrera.rowAtPoint(evt.getPoint());
         txt_idcarrera.setText(String.valueOf(tbl_carrera.getValueAt(seleccionar, 0)));
         txt_nombre.setText(String.valueOf(tbl_carrera.getValueAt(seleccionar, 1)));
-        cbx_facultad.setSelectedItem(valueOf(tbl_carrera.getValueAt(seleccionar, 2)));
+        lbl_codigofac.setText(valueOf(tbl_carrera.getValueAt(seleccionar, 2)));
         txt_estatus.setText(String.valueOf(tbl_carrera.getValueAt(seleccionar, 3)));
+        
+        try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("select nombre_facultad from facultades where codigo_facultad=?;");
+            pst.setString(1, lbl_codigofac.getText());
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                cbx_facultad.setSelectedItem(rs.getString("nombre_facultad"));
+            }
+        } catch (Exception e) {}
     }//GEN-LAST:event_tbl_carreraMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
