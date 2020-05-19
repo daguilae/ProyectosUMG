@@ -1,5 +1,6 @@
 package prototipo2p;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -268,6 +269,12 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ventana_F= new Facultades();
         jDesktopPane1.add(ventana_F);
+         
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_F.getSize();
+        ventana_F.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_F.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -310,41 +317,89 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         ventana_C=new Carreras();
         jDesktopPane1.add(ventana_C);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_C.getSize();
+        ventana_C.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_C.show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         ventana_cursos= new Cursos();
         jDesktopPane1.add(ventana_cursos);
+        
+         //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_cursos.getSize();
+        ventana_cursos.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_cursos.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         ventana_j= new Jornadas();
         jDesktopPane1.add(ventana_j);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_j.getSize();
+        ventana_j.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_j.show();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         ventana_aula=new Aulas();
         jDesktopPane1.add(ventana_aula);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_aula.getSize();
+        ventana_aula.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_aula.show();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         ventana_s=new Secciones();
         jDesktopPane1.add(ventana_s);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_s.getSize();
+        ventana_s.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_s.show();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         ventana_sede=new Sedes();
         jDesktopPane1.add(ventana_sede);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_sede.getSize();
+        ventana_sede.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_sede.show();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         ventana_al= new Alumnos();
         jDesktopPane1.add(ventana_al);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_al.getSize();
+        ventana_al.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_al.show();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         ventana_ma=new Maestros();
         jDesktopPane1.add(ventana_ma);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_ma.getSize();
+        ventana_ma.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_ma.show();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed

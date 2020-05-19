@@ -20,7 +20,7 @@ public class Consulta_notas extends javax.swing.JInternalFrame {
 
     String BD = "jdbc:mysql://localhost/siu";
     String Usuario = "root";
-    String Clave = "admin";
+    String Clave = "Cagada1234";
 
     /**
      * Creates new form Consulta_notas
