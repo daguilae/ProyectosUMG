@@ -151,6 +151,11 @@ public void Panel(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GRUPO 3 - SIU");
+        addWindowStateListener(new java.awt.event.WindowStateListener() {
+            public void windowStateChanged(java.awt.event.WindowEvent evt) {
+                formWindowStateChanged(evt);
+            }
+        });
 
         ventanaP.setBackground(new java.awt.Color(51, 51, 51));
         ventanaP.setName("Rachel Barrios 9959-18-649"); // NOI18N
@@ -278,7 +283,7 @@ public void Panel(){
         });
         jMenu4.add(jMenuItem13);
 
-        jMenuItem1.setText("Asignacion cursis a Maestros");
+        jMenuItem1.setText("Asignacion cursos a Maestros");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -459,6 +464,10 @@ public void Panel(){
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowStateChanged
 
     /**
      * @param args the command line arguments
