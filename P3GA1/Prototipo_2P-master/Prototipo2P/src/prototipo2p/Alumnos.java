@@ -20,7 +20,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     
     String BD = "jdbc:mysql://localhost/siu";
     String Usuario = "root";
-    String Clave = "admin";
+    String Clave = "Cagada1234";
     
     public Alumnos() {
         initComponents();
