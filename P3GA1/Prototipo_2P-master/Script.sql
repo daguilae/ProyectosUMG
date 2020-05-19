@@ -143,10 +143,8 @@ CREATE TABLE asignacioncursosmastros
   FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
--- ------------------
--- Tabla de Notas
--- ------------------
-CREATE TABLE notas
+
+/*CREATE TABLE notas
 (
   codigo_notas int primary key auto_increment,
   carnet_alumno VARCHAR(5),
@@ -156,6 +154,31 @@ CREATE TABLE notas
   nota int
 )ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
+drop table notas;*/
+
+-- ------------------
+-- Tabla de Notas
+-- ------------------
+
+CREATE TABLE notas
+(
+  codigo_notas int primary key auto_increment,
+  codigo_carrera VARCHAR(5),
+  codigo_sede VARCHAR(5),
+  codigo_jornada VARCHAR(5),
+  carnet_alumno VARCHAR(15),
+  codigo_maestro VARCHAR(5),
+  codigo_curso VARCHAR(5),
+  tipo_nota VARCHAR(50),
+  nota int,
+  FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
+  FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
+  FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
+  FOREIGN KEY (carnet_alumno) REFERENCES alumnos(carnet_alumno),
+  FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro),
+  FOREIGN KEY (codigo_curso) REFERENCES cursos(codigo_curso)
+
+)ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
 -- -----------------------------------------------------
 -- Table `educativo`.`Usuarios`
