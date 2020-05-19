@@ -52,8 +52,8 @@ public class Principal extends javax.swing.JFrame {
 
    
     public static ResultSet getTablaUsuarios(String Consulta){
-        Connection cn = getConnection();
-        Statement st ;
+        Connection cn = getConeccion();
+        Statement st = null ;
         ResultSet datos=null;
        
         try{
@@ -122,13 +122,7 @@ public void Panel(){
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuConsulta = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         Mfacultades = new javax.swing.JMenuItem();
         MMaestros = new javax.swing.JMenuItem();
@@ -139,6 +133,13 @@ public void Panel(){
         MSedes = new javax.swing.JMenuItem();
         MAulas = new javax.swing.JMenuItem();
         MJornadas = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuConsulta = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
@@ -157,6 +158,8 @@ public void Panel(){
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
         jLabel1.setFocusable(false);
 
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
@@ -169,50 +172,20 @@ public void Panel(){
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
         );
-        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jMenu8.setText("Abrir");
+        jMenu8.setText("Bitacora Usuarios");
+
+        jMenuItem4.setText("Usuarios");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem4);
+
         jMenuBar1.add(jMenu8);
 
-        jMenu3.setText("Catalogos");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Procesos");
-
-        jMenuItem13.setText("Asignacion cursos a Alumnos");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem13);
-
-        jMenuItem1.setText("Asignacion cursis a Maestros");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
-
-        jMenuItem2.setText("Laboratorios");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Informes");
-
-        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
-        jMenu5.add(jMenuConsulta);
-
-        jMenuBar1.add(jMenu5);
-
-        jMenu6.setText("Herramientas");
+        jMenu6.setText("Catalogos");
 
         Mfacultades.setText("Mantenimiento Facultades");
         Mfacultades.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +260,44 @@ public void Panel(){
         jMenu6.add(MJornadas);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu5.setText("Informes");
+
+        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
+        jMenu5.add(jMenuConsulta);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Procesos");
+
+        jMenuItem13.setText("Asignacion cursos a Alumnos");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
+
+        jMenuItem1.setText("Asignacion cursis a Maestros");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuItem2.setText("Laboratorios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu3.setText("Herramientas");
+        jMenuBar1.add(jMenu3);
 
         jMenu7.setText("Ayuda");
         jMenuBar1.add(jMenu7);
@@ -433,6 +444,22 @@ public void Panel(){
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        
+
+        ConsultaRegistro ventana = new ConsultaRegistro();
+        Panel();
+         ventanaP.add(ventana);
+        ventanaP.add(jLabel1);  
+
+
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -492,6 +519,7 @@ public void Panel(){
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JDesktopPane ventanaP;

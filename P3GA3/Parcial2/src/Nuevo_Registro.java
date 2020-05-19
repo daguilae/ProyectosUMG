@@ -23,6 +23,9 @@ public class Nuevo_Registro extends javax.swing.JFrame {
      */
     public Nuevo_Registro() {
         initComponents();
+
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -256,6 +259,9 @@ public class Nuevo_Registro extends javax.swing.JFrame {
 
                 txt_Contraseña.setText("");
                 txt_Correo.setText("");
+               Registrarse1 ventana = new  Registrarse1();
+               ventana.setVisible(true);
+               this.dispose();
 
             }catch (Exception e){
 
