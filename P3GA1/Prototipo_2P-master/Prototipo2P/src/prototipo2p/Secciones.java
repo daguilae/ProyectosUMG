@@ -22,6 +22,7 @@ public class Secciones extends javax.swing.JInternalFrame {
     String Usuario = "root";
     String Clave = "admin";
 
+
     public Secciones() {
         initComponents();
     }

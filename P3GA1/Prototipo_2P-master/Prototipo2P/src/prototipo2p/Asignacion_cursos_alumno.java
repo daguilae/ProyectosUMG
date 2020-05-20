@@ -22,6 +22,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
     String Usuario = "root";
     String Clave = "admin";
 
+
     public Asignacion_cursos_alumno() {
         initComponents();
         //consultar combobox

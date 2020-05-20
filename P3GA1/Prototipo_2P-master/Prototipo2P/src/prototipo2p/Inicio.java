@@ -35,6 +35,7 @@ public class Inicio extends javax.swing.JFrame {
     private Asignacion_cursos_alumno venta_as2;
     private Asignacion_cursos_maestros ventana_as1;
     private Notas ventana_notas;
+    private Ingreso_Notas ventana_ingreso;
     
     public Inicio() {
         initComponents();
@@ -284,12 +285,24 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         venta_as2= new Asignacion_cursos_alumno();
         jDesktopPane1.add(venta_as2);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = venta_as2.getSize();
+        venta_as2.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        venta_as2.show();
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         Consulta_notas ventana = new Consulta_notas();
         jDesktopPane1.add(ventana);
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -405,13 +418,23 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         ventana_as1= new Asignacion_cursos_maestros();
         jDesktopPane1.add(ventana_as1);
+        
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_as1.getSize();
+        ventana_as1.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_as1.show();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
        
-        ventana_notas= new Notas();
-        jDesktopPane1.add(ventana_notas);
-        
+       ventana_ingreso= new Ingreso_Notas();
+       jDesktopPane1.add(ventana_ingreso);
+       //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_ingreso.getSize();
+        ventana_ingreso.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_ingreso.show(); 
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
