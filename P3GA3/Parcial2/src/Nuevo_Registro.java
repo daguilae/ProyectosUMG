@@ -11,6 +11,7 @@ import keeptoo.Drag;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author Langas
@@ -229,18 +230,19 @@ public class Nuevo_Registro extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        if (txt_Nombre.getText().isEmpty()
-                || txt_Contraseña.getText().isEmpty() || txt_Correo.getText().isEmpty()) {
+        if ( txt_Nombre.getText().isEmpty()
+            ||txt_Contraseña.getText().isEmpty() ||txt_Correo.getText().isEmpty()  ){
             JOptionPane.showMessageDialog(null, " NO PUEDE DEJAR CAMPOS VACIOS ");
 
             txt_Nombre.setText("");
 
             txt_Contraseña.setText("");
             txt_Correo.setText("");
-        } else {
+        }
+        else {
 
-            try {
-                Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            try{
+                Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
 
                 PreparedStatement pst = cn.prepareStatement("insert into usuarios values(?,?,?,?)");
                 //en la variables pst de tipo coneccion a base de datos inserte
@@ -257,12 +259,12 @@ public class Nuevo_Registro extends javax.swing.JFrame {
 
                 txt_Contraseña.setText("");
                 txt_Correo.setText("");
-                Registrarse1 ventana = new Registrarse1();
-                ventana.setVisible(true);
-                this.dispose();
+               Registrarse1 ventana = new  Registrarse1();
+               ventana.setVisible(true);
+               this.dispose();
 
-            } catch (Exception e) {
-                e.printStackTrace();
+            }catch (Exception e){
+
             }
         }
 

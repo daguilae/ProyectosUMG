@@ -106,6 +106,11 @@ public class Registrarse1 extends javax.swing.JFrame {
         kButton4.setkHoverForeGround(new java.awt.Color(204, 204, 204));
         kButton4.setkHoverStartColor(new java.awt.Color(0, 51, 51));
         kButton4.setkStartColor(new java.awt.Color(255, 255, 255));
+        kButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kButton4MouseClicked(evt);
+            }
+        });
         kButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton4ActionPerformed(evt);
@@ -256,6 +261,10 @@ public class Registrarse1 extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarSecionMouseClicked
+
+    private void kButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kButton4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kButton4MouseClicked
 
     /**
      * @param args the command line arguments
