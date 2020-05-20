@@ -1,4 +1,4 @@
-#DROP DATABASE siu;
+-- DROP DATABASE siu;
 CREATE DATABASE siu;
 USE siu;
 -- -----------------------------------------------------
@@ -111,8 +111,13 @@ CREATE TABLE asignacioncursosalumnos
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
+<<<<<<< HEAD
   -- nota_asignacioncursoalumnos FLOAT(10,2), 
   #tipo_examen
+=======
+  tipo_nota VARCHAR(50),
+  nota_asignacioncursoalumnos FLOAT(10,2), 
+>>>>>>> 98c9ed151016704588272d338b45ef99415cfc1d
   PRIMARY KEY (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
@@ -144,42 +149,6 @@ CREATE TABLE asignacioncursosmastros
   FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
-
-/*CREATE TABLE notas
-(
-  codigo_notas int primary key auto_increment,
-  carnet_alumno VARCHAR(5),
-  codigo_curso VARCHAR(5),
-  nombre_curso VARCHAR(50),
-  tipo_nota VARCHAR(50),
-  nota int
-)ENGINE = InnoDB DEFAULT CHARSET=latin1;
-
-drop table notas;*/
-
--- ------------------
--- Tabla de Notas
--- ------------------
-#drop table notas;
-CREATE TABLE notas
-(
-  codigo_notas int primary key auto_increment,
-  codigo_maestro VARCHAR(5),
-  codigo_carrera VARCHAR(5),
-  codigo_sede VARCHAR(5),
-  codigo_jornada VARCHAR(5),
-  carnet_alumno VARCHAR(15),
-  codigo_curso VARCHAR(5),
-  tipo_nota VARCHAR(50),
-  nota int,
-  FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
-  FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
-  FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
-  FOREIGN KEY (carnet_alumno) REFERENCES alumnos(carnet_alumno),
-  FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro),
-  FOREIGN KEY (codigo_curso) REFERENCES cursos(codigo_curso)
-
-)ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
 -- -----------------------------------------------------
 -- Table `educativo`.`Usuarios`
