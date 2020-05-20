@@ -112,6 +112,7 @@ CREATE TABLE asignacioncursosalumnos
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
   -- nota_asignacioncursoalumnos FLOAT(10,2), 
+  #tipo_examen
   PRIMARY KEY (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),

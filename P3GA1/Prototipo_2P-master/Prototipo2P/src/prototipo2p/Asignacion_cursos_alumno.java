@@ -258,21 +258,21 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbx_seccion = new javax.swing.JComboBox<>();
+        cbx_seccion = new javax.swing.JComboBox<String>();
         lbl_seccion = new javax.swing.JLabel();
         lbl_aula = new javax.swing.JLabel();
-        cbx_aula = new javax.swing.JComboBox<>();
-        cbx_curso = new javax.swing.JComboBox<>();
+        cbx_aula = new javax.swing.JComboBox<String>();
+        cbx_curso = new javax.swing.JComboBox<String>();
         lbl_curso = new javax.swing.JLabel();
-        cbx_alumno = new javax.swing.JComboBox<>();
+        cbx_alumno = new javax.swing.JComboBox<String>();
         lbl_alumno = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_asignacion = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        cbx_sede = new javax.swing.JComboBox<>();
+        cbx_sede = new javax.swing.JComboBox<String>();
         lbl_sede = new javax.swing.JLabel();
-        cbx_carrera = new javax.swing.JComboBox<>();
-        cbx_jornada = new javax.swing.JComboBox<>();
+        cbx_carrera = new javax.swing.JComboBox<String>();
+        cbx_jornada = new javax.swing.JComboBox<String>();
         lbl_carrera = new javax.swing.JLabel();
         lbl_jornada = new javax.swing.JLabel();
 
@@ -596,7 +596,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
                     .addComponent(cbx_alumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(lbl_alumno))
-                .addContainerGap())
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
