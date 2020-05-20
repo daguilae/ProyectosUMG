@@ -34,7 +34,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
    
     String[] NombresColumnasAsignacionA = {"codigo_carrera", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno", "nota_asignacioncursoalumnos"};
 
-    /*public void MostrarDB(String Tabla) {
+    public void MostrarDB(String Tabla) {
         String[] columnas = new String[8];
         String query;
         try {
@@ -61,7 +61,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             err.printStackTrace();
         }
 
-    }*/
+    }
 
     public AsignacionCA() {
         initComponents();
