@@ -65,10 +65,10 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     boolean Encontrado;
     boolean EncontradoMayorCero = false;
    
-    String[] NombresColumnasAsignacionA = {"codigo_carrera", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno", "nota_asignacioncursoalumnos"};
+    String[] NombresColumnasAsignacionA = {"id_Alumno", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno","Tipo_Nota","Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos"};
 
-    /*public void MostrarDB(String Tabla) {
-        String[] columnas = new String[8];
+    public void MostrarDB(String Tabla) {
+        String[] columnas = new String[24];
         String query;
         try {
 
@@ -82,7 +82,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             DefaultTableModel md = new DefaultTableModel(null, NombresColumnasAsignacionA);
 
             while (resultado.next()) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 23; i++) {
                     columnas[i] = resultado.getString(NombresColumnasAsignacionA[i]);
                 }
                 md.addRow(columnas);
@@ -94,11 +94,12 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             err.printStackTrace();
         }
 
-    }*/
+    }
 
     public AsignacionCA() {
         initComponents();
         
+        txt_Nuevo.setVisible(false);
         Busqueda();
 
             
@@ -177,7 +178,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         {
 
         }
-       // MostrarDB("asignacioncursosalumnos");
+        MostrarDB("asignacioncursosalumnos");
     }
     
     public String[]datos(String datos)
@@ -512,6 +513,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
         jTabbedPane3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         tblAsignacionA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -527,26 +530,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         tblAsignacionA.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane3.setViewportView(tblAsignacionA);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 310));
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
-        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 6, -1, -1));
+        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 540, 360));
 
         jLabel1.setText("Tipo de Nota");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 283, -1, -1));
@@ -557,7 +545,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jComboBox_Parcial, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 278, 221, -1));
-        getContentPane().add(txt_Nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, 88, -1));
+        getContentPane().add(txt_Nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 88, -1));
 
         jComboBox_Parcial2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         getContentPane().add(jComboBox_Parcial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 220, -1));
@@ -725,58 +713,72 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 if(Item == "Semestre" && Item2 == "Parcial 1")
                 {
                     IngresarMAC(Item,Item2,10,"Parcial_1",Parcial_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Semestre" && Item2 == "Parcial 2")
                 {
                     IngresarMAC(Item,Item2,11,"Parcial_2",Parcial2_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Semestre" && Item2 == "Parcial 3")
                 {
                     IngresarMAC(Item,Item2,12,"Parcial_3",Parcial3_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
                 }     
                 else if(Item == "Trimestre" && Item2 == "Parcial 1")
                 {
                     IngresarMAC(Item,Item2,13,"Parcial_1T",Parcial_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
                 }            
                 else if(Item == "Trimestre" && Item2 == "Parcial 2")
                 {
                     IngresarMAC(Item,Item2,14,"Parcial_2T",Parcial2_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Trimestre" && Item2 == "Parcial 3")
                 {
                     IngresarMAC(Item,Item2,15,"Parcial_3T",Parcial3_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
                 }    
                 else if(Item == "Bimestre" && Item2 == "Parcial 1")
                 {
                     IngresarMAC(Item,Item2,16,"Parcial_1B",Parcial_FlotanteB);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Unidad" && Item2 == "Unidad 1")
                 {
                     IngresarMAC(Item,Item2,17,"Unidad_1",Unidad1_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }      
                 else if(Item == "Unidad" && Item2 == "Unidad 2")
                 {
                     IngresarMAC(Item,Item2,18,"Unidad_2",Unidad2_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }    
                 else if(Item == "Unidad" && Item2 == "Unidad 3")
                 {
                     IngresarMAC(Item,Item2,19,"Unidad_3",Unidad3_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }             
                 else if(Item == "Unidad" && Item2 == "Unidad 4")
                 {
                     IngresarMAC(Item,Item2,20,"Unidad_4",Unidad4_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }           
                 else if(Item == "Extraordinario" && Item2 == "Extraordinario")
                 {
                     IngresarMAC(Item,Item2,21,"Extraordinario",Extraordinario_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }      
                 else if(Item == "Privado" && Item2 == "Privado")
                 {
                     IngresarMAC(Item,Item2,22,"Privado",Privado_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }  
                 else if(Item == "Zona" && Item2 == "Zona")
                 {
                     IngresarMAC(Item,Item2,23,"Zona",Zona_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
                 }        
                 
                 /*try
@@ -1030,58 +1032,72 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 if(Item == "Semestre" && Item2 == "Parcial 1")
                 {
                    IngresarMA(Item,Item2,10);
+                           MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Semestre" && Item2 == "Parcial 2")
                 {
                     IngresarMA(Item,Item2,11);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Semestre" && Item2 == "Parcial 3")
                 {
                    IngresarMA(Item,Item2,12);
+                           MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Trimestre" && Item2 == "Parcial 1")
                 {
                     IngresarMA(Item,Item2,13);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Trimestre" && Item2 == "Parcial 2")
                 {
                     IngresarMA(Item,Item2,14);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Trimestre" && Item2 == "Parcial 3")
                 {
                     IngresarMA(Item,Item2,15);
+                            MostrarDB("asignacioncursosalumnos");
                 }  
                 else if(Item == "Bimestre" && Item2 == "Bimestre")
                 {
                     IngresarMA(Item,Item2,16);
+                            MostrarDB("asignacioncursosalumnos");
                 }                     
                 else if(Item == "Unidad" && Item2 == "Unidad 1")
                 {
                     IngresarMA(Item,Item2,17);
+                            MostrarDB("asignacioncursosalumnos");
                 }                
                 else if(Item == "Unidad" && Item2 == "Unidad 2")
                 {
                     IngresarMA(Item,Item2,18);
+                            MostrarDB("asignacioncursosalumnos");
                 }
                 else if(Item == "Unidad" && Item2 == "Unidad 3")
                 {
                     IngresarMA(Item,Item2,19);
+                            MostrarDB("asignacioncursosalumnos");
                 }                  
                 else if(Item == "Unidad" && Item2 == "Unidad 4")
                 {
                     IngresarMA(Item,Item2,20);
+                            MostrarDB("asignacioncursosalumnos");
                 }     
                 else if(Item == "Extraordinario" && Item2 == "Extraordinario")
                 {
                     IngresarMA(Item,Item2,21);
+                            MostrarDB("asignacioncursosalumnos");
                 }               
                 else if(Item == "Privado" && Item2 == "Privado")
                 {
                     IngresarMA(Item,Item2,22);
+                            MostrarDB("asignacioncursosalumnos");
                 }  
                 else if(Item == "Zona" && Item2 == "Zona")
                 {
                     IngresarMA(Item,Item2,23);
+                            MostrarDB("asignacioncursosalumnos");
                 }                    
             }catch(Exception e)
             {
@@ -1362,7 +1378,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
             pst.setString(1, txtbuscado.getText().trim());
             pst.executeUpdate();
-            //MostrarDB("asignacioncursosalumnos");
+            MostrarDB("asignacioncursosalumnos");
             txtbuscado.setText("");
 
             JOptionPane.showMessageDialog(this, "REGISTRO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -1395,11 +1411,19 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try {
+        
+        Item = jComboBox_Parcial.getSelectedItem().toString();
+        Item2 = jComboBox_Parcial2.getSelectedItem().toString();  
+        if(Item == "Semestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,10);
+        }
+
+        /*try {
             String codigo = txtbuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set id_Alumno =?,codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
 
             pst.setString(1, txt_Codigo.getText().trim());
             pst.setString(2, lb1.getText().trim());
@@ -1411,7 +1435,83 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             pst.setString(8, lb7.getText().trim());
             pst.setString(9, txt_Nota.getText().trim());
             pst.executeUpdate();
-           // MostrarDB("asignacioncursosalumnos");
+            MostrarDB("asignacioncursosalumnos");
+            JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+            btnEliminar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            txt_Codigo.setText("");
+            txt_Nota.setText("");
+            lb1.setText("");
+            lb2.setText("");
+            lb3.setText("");
+            lb4.setText("");
+            lb5.setText("");
+            lb6.setText("");
+            lb7.setText("");
+            cbox_carrera.setSelectedIndex(0);
+            cbox_j.setSelectedIndex(0);
+            cbox_aula.setSelectedIndex(0);
+            cbox_alum.setSelectedIndex(0);
+            cbox_sec.setSelectedIndex(0);
+            cbox_sede.setSelectedIndex(0);
+            cbox_curso.setSelectedIndex(0);
+            txtbuscado.setText("");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }*/
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    public void ModificarT(String ItemT,String Item2T,int Lugar)
+    {
+        Item = jComboBox_Parcial.getSelectedItem().toString();
+        Item2 = jComboBox_Parcial2.getSelectedItem().toString();        
+        
+            try {
+            String codigo = txtbuscado.getText().trim();
+
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
+
+            pst.setString(1, txt_Codigo.getText().trim());
+            pst.setString(2, lb1.getText().trim());
+            pst.setString(3, lb2.getText().trim());
+            pst.setString(4, lb3.getText().trim());
+            pst.setString(5, lb4.getText().trim());
+            pst.setString(6, lb5.getText().trim());
+            pst.setString(7, lb6.getText().trim());
+            pst.setString(8, lb7.getText().trim());
+
+            
+            if(Item == ItemT)
+            {
+                pst.setString(9,ItemT);
+                
+                if(Item2 == Item2T)
+                {
+                    BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                    for(int i = 10;i<=24;i++)
+                    {
+                        if(i == Lugar)
+                        {
+                            pst.setString(i, txt_Nota.getText().trim());
+                        }
+                        else
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }
+
+                    }
+                }
+            }
+            
+            
+            pst.executeUpdate();
+            MostrarDB("asignacioncursosalumnos");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
             btnEliminar.setEnabled(false);
@@ -1437,10 +1537,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarActionPerformed
-
+    }
         public boolean Busqueda()
     {
         try
