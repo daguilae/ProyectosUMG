@@ -9,28 +9,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ranbr
  */
 public class MantenimientoCurso extends javax.swing.JInternalFrame {
-String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso"};
+
+    String[] NombresColumnasCursos = {"codigo_curso", "codigo_carrera", "nombre_curso", "estatus_curso"};
+
     public void MostrarDB(String Tabla) {
-        String[] columnas = new String[3];
+        String[] columnas = new String[4];
         String query;
         try {
 
-            Connection c = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-           
-                query = "SELECT * FROM " + Tabla;
-           
+            Connection c = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+
+            query = "SELECT * FROM " + Tabla;
 
             PreparedStatement consulta = c.prepareStatement(query);
             ResultSet resultado = consulta.executeQuery();
             DefaultTableModel md = new DefaultTableModel(null, NombresColumnasCursos);
 
             while (resultado.next()) {
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     columnas[i] = resultado.getString(NombresColumnasCursos[i]);
                 }
                 md.addRow(columnas);
@@ -43,8 +45,24 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
         }
 
     }
+
     public MantenimientoCurso() {
         initComponents();
+
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("select nombre_carrera from  carreras");
+            ResultSet rs = pst.executeQuery();
+
+            cbox.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cbox.addItem(rs.getString("nombre_carrera"));
+            }
+
+        } catch (Exception e) {
+
+        }
+
         MostrarDB("cursos");
     }
 
@@ -72,6 +90,9 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCursos = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        cbox = new javax.swing.JComboBox<>();
+        lb = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -153,6 +174,16 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
+        jLabel6.setText("Carrera");
+
+        cbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxActionPerformed(evt);
+            }
+        });
+
+        lb.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,15 +192,6 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(44, 44, 44)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -182,13 +204,28 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel9)
-                                .addGap(45, 45, 45)
-                                .addComponent(txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(144, 144, 144)))
+                                .addComponent(jLabel9)))
+                        .addGap(144, 144, 144))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(44, 44, 44)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbox, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lb)
+                .addGap(12, 12, 12)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +241,12 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,7 +260,7 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEliminar)
                             .addComponent(btnModificar))))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,19 +268,20 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String buscar = txtbuscado.getText().trim();
-        if(buscar.isEmpty()) {
+        if (buscar.isEmpty()) {
             JOptionPane.showMessageDialog(this, "¡No se ingreso el campo de busqueda!", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        try{
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from cursos where codigo_curso = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 txt_id.setText(rs.getString("codigo_curso"));
+                lb.setText(rs.getString("codigo_carrera"));
                 txt_nombre.setText(rs.getString("nombre_curso"));
                 txt_estatus.setText(rs.getString("estatus_curso"));
 
@@ -250,7 +293,7 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
                 JOptionPane.showMessageDialog(null, "curso no registrado.");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -259,12 +302,12 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from cursos where codigo_curso = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
             pst.executeUpdate();
-           MostrarDB("cursos");
+            MostrarDB("cursos");
             txtbuscado.setText("");
 
             JOptionPane.showMessageDialog(this, "REGISTRO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -274,12 +317,13 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
 
             txt_id.setText("");
             txt_nombre.setText("");
+            lb.setText("");
             txt_estatus.setText("");
 
             txtbuscado.setText("");
 
-        }catch (Exception e) {
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -288,22 +332,25 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        try{
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("insert into cursos values(?,?,?)");
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("insert into cursos values(?,?,?,?)");
 
             pst.setString(1, txt_id.getText().trim());
-            pst.setString(2, txt_nombre.getText().trim());
-            pst.setString(3, "A");
+            pst.setString(2, lb.getText().trim());
+            pst.setString(3, txt_nombre.getText().trim());
+            pst.setString(4, "A");
 
             pst.executeUpdate();
- MostrarDB("cursos");
+            MostrarDB("cursos");
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
             txt_id.setText("");
             txt_nombre.setText("");
+            cbox.setSelectedIndex(0);
+            lb.setText("...");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGITRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -315,13 +362,14 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
         try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update cursos set nombre_curso = ? ,estatus_curso= ?  where codigo_curso = " + codigo);
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("update cursos set nombre_curso = ? ,codigo_carrera=? ,estatus_curso= ?  where codigo_curso = " + codigo);
 
             pst.setString(1, txt_nombre.getText().trim());
-            pst.setString(2, txt_estatus.getText().trim());
+            pst.setString(2, lb.getText().trim());
+            pst.setString(3, txt_estatus.getText().trim());
             pst.executeUpdate();
- MostrarDB("cursos");
+            MostrarDB("cursos");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
             btnEliminar.setEnabled(false);
@@ -331,6 +379,7 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
             txt_id.setText("");
             txt_nombre.setText("");
             txt_estatus.setText("");
+            lb.setText("");
             txtbuscado.setText("");
 
         } catch (Exception e) {
@@ -340,18 +389,43 @@ String[] NombresColumnasCursos = {"codigo_curso" ,"nombre_curso" ,"estatus_curso
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void cboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("select codigo_carrera from carreras where nombre_carrera= ?");
+            pst.setString(1, cbox.getSelectedItem().toString());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                lb.setText(rs.getString("codigo_carrera"));
+
+            } else {
+
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> cbox;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JLabel lb;
     private javax.swing.JTable tblCursos;
     private javax.swing.JTextField txt_estatus;
     private javax.swing.JTextField txt_id;
