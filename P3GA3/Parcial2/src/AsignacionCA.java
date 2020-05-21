@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
  * @author ranbr
  */
 public class AsignacionCA extends javax.swing.JInternalFrame {
-
     String Semestre = "Semestre" ;
     String Trimestre = "Trimestre" ;
     String Unidad = "Unidad" ;
@@ -45,6 +44,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     String PrivadoS = "";
     String ZonaS = "";
     String NotaS = "";
+    String Prueba= "";
     
     float Parcial_Flotante = 0;
     float Parcial2_Flotante = 0;
