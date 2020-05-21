@@ -18,6 +18,8 @@ import keeptoo.Drag;
  */
 public class Nuevo_Registro extends javax.swing.JFrame {
 
+     public boolean mostrar = true;
+    
     /**
      * Creates new form Nuevo_Registro
      */
@@ -25,6 +27,8 @@ public class Nuevo_Registro extends javax.swing.JFrame {
         initComponents();
 
         setLocationRelativeTo(null);
+         txt_Contraseña.setVisible(false);
+        txt_Contraseña1.setVisible(true);
 
     }
 
@@ -51,6 +55,8 @@ public class Nuevo_Registro extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txt_Contraseña1 = new javax.swing.JPasswordField();
+        btnVista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -116,7 +122,7 @@ public class Nuevo_Registro extends javax.swing.JFrame {
                 txt_ContraseñaActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(txt_Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 192, 30));
+        kGradientPanel1.add(txt_Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 192, 30));
 
         txt_Correo.setBackground(new Color(0,0,0,0));
         txt_Correo.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,6 +207,20 @@ public class Nuevo_Registro extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Admin_3.png"))); // NOI18N
         kGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 60, 60));
+
+        txt_Contraseña1.setBackground(new Color(0,0,0,0));
+        txt_Contraseña1.setForeground(new java.awt.Color(255, 255, 255));
+        txt_Contraseña1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_Contraseña1.setOpaque(false);
+        kGradientPanel1.add(txt_Contraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 190, 30));
+
+        btnVista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono ojo.jpg"))); // NOI18N
+        btnVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVistaActionPerformed(evt);
+            }
+        });
+        kGradientPanel1.add(btnVista, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 40, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,6 +328,26 @@ public class Nuevo_Registro extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void btnVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVistaActionPerformed
+
+        if (mostrar ){
+            txt_Contraseña.setVisible(true);
+            txt_Contraseña1.setVisible(false);
+            txt_Contraseña.setText(txt_Contraseña1.getText());
+            mostrar = false;
+            
+        }else {
+            txt_Contraseña.setVisible(false);
+            txt_Contraseña1.setVisible(true);
+            txt_Contraseña1.setText(txt_Contraseña.getText());
+            mostrar = true;
+            
+        }
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnVistaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -345,6 +385,7 @@ public class Nuevo_Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private keeptoo.KButton btnRegistrar;
+    private javax.swing.JButton btnVista;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -356,6 +397,7 @@ public class Nuevo_Registro extends javax.swing.JFrame {
     private keeptoo.KButton kButton5;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JTextField txt_Contraseña;
+    private javax.swing.JPasswordField txt_Contraseña1;
     private javax.swing.JTextField txt_Correo;
     private javax.swing.JTextField txt_Nombre;
     // End of variables declaration//GEN-END:variables

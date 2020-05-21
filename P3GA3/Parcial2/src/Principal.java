@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JInternalFrame;
 public class Principal extends javax.swing.JFrame {
 
     private MantenimientoAlumno ventanaAlumno;
@@ -30,12 +31,32 @@ public class Principal extends javax.swing.JFrame {
     private Laboratorios ventanaLaboratorios;
 
     public static String BD = "jdbc:mysql://localhost/siu";
-    public static String Usuario = "root";
-    public static String Contraseña = "Langas798";
+    public static String Usuario = "rex";
+    public static String Contraseña = "polloloco900";
 
     /**
      * Creates new form Principal
      */
+    
+    
+    public void CentrarVentanas(JInternalFrame internalFrame){
+        
+        int x = (ventanaP.getWidth( ) / 2)- internalFrame.getWidth() / 2;
+        int y = (ventanaP.getHeight() / 2)- internalFrame.getHeight() / 2;
+        
+       if (internalFrame.isShowing () ){
+           internalFrame.setLocation (x,  y);
+       }
+    
+    else {
+    ventanaP.add(internalFrame);
+    internalFrame.setLocation(x,  y);
+    internalFrame.show();
+}
+    }
+    
+    
+    
     
    public static Connection getConeccion(){
         Connection cn = null;
@@ -134,7 +155,6 @@ public void Panel(){
         MAulas = new javax.swing.JMenuItem();
         MJornadas = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuConsulta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -163,8 +183,6 @@ public void Panel(){
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
         jLabel1.setFocusable(false);
 
-        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
@@ -177,6 +195,7 @@ public void Panel(){
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
         );
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu8.setText("Bitacora Usuarios");
 
@@ -267,10 +286,11 @@ public void Panel(){
         jMenuBar1.add(jMenu6);
 
         jMenu5.setText("Informes");
-
-        jMenuConsulta.setText("CONSULTA USUARIOS REGISTRADOS");
-        jMenu5.add(jMenuConsulta);
-
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         jMenu4.setText("Procesos");
@@ -339,7 +359,7 @@ public void Panel(){
     private void MAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAlumnosActionPerformed
         ventanaAlumno = new MantenimientoAlumno();
          Panel();
-        ventanaP.add(ventanaAlumno);
+        CentrarVentanas(ventanaAlumno);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MAlumnosActionPerformed
@@ -347,7 +367,7 @@ public void Panel(){
     private void MfacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MfacultadesActionPerformed
         ventanaFacultad = new MantenimientoFacultad();
         Panel();
-        ventanaP.add(ventanaFacultad);
+        CentrarVentanas(ventanaFacultad);
         ventanaP.add(jLabel1);
         
 // TODO add your handling code here:
@@ -357,7 +377,7 @@ public void Panel(){
         ventanaCarrera = new MantenimientoCarrera();
 
         Panel();
-        ventanaP.add(ventanaCarrera);
+        CentrarVentanas(ventanaCarrera);
         ventanaP.add(jLabel1);
         
 // TODO add your handling code here:
@@ -367,7 +387,7 @@ public void Panel(){
         ventanaCurso = new MantenimientoCurso();
        
         Panel();
-         ventanaP.add(ventanaCurso);
+         CentrarVentanas(ventanaCurso);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MCursosActionPerformed
@@ -376,7 +396,7 @@ public void Panel(){
         ventanaSeccion = new MantenimientoSeccion();
        
          Panel();
-         ventanaP.add(ventanaSeccion);
+         CentrarVentanas(ventanaSeccion);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MSeccionesActionPerformed
@@ -386,7 +406,7 @@ public void Panel(){
         
         
          Panel();
-        ventanaP.add(ventanaSede);
+        CentrarVentanas(ventanaSede);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MSedesActionPerformed
@@ -396,7 +416,7 @@ public void Panel(){
       
         
         Panel();
-          ventanaP.add(ventanaAula);
+          CentrarVentanas(ventanaAula);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MAulasActionPerformed
@@ -405,7 +425,7 @@ public void Panel(){
         ventanaJornada = new MantenimientoJornada();
        
          Panel();
-          ventanaP.add(ventanaJornada);
+          CentrarVentanas(ventanaJornada);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MJornadasActionPerformed
@@ -414,7 +434,7 @@ public void Panel(){
         ventanaMaestro = new MantenimientoMaestro();
        
         Panel();
-         ventanaP.add(ventanaMaestro);
+         CentrarVentanas(ventanaMaestro);
         ventanaP.add(jLabel1);
 // TODO add your handling code here:
     }//GEN-LAST:event_MMaestrosActionPerformed
@@ -422,7 +442,7 @@ public void Panel(){
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         ventanaAsignacion = new AsignacionCA();
         Panel();
-         ventanaP.add(ventanaAsignacion);
+         CentrarVentanas(ventanaAsignacion);
         ventanaP.add(jLabel1);      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
@@ -431,7 +451,7 @@ public void Panel(){
 
         ventanaAsignacionM = new AsignacionCM();
         Panel();
-        ventanaP.add(ventanaAsignacionM);
+        CentrarVentanas(ventanaAsignacionM);
         ventanaP.add(jLabel1);    
        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -442,7 +462,7 @@ public void Panel(){
        
         
          Panel();
-         ventanaP.add(ventanaLaboratorios);
+         CentrarVentanas(ventanaLaboratorios);
         ventanaP.add(jLabel1); 
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -453,7 +473,8 @@ public void Panel(){
 
         ConsultaRegistro ventana = new ConsultaRegistro();
         Panel();
-         ventanaP.add(ventana);
+         //ventanaP.add(ventana);
+        CentrarVentanas(ventana);
         ventanaP.add(jLabel1);  
 
 
@@ -466,6 +487,10 @@ public void Panel(){
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowStateChanged
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,7 +546,6 @@ public void Panel(){
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuConsulta;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
