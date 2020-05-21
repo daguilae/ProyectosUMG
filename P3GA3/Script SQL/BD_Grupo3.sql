@@ -19,6 +19,7 @@ CREATE TABLE alumnos
 
 -- Table `educativo`.`REGISTRO LOGIN`
 -- -----------------------------------------------------
+
 create table usuarios 
 (
 ID int primary key auto_increment,
@@ -184,5 +185,7 @@ CREATE TABLE asignacioncursosmastros
     foreign key(id_Maestro) references asignacioncursosmastros(id_Maestro)
   )ENGINE = InnoDB DEFAULT CHARSET=latin1;
   
+  #insert into usuarios(NombreUsuario,Pass,CorreoUsuario) values ("123","123","dfsdfa");
   select *from asignacioncursosalumnos;
   select *from Laboratorios;
+  select *from usuarios ;
