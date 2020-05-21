@@ -38,12 +38,15 @@ public class Consulta_notas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tbl_notas = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
+        jLabel2.setText("jLabel1");
 
         setClosable(true);
         setIconifiable(true);
@@ -89,10 +92,6 @@ public class Consulta_notas extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 50, 40));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        jLabel2.setText("jLabel1");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-360, -320, 1050, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
