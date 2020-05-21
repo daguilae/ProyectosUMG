@@ -1418,6 +1418,58 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         {
             ModificarT(Item,Item2,10);
         }
+        else if(Item == "Semestre" && Item2== "Parcial 2")
+        {
+            ModificarT(Item,Item2,11);
+        }
+        else if(Item == "Semestre" && Item2== "Parcial 3")
+        {
+            ModificarT(Item,Item2,12);
+        }    
+        else if(Item == "Trimestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,13);
+        }           
+        else if(Item == "Trimestre" && Item2== "Parcial 2")
+        {
+            ModificarT(Item,Item2,14);
+        }     
+        else if(Item == "Trimestre" && Item2== "Parcial 3")
+        {
+            ModificarT(Item,Item2,15);
+        }       
+        else if(Item == "Bimestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,16);
+        }     
+        else if(Item == "Unidad" && Item2== "Unidad 1")
+        {
+            ModificarT(Item,Item2,17);
+        }  
+        else if(Item == "Unidad" && Item2== "Unidad 2")
+        {
+            ModificarT(Item,Item2,18);
+        }          
+        else if(Item == "Unidad" && Item2== "Unidad 3")
+        {
+            ModificarT(Item,Item2,19);
+        }     
+        else if(Item == "Unidad" && Item2== "Unidad 4")
+        {
+            ModificarT(Item,Item2,20);
+        }     
+        else if(Item == "Extraordinario" && Item2== "Extraordinario")
+        {
+            ModificarT(Item,Item2,21);
+        }   
+        else if(Item == "Privado" && Item2== "Privado")
+        {
+            ModificarT(Item,Item2,22);
+        }             
+        else if(Item == "Zona" && Item2== "Zona")
+        {
+            ModificarT(Item,Item2,23);
+        }             
 
         /*try {
             String codigo = txtbuscado.getText().trim();
@@ -1499,11 +1551,96 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                         {
                             pst.setString(i, txt_Nota.getText().trim());
                         }
-                        else
+                        else if(i ==10 && i != Lugar)
                         {
                            // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1);
                             pst.setString(i,txt_Nuevo.getText().trim());
                         }
+                        else if(i ==11 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_2);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }              
+                        else if(i ==12 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_3);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }
+                        else if(i ==13 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }    
+                        else if(i ==14 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_2T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==15 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_3T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==16 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1B);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }          
+                        else if(i ==17 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_1);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }          
+                        else if(i ==18 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_2);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }   
+                        else if(i ==19 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_3);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }  
+                        else if(i ==20 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_4);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }       
+                        else if(i ==21 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(ExtraordinarioS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }         
+                        else if(i ==22 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(PrivadoS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }             
+                        else if(i ==23 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(ZonaS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==24 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(NotaS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }                        
 
                     }
                 }

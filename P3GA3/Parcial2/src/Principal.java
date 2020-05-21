@@ -31,13 +31,12 @@ public class Principal extends javax.swing.JFrame {
     private Laboratorios ventanaLaboratorios;
 
     public static String BD = "jdbc:mysql://localhost/siu";
-<<<<<<< HEAD
+
+   
     public static String Usuario = "root";
     public static String Contraseña = "Langas798";
-=======
-    public static String Usuario = "rex";
-    public static String Contraseña = "Polloloco900";
->>>>>>> 977b9ad4d207242a2d33c05836b20ca46500018e
+
+    
 
     /**
      * Creates new form Principal
