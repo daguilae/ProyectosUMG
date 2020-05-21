@@ -380,6 +380,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 txt_NotaActionPerformed(evt);
             }
         });
+        txt_Nota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_NotaKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 220, -1));
 
         btnRegistrar.setText("Registrar");
@@ -1213,6 +1218,18 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jComboBox_ParcialItemStateChanged
+
+    private void txt_NotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NotaKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NotaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

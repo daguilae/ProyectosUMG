@@ -105,6 +105,12 @@ public class MantenimientoFacultad extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Codigo");
 
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,6 +350,16 @@ public class MantenimientoFacultad extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+             JOptionPane.showMessageDialog(rootPane, "Ingrese solo letras");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
