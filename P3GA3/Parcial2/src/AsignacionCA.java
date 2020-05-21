@@ -24,17 +24,50 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     String Semestre = "Semestre" ;
     String Trimestre = "Trimestre" ;
     String Unidad = "Unidad" ;
+    String Bimestre = "Bimestre";
+    String Extraordinario = "Extraordinario";
+    String Privado = "Privado";
+    String Zona = "Zona";
     String Item = "";
     String Item2 = "";
     String Parcial_1 = "";
     String Parcial_2 = "";
+    String Parcial_3 = "";
+    String Parcial_1T = "";
+    String Parcial_2T = "";
+    String Parcial_3T = "";
+    String Parcial_1B = "";
+    String Unidad_1 = "";
+    String Unidad_2 = "";
+    String Unidad_3 = "";
+    String Unidad_4 = "";
+    String ExtraordinarioS = "";
+    String PrivadoS = "";
+    String ZonaS = "";
+    String NotaS = "";
+    
     float Parcial_Flotante = 0;
+    float Parcial2_Flotante = 0;
+    float Parcial3_Flotante = 0;
+    float Parcial_FlotanteT = 0;
+    float Parcial2_FlotanteT = 0;
+    float Parcial3_FlotanteT = 0;
+    float Parcial_FlotanteB = 0;
+    float Unidad1_Flotante = 0;
+    float Unidad2_Flotante = 0;
+    float Unidad3_Flotante = 0;
+    float Unidad4_Flotante = 0;
+    float Extraordinario_Flotante = 0;
+    float Privado_Flotante = 0;
+    float Zona_Flotante = 0;
+    float Nota_Flotante = 0;
+    
     boolean Encontrado;
     boolean EncontradoMayorCero = false;
    
     String[] NombresColumnasAsignacionA = {"codigo_carrera", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno", "nota_asignacioncursoalumnos"};
 
-    public void MostrarDB(String Tabla) {
+    /*public void MostrarDB(String Tabla) {
         String[] columnas = new String[8];
         String query;
         try {
@@ -61,7 +94,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             err.printStackTrace();
         }
 
-    }
+    }*/
 
     public AsignacionCA() {
         initComponents();
@@ -74,6 +107,10 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         jComboBox_Parcial.addItem(Semestre);
         jComboBox_Parcial.addItem(Trimestre);
         jComboBox_Parcial.addItem(Unidad);
+        jComboBox_Parcial.addItem(Bimestre);
+        jComboBox_Parcial.addItem(Extraordinario);
+        jComboBox_Parcial.addItem(Privado);
+        jComboBox_Parcial.addItem(Zona);        
             
         try {
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
@@ -92,7 +129,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             PreparedStatement pst5 = cn.prepareStatement("select nombre_aula from aulas");
             ResultSet rs5 = pst5.executeQuery();
 
-           
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos");
+            ResultSet rs6 = pst6.executeQuery();
 
             PreparedStatement pst7 = cn.prepareStatement("select nombre_alumno from alumnos");
             ResultSet rs7 = pst7.executeQuery();
@@ -123,23 +161,16 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
 
             cbox_curso.addItem("Seleccione una opción");
-            
+            while (rs6.next()) {
+                cbox_curso.addItem(rs6.getString("nombre_curso"));
+            }
 
             cbox_alum.addItem("Seleccione una opción");
             while (rs7.next()) {
                 cbox_alum.addItem(rs7.getString("nombre_alumno"));
             }
             
-            jComboBox_Parcial.addItem("Seleccione una opción");
-            jComboBox_Parcial.addItem("Parcial 1");
-            jComboBox_Parcial.addItem("Parcial 2");
-            jComboBox_Parcial.addItem("Parcial 3");
-            jComboBox_Parcial.addItem("Extraordinario");
-            jComboBox_Parcial.addItem("Privado");
-            jComboBox_Parcial.addItem("Trimestre");
-            jComboBox_Parcial.addItem("Semestre");
-            jComboBox_Parcial.addItem("Bimestre");
-            jComboBox_Parcial.addItem("Zona");
+
             
 
         } catch (Exception e) 
@@ -160,13 +191,29 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         }
         else if(Item == "Trimestre")
         {
-            i = 4;
+            i = 3;
+        }
+        else if(Item == "Bimestre")
+        {
+            i = 1;
         }
         else if(Item == "Unidad")
         {
-            i=10;
+            i=4;
         }
-        
+        else if(Item == "Extraordinario")
+        {
+            i=1;
+        }
+        else if(Item == "Privado")
+        {
+            i=1;
+        }      
+        else if(Item == "Zona")
+        {
+            i=1;
+        }        
+      
         String[] informacion = new String[i];
         
     
@@ -195,7 +242,6 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             informacion[0] = "Parcial 1";
             informacion[1] = "Parcial 2";
             informacion[2] = "Parcial 3"; 
-            informacion[3] = "Parcial 4"; 
         }
         
         if(datos.equalsIgnoreCase("Unidad"))
@@ -212,14 +258,51 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             informacion[1] = "Unidad 2";
             informacion[2] = "Unidad 3"; 
             informacion[3] = "Unidad 4"; 
-            informacion[4] = "Unidad 5"; 
-            informacion[5] = "Unidad 6"; 
-            informacion[6] = "Unidad 7"; 
-            informacion[7] = "Unidad 8"; 
-            informacion[8] = "Unidad 9"; 
-            informacion[9] = "Unidad 10"; 
         }
             
+        if(datos.equalsIgnoreCase("Bimestre"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Parcial 1";
+        }
+        
+        if(datos.equalsIgnoreCase("Extraordinario"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Extraordinario";
+        }       
+        
+        if(datos.equalsIgnoreCase("Privado"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Privado";
+        }        
+        
+        if(datos.equalsIgnoreCase("Zona"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Zona";
+        }             
          
         
         return informacion;
@@ -380,11 +463,6 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 txt_NotaActionPerformed(evt);
             }
         });
-        txt_Nota.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_NotaKeyTyped(evt);
-            }
-        });
         getContentPane().add(txt_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 220, -1));
 
         btnRegistrar.setText("Registrar");
@@ -500,17 +578,6 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
             } else {
 
-            }
-            
-            cbox_curso.removeAllItems();
-            cbox_curso.addItem("Seleccione una opción");
-            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos where codigo_carrera=?");
-            pst6.setString(1, lb1.getText());
-            ResultSet rs6 = pst6.executeQuery();
-            
-           
-            while (rs6.next()) {
-                cbox_curso.addItem(rs6.getString("nombre_curso"));
             }
 
         } catch (Exception e) {
@@ -648,11 +715,71 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-                Busqueda();
-        
+            Busqueda();
+            Item = jComboBox_Parcial.getSelectedItem().toString();
+            Item2 = jComboBox_Parcial2.getSelectedItem().toString();        
             if(Encontrado == true)
             {
-                try
+                
+                
+                if(Item == "Semestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,10,"Parcial_1",Parcial_Flotante);
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMAC(Item,Item2,11,"Parcial_2",Parcial2_Flotante);
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMAC(Item,Item2,12,"Parcial_3",Parcial3_Flotante);
+                }     
+                else if(Item == "Trimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,13,"Parcial_1T",Parcial_FlotanteT);
+                }            
+                else if(Item == "Trimestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMAC(Item,Item2,14,"Parcial_2T",Parcial2_FlotanteT);
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMAC(Item,Item2,15,"Parcial_3T",Parcial3_FlotanteT);
+                }    
+                else if(Item == "Bimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,16,"Parcial_1B",Parcial_FlotanteB);
+                }
+                else if(Item == "Unidad" && Item2 == "Unidad 1")
+                {
+                    IngresarMAC(Item,Item2,17,"Unidad_1",Unidad1_Flotante);
+                }      
+                else if(Item == "Unidad" && Item2 == "Unidad 2")
+                {
+                    IngresarMAC(Item,Item2,18,"Unidad_2",Unidad2_Flotante);
+                }    
+                else if(Item == "Unidad" && Item2 == "Unidad 3")
+                {
+                    IngresarMAC(Item,Item2,19,"Unidad_3",Unidad3_Flotante);
+                }             
+                else if(Item == "Unidad" && Item2 == "Unidad 4")
+                {
+                    IngresarMAC(Item,Item2,20,"Unidad_4",Unidad4_Flotante);
+                }           
+                else if(Item == "Extraordinario" && Item2 == "Extraordinario")
+                {
+                    IngresarMAC(Item,Item2,21,"Extraordinario",Extraordinario_Flotante);
+                }      
+                else if(Item == "Privado" && Item2 == "Privado")
+                {
+                    IngresarMAC(Item,Item2,22,"Privado",Privado_Flotante);
+                }  
+                else if(Item == "Zona" && Item2 == "Zona")
+                {
+                    IngresarMAC(Item,Item2,23,"Zona",Zona_Flotante);
+                }        
+                
+                /*try
                 {
          
                 Item = jComboBox_Parcial.getSelectedItem().toString();
@@ -885,7 +1012,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 }catch(Exception e)
                 {
                 System.out.println(e);
-                }
+                }*/
             }     
             else if(Encontrado == false)
         {
@@ -912,8 +1039,50 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 {
                    IngresarMA(Item,Item2,12);
                 }
-            
-            
+                else if(Item == "Trimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMA(Item,Item2,13);
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMA(Item,Item2,14);
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMA(Item,Item2,15);
+                }  
+                else if(Item == "Bimestre" && Item2 == "Bimestre")
+                {
+                    IngresarMA(Item,Item2,16);
+                }                     
+                else if(Item == "Unidad" && Item2 == "Unidad 1")
+                {
+                    IngresarMA(Item,Item2,17);
+                }                
+                else if(Item == "Unidad" && Item2 == "Unidad 2")
+                {
+                    IngresarMA(Item,Item2,18);
+                }
+                else if(Item == "Unidad" && Item2 == "Unidad 3")
+                {
+                    IngresarMA(Item,Item2,19);
+                }                  
+                else if(Item == "Unidad" && Item2 == "Unidad 4")
+                {
+                    IngresarMA(Item,Item2,20);
+                }     
+                else if(Item == "Extraordinario" && Item2 == "Extraordinario")
+                {
+                    IngresarMA(Item,Item2,21);
+                }               
+                else if(Item == "Privado" && Item2 == "Privado")
+                {
+                    IngresarMA(Item,Item2,22);
+                }  
+                else if(Item == "Zona" && Item2 == "Zona")
+                {
+                    IngresarMA(Item,Item2,23);
+                }                    
             }catch(Exception e)
             {
             System.out.println(e);
@@ -972,7 +1141,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                     if(prueba == true)
                     {
                         Connection cn4 = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
-                        PreparedStatement pst4 = cn4.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        PreparedStatement pst4 = cn4.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                     
                         pst4.setString(1, txt_Codigo.getText().trim());
                         pst4.setString(2, lb1.getText().trim());
@@ -983,7 +1152,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                         pst4.setString(7, lb6.getText().trim());
                         pst4.setString(8, lb7.getText().trim());
                         pst4.setString(9,Item);
-                        for(int i = 10;i<=18;i++)
+                        for(int i = 10;i<=24;i++)
                         {
                             if(i == Lugar)
                             {
@@ -1005,6 +1174,147 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             {
             System.out.println(e);
             }  
+    }
+    
+    public void IngresarMAC(String ItemMAC,String Item2MAC,int LugarC,String ParcialMAC,Float ParcialFloat)
+    {
+        try
+                {
+         
+                Item = jComboBox_Parcial.getSelectedItem().toString();
+                Item2 = jComboBox_Parcial2.getSelectedItem().toString();
+                //System.out.println(Item2);
+            
+                String ID = txt_Codigo.getText().trim();
+            
+                Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+                PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + ID);
+            
+                pst.setString(1, txt_Codigo.getText().trim());
+                pst.setString(2, lb1.getText().trim());
+                pst.setString(3, lb2.getText().trim());
+                pst.setString(4, lb3.getText().trim());
+                pst.setString(5, lb4.getText().trim());
+                pst.setString(6, lb5.getText().trim());
+                pst.setString(7, lb6.getText().trim());
+                pst.setString(8, lb7.getText().trim());
+                
+            
+                if(Item == ItemMAC)
+                {
+                    pst.setString(9,Item);
+                    System.out.println(Item);
+
+                    if(Item2 == Item2MAC)
+                    {
+                        System.out.println(Item2);
+                        BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                        for(int i = 10;i<=24;i++)
+                        {
+                            if(ParcialFloat == 0)
+                            {
+                                if(i == LugarC)
+                                {
+                                    System.out.println(i);
+                                    pst.setString(i,txt_Nota.getText().trim());
+                                    System.out.println("Hola");
+                                }
+                            }
+                            if(ParcialFloat >=0)
+                            {
+                                System.out.println("Hola2");
+                               if(i == 10 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_1);
+                                    pst.setString(i,txt_Nuevo.getText().trim());
+                               }
+
+                               else if(i== 11 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_2);
+                                    pst.setString(i,txt_Nuevo.getText().trim());
+                               }
+                               else if( i == 12 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_3);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }
+                               else if( i == 13 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_1T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               } 
+                             
+                               else if( i == 14 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_2T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }        
+                               
+                               else if( i == 15 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_3T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }                                     
+                               else if( i == 16 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_1B);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 17 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_1);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }   
+                               else if( i == 18 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_2);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }          
+                               else if( i == 19 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_3);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 20 && i != LugarC)
+                               {
+                                   System.out.println("Entre");
+                                    txt_Nuevo.setText(Unidad_4);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }      
+                               else if( i == 21 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(ExtraordinarioS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 22 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(PrivadoS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }          
+                               else if( i == 23 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(ZonaS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 24 && i != LugarC)
+                               {
+                                    pst.setString(i,txt_Nota.getText().trim());                                   
+                               }                                
+
+                            }
+                        }
+           
+                    
+                    pst.executeUpdate();
+                    txt_Codigo.setText("");
+                    System.out.println("Registrado");
+                    }
+                }
+                }catch(Exception e)
+                {
+                System.out.println(e);
+                }
     }
     
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -1163,7 +1473,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     }
         
         
-    public void BusquedaMayor(String Parcial)
+    public void BusquedaMayor(String Parcial,String Parcial2,String Parcial3,String Parcial_T, String Parcial2_T,String Parcial3_T,String Parcial_B,String Unidad1,String Unidad2,String Unidad3,String Unidad4,String Extraordinario,String Privado,String Zona,String Nota)
     {
         try
         {
@@ -1179,11 +1489,52 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 Parcial_1 = rsB.getString(Parcial);
                 Parcial_Flotante = Float.parseFloat(Parcial_1);
                 
+                Parcial_2 = rsB.getString(Parcial2);
+                Parcial2_Flotante = Float.parseFloat(Parcial_2);
+                
+                Parcial_3 = rsB.getString(Parcial3);
+                Parcial3_Flotante = Float.parseFloat(Parcial_3);
+                
+                Parcial_1T = rsB.getString(Parcial_T);
+                Parcial_FlotanteT = Float.parseFloat(Parcial_1T);        
+                
+                Parcial_2T = rsB.getString(Parcial2_T);
+                Parcial2_FlotanteT = Float.parseFloat(Parcial_2T);
+                
+                Parcial_3T = rsB.getString(Parcial3_T);
+                Parcial3_FlotanteT = Float.parseFloat(Parcial_3T);       
+                
+                Parcial_1B = rsB.getString(Parcial_B);
+                Parcial_FlotanteB = Float.parseFloat(Parcial_1B);                   
+                
+                Unidad_1 = rsB.getString(Unidad1);
+                Unidad1_Flotante = Float.parseFloat(Unidad_1);               
+                
+                Unidad_2 = rsB.getString(Unidad2);
+                Unidad2_Flotante = Float.parseFloat(Unidad_2);
+                
+                Unidad_3 = rsB.getString(Unidad3);
+                Unidad3_Flotante = Float.parseFloat(Unidad_3);
+
+                Unidad_4 = rsB.getString(Unidad4);
+                Unidad4_Flotante = Float.parseFloat(Unidad_4);                
+                
+                ExtraordinarioS = rsB.getString(Extraordinario);
+                Extraordinario_Flotante = Float.parseFloat(ExtraordinarioS);        
+                
+                PrivadoS = rsB.getString(Privado);
+                Privado_Flotante = Float.parseFloat(PrivadoS);
+                
+                ZonaS = rsB.getString(Zona);
+                Zona_Flotante = Float.parseFloat(ZonaS);
+
+                NotaS = rsB.getString(Nota);
+                Nota_Flotante = Float.parseFloat(NotaS);                
                 
                 if(Parcial_Flotante > 0  && Parcial_Flotante !=0)
                 {
                     EncontradoMayorCero = true;
-                    System.out.println(Parcial_Flotante);
+                    System.out.println("Este "+ Parcial_1T);
                   // Lugar(cnB,pstB,rsB,Parcial,Lugar);
                 }
                 else
@@ -1218,18 +1569,6 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jComboBox_ParcialItemStateChanged
-
-    private void txt_NotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NotaKeyTyped
-        char validar = evt.getKeyChar();
-        if (Character.isLetter(validar)) {
-            getToolkit().beep();
-            evt.consume();
-
-            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NotaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
