@@ -530,11 +530,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         tblAsignacionA.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane3.setViewportView(tblAsignacionA);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 310));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 880, 310));
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
-        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 540, 360));
+        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 900, 360));
 
         jLabel1.setText("Tipo de Nota");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 283, -1, -1));

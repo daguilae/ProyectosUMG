@@ -70,9 +70,11 @@ CREATE TABLE carreras
 CREATE TABLE cursos
 (
   codigo_curso VARCHAR(5),
+  codigo_carrera varchar(5),
   nombre_curso VARCHAR(45),
   estatus_curso VARCHAR(1),
-  PRIMARY KEY (codigo_curso)
+  PRIMARY KEY (codigo_curso),
+   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera)
  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 -- -----------------------------------------------------
 -- Table `educativo`.`Secciones`
