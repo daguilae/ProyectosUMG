@@ -1,4 +1,4 @@
-DROP DATABASE siu;
+-- DROP DATABASE siu;
 CREATE DATABASE siu;
 USE siu;
 -- -----------------------------------------------------
@@ -101,17 +101,21 @@ CREATE TABLE jornadas
 -- -----------------------------------------------------
 -- Table `educativo`.`Asignacion_cursos_alumnos`
 -- -----------------------------------------------------
+-- drop table asignacioncursosalumnos;
 CREATE TABLE asignacioncursosalumnos
 (
+  
   codigo_carrera VARCHAR(5),
   codigo_sede VARCHAR(5),
   codigo_jornada VARCHAR(5),
   codigo_seccion VARCHAR(5),
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
-  carnet_alumno VARCHAR(15),
-  nota_asignacioncursoalumnos FLOAT(10,2), 
-  PRIMARY KEY (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
+  carnet_alumno VARCHAR(15),	
+  tipo_nota VARCHAR(50),
+  nota_asignacioncursoalumnos VARCHAR(4), 
+
+  PRIMARY KEY ( codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
   FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
@@ -142,3 +146,12 @@ CREATE TABLE asignacioncursosmastros
   FOREIGN KEY (codigo_maestro) REFERENCES maestros(codigo_maestro)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 
+
+-- -----------------------------------------------------
+-- Table `educativo`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE usuarios
+(
+usuario VARCHAR(60) primary key,
+contraseña varchar(60) not null
+) ENGINE = InnoDB DEFAULT CHARSET=latin1;
