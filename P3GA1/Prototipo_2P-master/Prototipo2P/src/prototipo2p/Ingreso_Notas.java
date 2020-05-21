@@ -520,6 +520,30 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "No existe alumno asignado a este curso.");
         }
     }
+    
+    public void tipo_nota(){
+    
+        try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("select nombre_tipo from tipo_notas;");
+
+            ResultSet rs = pst.executeQuery();
+
+            //llenar combobox para el comentaario
+            cbx_nota.addItem("Tipo Nota");
+
+            while (rs.next()) {
+                cbx_nota.addItem(rs.getString("nombre_tipo"));
+            }
+
+            rs.close();
+
+        } catch (Exception e) {
+
+        }
+    
+    
+    }
     private void txtCodigoMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoMaestroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoMaestroActionPerformed
@@ -555,13 +579,14 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         cbx_seccion.removeAllItems();
         cbx_aula.removeAllItems();
         cbx_curso.removeAllItems();
+        cbx_nota.removeAllItems();
         Carrera();
         Sede();
         Jornada();
         Seccion();
         Aula();
         Curso();
-
+        tipo_nota();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbx_sedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_sedeActionPerformed
@@ -691,8 +716,24 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
 
     private void cbx_notaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_notaActionPerformed
         // TODO add your handling code here:
-        lblTipo.setText(cbx_nota.getSelectedIndex() + 1 + "");
+        
+        try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("select id_tipo from tipo_notas where nombre_tipo=?");
+            pst.setString(1, cbx_nota.getSelectedItem().toString());
 
+            ResultSet rs = pst.executeQuery();
+
+            //llenar combobox para el comentaario
+            //cbx_facultad.addItem("Facultad");
+            if (rs.next()) {
+                lblTipo.setText(rs.getString("id_tipo"));
+            }
+
+            //rs.close();
+        } catch (Exception e) {
+
+        }
 
     }//GEN-LAST:event_cbx_notaActionPerformed
 
@@ -706,8 +747,8 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
             ResultSet rss4 = pst1.executeQuery();
 
             if (rss4.next()) {
-                String vacio = rss4.getString("tipo_nota");
-                if (vacio == null) {
+                String  vacio = rss4.getString("tipo_nota");
+                if (vacio == "0") {
                     PreparedStatement pst2 = cn.prepareStatement("update asignacioncursosalumnos set tipo_nota = ?, nota_asignacioncursoalumnos = ? where carnet_alumno = " + ID);
 
                     pst2.setString(1, cbx_nota.getSelectedItem().toString());
@@ -717,7 +758,21 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null, "GUARDADO CON EXITO!");
 
-                } else {
+                } 
+                else if(vacio == "Extraordinario1"){
+                    String ID2 = cbx_nota.getSelectedItem().toString();
+                    PreparedStatement pst2 = cn.prepareStatement("update asignacioncursosalumnos set nota_asignacioncursoalumnos = ? where carnet_alumno = " + ID + " and tipo_nota = " + ID2);
+
+                    pst2.setString(1, cbx_nota.getSelectedItem().toString());
+                    pst2.setString(2, txtNota.getText().trim());
+
+                    pst2.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "GUARDADO CON EXITO!");
+                
+                
+                }
+                else {
                     PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?)");
 
                     

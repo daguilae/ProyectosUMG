@@ -668,7 +668,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
             pst.setString(5, lbl_aula.getText().trim());
             pst.setString(6, lbl_curso.getText().trim());
             pst.setString(7, lbl_alumno.getText().trim());
-            pst.setString(8, null);
+            pst.setString(8, "0");
             pst.setString(9, null);
 
 

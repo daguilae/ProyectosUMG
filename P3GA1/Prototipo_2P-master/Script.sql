@@ -101,7 +101,7 @@ CREATE TABLE jornadas
 -- -----------------------------------------------------
 -- Table `educativo`.`Asignacion_cursos_alumnos`
 -- -----------------------------------------------------
--- drop table asignacioncursosalumnos;
+ -- drop table asignacioncursosalumnos;
 CREATE TABLE asignacioncursosalumnos
 (
   
@@ -115,7 +115,7 @@ CREATE TABLE asignacioncursosalumnos
   tipo_nota VARCHAR(50),
   nota_asignacioncursoalumnos VARCHAR(4), 
 
-  PRIMARY KEY ( codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
+  PRIMARY KEY ( codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno, tipo_nota),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
   FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
@@ -155,3 +155,11 @@ CREATE TABLE usuarios
 usuario VARCHAR(60) primary key,
 contraseña varchar(60) not null
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+-- -----------------------------------------------------
+-- Table `tipo_nota`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE tipo_notas(
+id_tipo int primary key auto_increment,
+nombre_tipo varchar(50)
+)ENGINE = InnoDB DEFAULT CHARSET=latin1;
