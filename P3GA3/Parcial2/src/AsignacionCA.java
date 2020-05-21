@@ -92,8 +92,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             PreparedStatement pst5 = cn.prepareStatement("select nombre_aula from aulas");
             ResultSet rs5 = pst5.executeQuery();
 
-            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos");
-            ResultSet rs6 = pst6.executeQuery();
+           
 
             PreparedStatement pst7 = cn.prepareStatement("select nombre_alumno from alumnos");
             ResultSet rs7 = pst7.executeQuery();
@@ -124,9 +123,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
 
             cbox_curso.addItem("Seleccione una opción");
-            while (rs6.next()) {
-                cbox_curso.addItem(rs6.getString("nombre_curso"));
-            }
+            
 
             cbox_alum.addItem("Seleccione una opción");
             while (rs7.next()) {
@@ -498,6 +495,17 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
             } else {
 
+            }
+            
+            cbox_curso.removeAllItems();
+            cbox_curso.addItem("Seleccione una opción");
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos where codigo_carrera=?");
+            pst6.setString(1, lb1.getText());
+            ResultSet rs6 = pst6.executeQuery();
+            
+           
+            while (rs6.next()) {
+                cbox_curso.addItem(rs6.getString("nombre_curso"));
             }
 
         } catch (Exception e) {
