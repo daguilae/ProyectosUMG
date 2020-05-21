@@ -32,7 +32,7 @@ public class Principal extends javax.swing.JFrame {
 
     public static String BD = "jdbc:mysql://localhost/siu";
     public static String Usuario = "root";
-    public static String Contraseña = "Polo.2015";
+    public static String Contraseña = "Langas798";
 
     /**
      * Creates new form Principal
