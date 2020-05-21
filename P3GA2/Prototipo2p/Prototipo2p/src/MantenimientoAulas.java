@@ -225,6 +225,9 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
         //Codigo que permite borrar registros en la base de datos
+        if(txt_buscar.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,"NO SE INGRESO NINGUN REGISTRO PARA ELIMINAR","WARNING",JOptionPane.WARNING_MESSAGE);
+        }else{
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from aulas where codigo_aula= ?");
@@ -239,10 +242,11 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
             label_status.setText("Registro eliminado.");
 
         } catch (Exception e) {
+            label_status.setText("Error al eliminar");
         }
 
     }//GEN-LAST:event_buttonEliminar1MouseClicked
-
+    }
     private void buttonEditar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditar1MouseClicked
          //Codigo que permite actualizar registros en la base de datos
         if ( txt_codigoaula.getText().isEmpty() || txt_nombreaula.getText().isEmpty() || txt_estadoaula.getText().isEmpty()){
@@ -302,7 +306,7 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
             }
 
         }catch (Exception e){
-
+            JOptionPane.showMessageDialog(this,"ERROR AL MOSTRAR REGISTRO","ERROR",JOptionPane.ERROR_MESSAGE);
         }
       }
 

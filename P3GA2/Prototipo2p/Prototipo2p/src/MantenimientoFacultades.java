@@ -31,8 +31,8 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txt_codfac = new javax.swing.JTextField();
         txt_nombrefac = new javax.swing.JTextField();
+        txt_codfac = new javax.swing.JTextField();
         txt_estadofac = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_buscar = new javax.swing.JTextField();
@@ -57,16 +57,16 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Estado de  la Facultad:");
 
-        txt_codfac.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codfac.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txt_codfac.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombrefac.setBackground(new java.awt.Color(227, 227, 227));
+        txt_nombrefac.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txt_nombrefac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_codfacActionPerformed(evt);
+                txt_nombrefacActionPerformed(evt);
             }
         });
 
-        txt_nombrefac.setBackground(new java.awt.Color(227, 227, 227));
-        txt_nombrefac.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        txt_codfac.setBackground(new java.awt.Color(227, 227, 227));
+        txt_codfac.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         txt_estadofac.setBackground(new java.awt.Color(227, 227, 227));
         txt_estadofac.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -131,8 +131,8 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_nombrefac, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(txt_codfac)
+                            .addComponent(txt_codfac, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(txt_nombrefac)
                             .addComponent(txt_estadofac)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
@@ -151,17 +151,15 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)))
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nombrefac, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_codfac, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_codfac, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txt_nombrefac, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -189,9 +187,9 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_codfacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codfacActionPerformed
+    private void txt_nombrefacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombrefacActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codfacActionPerformed
+    }//GEN-LAST:event_txt_nombrefacActionPerformed
 
     private void txt_estadofacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estadofacActionPerformed
         // TODO add your handling code here:
@@ -199,6 +197,9 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
   //Codigo que permite consultar registros en la base de datos
+        if(txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "NO SE INGRESO NINGUNA FALCULTAD DE BUSQUEDA");
+        }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from facultades where codigo_facultad = ?");
@@ -207,21 +208,24 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
-                txt_codfac.setText(rs.getString("codigo_facultad"));
-                txt_nombrefac.setText(rs.getString("nombre_facultad"));
+                txt_nombrefac.setText(rs.getString("codigo_facultad"));
+                txt_codfac.setText(rs.getString("nombre_facultad"));
                 txt_estadofac.setText(rs.getString("estatus_facultad"));
             } else {
-                JOptionPane.showMessageDialog(null, "Alumno no registrado.");
+                label_status.setText("Registr Eliminado");
             }
 
         }catch (Exception e){
-
+                JOptionPane.showMessageDialog(this, "ERROR AL MOSTRAR REGISTRO", "ERROR",JOptionPane.ERROR_MESSAGE);
         }
-
+        }
     }//GEN-LAST:event_buttonPrueba1MouseClicked
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
      //Codigo que permite borrar registros en la base de datos
+        if(txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "NO SE INGRESO NINGUNA FACULTAD PARA ELIIMINAR");
+        }
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from facultades where codigo_facultad = ?");
@@ -229,42 +233,51 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
             pst.setString(1, txt_buscar.getText().trim());
             pst.executeUpdate();
 
-            txt_codfac.setText("");
             txt_nombrefac.setText("");
+            txt_codfac.setText("");
             txt_estadofac.setText("");
 
-            label_status.setText("Registro eliminado.");
+            label_status.setText("Eliminacion Exitosa");
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL ELIMINAR REGISTRO", "ERROR",JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_buttonEliminar1MouseClicked
 
     private void buttonEditar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditar1MouseClicked
   //Codigo que permite actualizar registros en la base de datos
+        if(txt_nombrefac.getText().trim().isEmpty() || txt_codfac.getText().trim().isEmpty() || txt_estadofac.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACIOS O INVALIDOS, FAVOR INGRESARLOS CORRECTAMENTE", "WARNING",JOptionPane.WARNING_MESSAGE);
+        }else{
         try {
             String ID = txt_buscar.getText().trim();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("update facultades set codigo_facultad = ?, nombre_facultad=?, estatus_facultad=?  where codigo_facultad = " + ID);
 
-            pst.setString(1, txt_codfac.getText().trim());
-            pst.setString(2, txt_nombrefac.getText().trim());
+            pst.setString(1, txt_nombrefac.getText().trim());
+            pst.setString(2, txt_codfac.getText().trim());
             pst.setString(3, txt_estadofac.getText().trim());
             pst.executeUpdate();
 
-            txt_codfac.setText("");
             txt_nombrefac.setText("");
+            txt_codfac.setText("");
             txt_estadofac.setText("");
-            label_status.setText("Modificación exitosa.");
+            JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL MODIFICAR REGISTRO", "ERROR",JOptionPane.ERROR_MESSAGE);
+        }
         }
        
     }//GEN-LAST:event_buttonEditar1MouseClicked
 
     private void buttonG1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonG1MouseClicked
        //Codigo que permite insertar registros en al base de datos
+        if(txt_nombrefac.getText().trim().isEmpty() || txt_codfac.getText().trim().isEmpty() || txt_estadofac.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "CAMPOS VACIOS O INVALIDOS, FAVOR INGRESARLOS CORRECTAMENTE", "WARNING",JOptionPane.WARNING_MESSAGE);
+        }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("insert into facultades values(?,?,?)");
@@ -274,14 +287,16 @@ public class MantenimientoFacultades extends javax.swing.JInternalFrame {
             pst.setString(3, txt_estadofac.getText().trim());
             pst.executeUpdate();
 
-            txt_codfac.setText("");
             txt_nombrefac.setText("");
+            txt_codfac.setText("");
             txt_estadofac.setText("");
-            label_status.setText("Registro exitoso.");
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
         }catch (Exception e){
-
+            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR", "ERROR",JOptionPane.ERROR_MESSAGE);
         }
-
+       
+        
+        }
     }//GEN-LAST:event_buttonG1MouseClicked
 
 

@@ -30,6 +30,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
     private MantenimientoJornadas ventanaJornadas;
     private AsignacionCursoAlumno ventantaAsignacionA;
     private AsignacionCursoMaestro ventanaAsignacionM;
+    private ConsultasAsignacionAlumnos ventanaconsultas;
     /*private IngresoCliente ventanaCliente;
     private IngresoAutor ventanaAutor;
     private IngresoProducto ventanaProducto;*/
@@ -74,6 +75,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuBuscar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -217,6 +219,15 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Informes");
         jMenu4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+
+        jMenuBuscar.setText("Buscar alumnos asignados a cursos");
+        jMenuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuBuscarActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuBuscar);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Ayuda");
@@ -339,6 +350,15 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
          ventanaAsignacionM.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBuscarActionPerformed
+        // TODO add your handling code here:
+        ventanaconsultas = new ConsultasAsignacionAlumnos();
+        jDesktopPane1.add(ventanaconsultas);
+            Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventanaconsultas.getSize();
+         ventanaconsultas.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
+    }//GEN-LAST:event_jMenuBuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +402,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuBuscar;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;

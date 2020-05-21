@@ -187,11 +187,13 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreseccionActionPerformed
 
+
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         //Codigo que permite consultar registros en la base de datos
         if (txt_buscar.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "NO SE INGRESO NINGUNA SECCION DE BUSQUEDA", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
+
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from secciones where codigo_seccion = ?");
@@ -211,25 +213,30 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Registro no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
         }
     }//GEN-LAST:event_btnBuscarMouseClicked
 
+
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+
+
         //Codigo que permite borrar registros en la base de datos
         if (txt_buscar.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "NO SE INGRESO NINGUNA SECCION A ELIMINAR", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else {
+
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from secciones where codigo_seccion = ?");
 
-            pst.setString(1, txt_buscar.getText().trim());
-            pst.executeUpdate();
+                pst.setString(1, txt_buscar.getText().trim());
+                pst.executeUpdate();
 
-            txt_codseccion.setText("");
-            txt_nombreseccion.setText("");
-            txt_estadoseccion.setText("");
+                txt_codseccion.setText("");
+                txt_nombreseccion.setText("");
+                txt_estadoseccion.setText("");
 
             JOptionPane.showMessageDialog(this, "Se elimonó el registro.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 
@@ -286,6 +293,7 @@ public class MantenimientoSecciones extends javax.swing.JInternalFrame {
             txt_codseccion.setText("");
             txt_nombreseccion.setText("");
             txt_estadoseccion.setText("");
+
             JOptionPane.showMessageDialog(this, "Registro exitoso.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en registro.", "Error", JOptionPane.ERROR_MESSAGE);

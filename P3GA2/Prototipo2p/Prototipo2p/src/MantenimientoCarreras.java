@@ -256,6 +256,7 @@ public class MantenimientoCarreras extends javax.swing.JInternalFrame {
             label_status.setText("Registro eliminado.");
 
         } catch (Exception e) {
+            label_status.setText("Error al eliminar");
         }
 
     }//GEN-LAST:event_buttonEliminar1MouseClicked

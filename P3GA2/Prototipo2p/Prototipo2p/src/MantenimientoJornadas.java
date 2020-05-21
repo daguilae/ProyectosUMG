@@ -168,9 +168,9 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_buscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,6 +219,9 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
    //Codigo que permite consultar registros en la base de datos
+        if(txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "NO SE REGISTRO NINGUNA JONADA DE BUSQUEDA");
+        }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from jornadas where codigo_jornada = ?");
@@ -231,16 +234,20 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
                 txt_nombrejornada.setText(rs.getString("nombre_jornada"));
                 txt_estadojornada.setText(rs.getString("estatus_jornada"));
             } else {
-                JOptionPane.showMessageDialog(null, "Aula no registrado.");
+                JOptionPane.showMessageDialog(this, "JORNADA NO REGISTRADA", "WARNING",JOptionPane.WARNING_MESSAGE);
             }
 
         }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "ERROR AL MOSTRAR REGISTRO", "ERROR",JOptionPane.ERROR_MESSAGE);
 
-        }       
+        }     }  
     }//GEN-LAST:event_buttonPrueba1MouseClicked
 
     private void buttonG1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonG1MouseClicked
    //Codigo que permite insertar registros en al base de datos
+        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"NO PUEDE HABER CAMPOS VACIOS");
+        }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("insert into jornadas values(?,?,?)");
@@ -253,14 +260,17 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
             txt_codigojornada.setText("");
             txt_nombrejornada.setText("");
             txt_estadojornada.setText("");
-            label_status.setText("Registro exitoso.");
+            JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
         }catch (Exception e){
-
-        }       
+            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR", "ERROR",JOptionPane.ERROR_MESSAGE);
+        } }      
     }//GEN-LAST:event_buttonG1MouseClicked
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
     //Codigo que permite borrar registros en la base de datos
+        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"NO PUEDE HABER CAMPOS VACIOS");
+        }else{
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from jornadas where codigo_jornada= ?");
@@ -272,14 +282,19 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
             txt_nombrejornada.setText("");
             txt_estadojornada.setText("");
 
-            label_status.setText("Registro eliminado.");
+            label_status.setText("Eliminacion Exitosa");
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL ELIMINAR", "ERROR",JOptionPane.ERROR_MESSAGE);
         }     
+        }
     }//GEN-LAST:event_buttonEliminar1MouseClicked
 
     private void buttonEditar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditar1MouseClicked
  //Codigo que permite actualizar registros en la base de datos
+        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||txt_buscar.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"NO PUEDE HABER CAMPOS VACIOS");
+        }else{
         try {
             String ID = txt_buscar.getText().trim();
 
@@ -294,10 +309,11 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
             txt_codigojornada.setText("");
             txt_nombrejornada.setText("");
             txt_estadojornada.setText("");
-            label_status.setText("Modificación exitosa.");
+            label_status.setText("Modificacion Exitosa");
 
         } catch (Exception e) {
-        }
+            JOptionPane.showMessageDialog(this, "ERROR AL MODIFICAR ", "ERROR",JOptionPane.ERROR_MESSAGE);
+        }}
         
     }//GEN-LAST:event_buttonEditar1MouseClicked
 

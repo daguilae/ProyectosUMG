@@ -189,6 +189,7 @@ public class MantenimientoSedes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_estadosedeActionPerformed
 
+
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         //Codigo que permite consultar registros en la base de datos
         if (txt_buscar.getText().trim().isEmpty()) {
@@ -213,8 +214,10 @@ public class MantenimientoSedes extends javax.swing.JInternalFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Registro no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
         }
     }//GEN-LAST:event_btnBuscarMouseClicked
+
 
     private void btnEliminrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminrMouseClicked
         //Codigo que permite borrar registros en la base de datos
@@ -223,8 +226,8 @@ public class MantenimientoSedes extends javax.swing.JInternalFrame {
         } else {
             try {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-                PreparedStatement pst = cn.prepareStatement("delete from sedes where codigo_sede = ?");
-
+                PreparedStatement pst = cn.prepareStatement("delete from sedes where codigo_sede = ?"
+                                                            
                 pst.setString(1, txt_buscar.getText().trim());
                 pst.executeUpdate();
 
@@ -256,10 +259,6 @@ public class MantenimientoSedes extends javax.swing.JInternalFrame {
                 pst.setString(2, txt_nombresede.getText().trim());
                 pst.setString(3, txt_estadosede.getText().trim());
                 pst.executeUpdate();
-
-                txt_codigosede.setText("");
-                txt_nombresede.setText("");
-                txt_estadosede.setText("");
 
                 JOptionPane.showMessageDialog(this, "Modificación exitosa.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 
@@ -294,6 +293,7 @@ public class MantenimientoSedes extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnGuardarMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

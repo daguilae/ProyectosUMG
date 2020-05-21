@@ -16,7 +16,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -218,19 +218,20 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>
 
     private void txt_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_telefonoActionPerformed
+    }
 
     private void txt_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_direccionActionPerformed
+    }
 
     private void txt_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codigoActionPerformed
+    }
+
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         //Codigo que permite consultar registros en la base de datos
@@ -260,7 +261,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Registro no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
          }
-    }//GEN-LAST:event_btnBuscarMouseClicked
+    }/
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         //Codigo que permite borrar registros en la base de datos
@@ -286,7 +287,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Registro no eliminado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
-    }//GEN-LAST:event_btnEliminarMouseClicked
+    }
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         //Codigo que permite actualizar registros en la base de datos
@@ -321,7 +322,7 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error en modificación.", "Error", JOptionPane.ERROR_MESSAGE);
         }
          }
-    }//GEN-LAST:event_btnEditarMouseClicked
+    }
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         //Codigo que permite insertar registros en al base de datos
@@ -348,15 +349,22 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
             txt_telefono.setText("");
             txt_correo.setText("");
             txt_estado.setText("");
+
             JOptionPane.showMessageDialog(this, "Registro exitoso.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en registro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
-    }//GEN-LAST:event_btnGuardarMouseClicked
+    }
+            label_status.setText("Registro exitoso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR AL INSERTAR","ERROR",JOptionPane.ERROR_MESSAGE);
+        }}
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
+   
     private buttonPrueba.buttonPrueba btnBuscar;
     private BottonEditar.buttonEditar btnEditar;
     private BottonEliminar.buttonEliminar btnEliminar;
@@ -375,5 +383,5 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_estado;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
-    // End of variables declaration//GEN-END:variables
+  
 }
