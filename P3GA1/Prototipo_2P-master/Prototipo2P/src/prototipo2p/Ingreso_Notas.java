@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -499,11 +502,12 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         }
     }
 
+
     private void CarnetAlumno() {
 
         try {
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pst = cn.prepareStatement("select carnet_alumno from asignacioncursosalumnos where codigo_carrera=" + carrera + " and codigo_sede=" + sede + " and codigo_jornada=" + jornada + " and codigo_seccion=" + seccion
+            PreparedStatement pst = cn.prepareStatement("select distinct carnet_alumno from asignacioncursosalumnos where codigo_carrera=" + carrera + " and codigo_sede=" + sede + " and codigo_jornada=" + jornada + " and codigo_seccion=" + seccion
                     + " and codigo_aula=" + aula + " and codigo_curso=" + curso + ";");
             //pst.setString(1, cbx_curso.getSelectedItem().toString());
 
@@ -513,14 +517,19 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
             cbx_alumno.addItem("Carnet Alumno");
 
             while (rs.next()) {
+                
                 cbx_alumno.addItem(rs.getString("carnet_alumno"));
+                
             }
-
+            
+            //removeDuplicates(cbx_alumno);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No existe alumno asignado a este curso.");
         }
     }
     
+   
     public void tipo_nota(){
     
         try {
