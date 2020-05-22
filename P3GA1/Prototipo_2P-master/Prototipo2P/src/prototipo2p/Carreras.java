@@ -73,20 +73,18 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel2.setText("Codigo Carrera:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 173, -1, -1));
 
-        txt_nombre.setBackground(new java.awt.Color(204, 255, 255));
         txt_nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 213, 111, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 211, 111, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Nombre Carrera:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 213, -1, -1));
 
-        txt_idcarrera.setBackground(new java.awt.Color(204, 255, 255));
         txt_idcarrera.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_idcarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +101,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel5.setText("Ingresa el código del carrera: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 13, -1, -1));
 
-        txt_buscar.setBackground(new java.awt.Color(204, 255, 255));
         txt_buscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, 520, 30));
 
@@ -153,16 +150,15 @@ public class Carreras extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Estatus Carrera");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 295, -1, -1));
 
-        txt_estatus.setBackground(new java.awt.Color(204, 255, 255));
         txt_estatus.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_estatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_estatusActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 111, -1));
+        getContentPane().add(txt_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 295, 111, -1));
 
         cbx_facultad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -174,7 +170,7 @@ public class Carreras extends javax.swing.JInternalFrame {
                 cbx_facultadActionPerformed(evt);
             }
         });
-        getContentPane().add(cbx_facultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 258, 111, -1));
+        getContentPane().add(cbx_facultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 254, 111, -1));
 
         lbl_codigofac.setText("Codigo ");
         getContentPane().add(lbl_codigofac, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 261, 57, -1));
@@ -205,7 +201,7 @@ public class Carreras extends javax.swing.JInternalFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 293, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 288, -1, -1));
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
@@ -214,7 +210,7 @@ public class Carreras extends javax.swing.JInternalFrame {
         jTextArea1.setText("                        Para modificar:\n1. Debe buscar el codigo de la carrera\n2. Luego seleccionar la fila de la tabla \n3. Modificar los campos necesarios\n4. Darle click al boton Modificar (Icono del \n    Lápiz).");
         jScrollPane2.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 350, 130));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 275, 350, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
