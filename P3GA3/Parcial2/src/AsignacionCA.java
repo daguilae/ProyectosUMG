@@ -1358,7 +1358,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             pst6.setString(1, lb2.getText().trim());
             ResultSet rs6 = pst6.executeQuery();
 
-            PreparedStatement pst7 = cn.prepareStatement("select nombre_maestro from maestros where codigo_maestro=?");
+            PreparedStatement pst7 = cn.prepareStatement("select nombre_alumno from alumnos where carnet_alumno=?");
             pst7.setString(1, lb2.getText().trim());
             ResultSet rs7 = pst7.executeQuery();
 
@@ -1381,7 +1381,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 cbox_curso.setSelectedItem(rs6.getString("nombre_curso"));
             }
             while (rs7.next()) {
-                cbox_alum.setSelectedItem(rs7.getString("nombre_maestro"));
+                cbox_alum.setSelectedItem(rs7.getString("nombre_alumno"));
             }
             
             cbox_j.setEnabled(true);
