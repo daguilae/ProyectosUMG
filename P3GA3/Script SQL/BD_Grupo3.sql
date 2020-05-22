@@ -19,6 +19,7 @@ CREATE TABLE alumnos
 
 -- Table `educativo`.`REGISTRO LOGIN`
 -- -----------------------------------------------------
+
 create table usuarios 
 (
 ID int primary key auto_increment,
@@ -69,11 +70,11 @@ CREATE TABLE carreras
 CREATE TABLE cursos
 (
   codigo_curso VARCHAR(5),
-	codigo_carrera VARCHAR(5),
+  codigo_carrera varchar(5),
   nombre_curso VARCHAR(45),
   estatus_curso VARCHAR(1),
   PRIMARY KEY (codigo_curso),
-  FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera)
+   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera)
  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
 -- -----------------------------------------------------
 -- Table `educativo`.`Secciones`
@@ -125,7 +126,22 @@ CREATE TABLE asignacioncursosalumnos
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
-  nota_asignacioncursoalumnos FLOAT(10,2), 
+  Tipo_Nota varchar(70),
+  Parcial_1 float,
+  Parcial_2 float,
+  Parcial_3 float,
+  Parcial_1T float,
+  Parcial_2T float,
+  Parcial_3T float,
+  Parcial_1B float,
+  Unidad_1 float,
+  Unidad_2 float,
+  Unidad_3 float,
+  Unidad_4 float,
+  Extraordinario float,
+  Privado float,
+  Zona float,
+  nota_asignacioncursoalumnos float, 
   PRIMARY KEY (id_Alumno,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
@@ -171,5 +187,7 @@ CREATE TABLE asignacioncursosmastros
     foreign key(id_Maestro) references asignacioncursosmastros(id_Maestro)
   )ENGINE = InnoDB DEFAULT CHARSET=latin1;
   
-  select *from usuarios;
+  #insert into usuarios(NombreUsuario,Pass,CorreoUsuario) values ("123","123","dfsdfa");
+  select *from asignacioncursosalumnos;
   select *from Laboratorios;
+  select *from usuarios ;

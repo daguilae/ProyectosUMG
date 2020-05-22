@@ -31,8 +31,12 @@ public class Principal extends javax.swing.JFrame {
     private Laboratorios ventanaLaboratorios;
 
     public static String BD = "jdbc:mysql://localhost/siu";
+
+   
     public static String Usuario = "root";
     public static String Contraseña = "Polo.2015";
+
+    
 
     /**
      * Creates new form Principal
@@ -183,19 +187,20 @@ public void Panel(){
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/0.jpg"))); // NOI18N
         jLabel1.setFocusable(false);
 
+        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout ventanaPLayout = new javax.swing.GroupLayout(ventanaP);
         ventanaP.setLayout(ventanaPLayout);
         ventanaPLayout.setHorizontalGroup(
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaPLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1311, Short.MAX_VALUE)
+                .addContainerGap())
         );
         ventanaPLayout.setVerticalGroup(
             ventanaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, Short.MAX_VALUE)
         );
-        ventanaP.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenu8.setText("Bitacora Usuarios");
 
