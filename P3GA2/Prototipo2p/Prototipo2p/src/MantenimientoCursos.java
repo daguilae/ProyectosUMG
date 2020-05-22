@@ -17,6 +17,8 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
      */
     public MantenimientoCursos() {
         initComponents();
+        buscarCurso();
+        
        
     }
 
@@ -35,7 +37,6 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         txt_codcurso = new javax.swing.JTextField();
         txt_nombrecurso = new javax.swing.JTextField();
         txt_estadocurso = new javax.swing.JTextField();
-        txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         buttonPrueba1 = new buttonPrueba.buttonPrueba();
         label_status = new javax.swing.JLabel();
@@ -43,6 +44,7 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         buttonEditar1 = new BottonEditar.buttonEditar();
         buttonEliminar1 = new BottonEliminar.buttonEliminar();
         jLabel5 = new javax.swing.JLabel();
+        cboBuscar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -78,9 +80,6 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
                 txt_estadocursoActionPerformed(evt);
             }
         });
-
-        txt_buscar.setBackground(new java.awt.Color(227, 227, 227));
-        txt_buscar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -124,32 +123,30 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_estadocurso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txt_nombrecurso)
+                            .addComponent(txt_codcurso)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_estadocurso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txt_nombrecurso)
-                                    .addComponent(txt_codcurso)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(buttonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(buttonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
+                                .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,7 +155,7 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonPrueba1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboBuscar))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_codcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,13 +198,13 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
-        if(txt_buscar.getText().trim().isEmpty()){
+        if(cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
             JOptionPane.showMessageDialog(this, "NO SE INGRESO NINGUN CURSO DE BUSQUEDA");
         }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from cursos where codigo_curso = ?");
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
 
             ResultSet rs = pst.executeQuery();
 
@@ -216,7 +213,7 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
                 txt_nombrecurso.setText(rs.getString("nombre_curso"));
                 txt_estadocurso.setText(rs.getString("estatus_curso"));
             } else {
-                label_status.setText("curso no registrado");
+                JOptionPane.showMessageDialog(this, "CURSO NO ENCONTRADO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
             }
 
         }catch (Exception e){
@@ -269,7 +266,7 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "CAMPOS VACIOS O INVALIDOS, FAVOR INGRESARLOS CORRECTAMENTE", "WARNING",JOptionPane.WARNING_MESSAGE);
         }else{
         try {
-            String ID = txt_buscar.getText().trim();
+            String ID = cboBuscar.getSelectedItem().toString();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("update cursos set codigo_curso = ?, nombre_curso=?, estatus_curso=?  where codigo_curso = " + ID);
@@ -293,14 +290,14 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
    //Codigo que permite borrar registros en la base de datos
-        if(txt_buscar.getText().trim().isEmpty()){
+        if(cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
             JOptionPane.showMessageDialog(this,"NO SE INGRESO NINGUN CURSO PARA ELIMINAR");
         }else{
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from cursos where codigo_curso = ?");
 
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
             pst.executeUpdate();
 
             txt_codcurso.setText("");
@@ -315,20 +312,36 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         }
        
     }//GEN-LAST:event_buttonEliminar1MouseClicked
+    
+    public void buscarCurso(){
+        try{
+          
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+        PreparedStatement pst = cn.prepareStatement("select codigo_curso from cursos");
+            ResultSet rs = pst.executeQuery();
 
+            cboBuscar.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboBuscar.addItem(rs.getString("codigo_curso"));
+            }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private BottonEditar.buttonEditar buttonEditar1;
     private BottonEliminar.buttonEliminar buttonEliminar1;
     private BottonGuardar.buttonG buttonG1;
     private buttonPrueba.buttonPrueba buttonPrueba1;
+    private javax.swing.JComboBox<String> cboBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_codcurso;
     private javax.swing.JTextField txt_estadocurso;
     private javax.swing.JTextField txt_nombrecurso;

@@ -107,6 +107,7 @@ CREATE TABLE jornadas
 -- -----------------------------------------------------
 CREATE TABLE asignacioncursosalumnos
 (
+  id_asignacion varchar(10),
   codigo_carrera VARCHAR(5),
   codigo_sede VARCHAR(5),
   codigo_jornada VARCHAR(5),
@@ -114,8 +115,7 @@ CREATE TABLE asignacioncursosalumnos
   codigo_aula VARCHAR(5),
   codigo_curso VARCHAR(5),
   carnet_alumno VARCHAR(15),
-  nota_asignacioncursoalumnos FLOAT, 
-  PRIMARY KEY (codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
+  PRIMARY KEY (id_asignacion,codigo_carrera, codigo_sede, codigo_jornada, codigo_seccion, codigo_aula, codigo_curso, carnet_alumno),
   FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera),
   FOREIGN KEY (codigo_sede) REFERENCES sedes(codigo_sede),
   FOREIGN KEY (codigo_jornada) REFERENCES jornadas(codigo_jornada),
@@ -124,6 +124,20 @@ CREATE TABLE asignacioncursosalumnos
   FOREIGN KEY (codigo_curso) REFERENCES cursos(codigo_curso),
   FOREIGN KEY (carnet_alumno) REFERENCES alumnos(carnet_alumno)
   ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+
+create table asignacionnota
+(
+parcial_1 float,
+parcial_2 float,
+parcial_3 float,
+acumulado float,
+total float,
+id_asignacion varchar(10),
+foreign key(id_asignacion) references asignacioncursosalumnos (id_asignacion)
+
+)engine = InnoDB DEFAULT CHARSET=latin1;
+  
 -- -----------------------------------------------------
 -- Table `educativo`.`Asignacion_cursos_maestros`
 -- -----------------------------------------------------

@@ -10,6 +10,7 @@
  */
 import java.sql.*;
 import javax.swing.JOptionPane;
+
 public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
 
     /**
@@ -17,6 +18,7 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
      */
     public AsignacionCursoMaestro() {
         initComponents();
+        cboDBMaestroAlumnos();
     }
 
     /**
@@ -31,20 +33,20 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
         label_status = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txt_codcarrera = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_codjornada = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txt_codaula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_codmaestro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txt_codsede = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txt_codseccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txt_codcurso = new javax.swing.JTextField();
         buttonG1 = new BottonGuardar.buttonG();
+        cboCodigoCurso = new javax.swing.JComboBox<>();
+        cboCodigoSede = new javax.swing.JComboBox<>();
+        cboCodigoSeccion = new javax.swing.JComboBox<>();
+        cboCodigoMaestro = new javax.swing.JComboBox<>();
+        cboCodigoAula = new javax.swing.JComboBox<>();
+        cboCodigoJornada = new javax.swing.JComboBox<>();
+        cboCodigoCarrera = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -57,65 +59,38 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("Código de Carrera:");
 
-        txt_codcarrera.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codcarrera.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txt_codcarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_codcarreraActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Código de Jornada:");
-
-        txt_codjornada.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codjornada.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txt_codjornada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_codjornadaActionPerformed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("Código de Aula:");
 
-        txt_codaula.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codaula.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Código de Maestro:");
-
-        txt_codmaestro.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codmaestro.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Código de Sede:");
         jLabel1.setToolTipText("");
 
-        txt_codsede.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codsede.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setText("Código de Sección:");
 
-        txt_codseccion.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codseccion.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txt_codseccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_codseccionActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("Código de Curso:");
-
-        txt_codcurso.setBackground(new java.awt.Color(227, 227, 227));
-        txt_codcurso.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         buttonG1.setText("buttonG1");
         buttonG1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonG1MouseClicked(evt);
+            }
+        });
+
+        cboCodigoCarrera.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        cboCodigoCarrera.setBorder(null);
+        cboCodigoCarrera.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboCodigoCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCodigoCarreraActionPerformed(evt);
             }
         });
 
@@ -136,48 +111,47 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_codcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                        .addComponent(txt_codjornada)
-                        .addComponent(txt_codaula)
-                        .addComponent(txt_codmaestro)
-                        .addComponent(txt_codsede)
-                        .addComponent(txt_codseccion)
-                        .addComponent(txt_codcurso)))
+                    .addComponent(cboCodigoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoSede, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoAula, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codjornada, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codaula, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoAula, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codmaestro, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codsede, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoSede, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codseccion, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_codcurso, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCodigoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -205,64 +179,141 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_codcarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codcarreraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codcarreraActionPerformed
-
-    private void txt_codjornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codjornadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codjornadaActionPerformed
-
-    private void txt_codseccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codseccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codseccionActionPerformed
-
     private void buttonG1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonG1MouseClicked
         //Codigo que permite insertar registros en al base de datos
-        if ( txt_codcarrera.getText().isEmpty() || txt_codsede.getText().isEmpty() || txt_codjornada.getText().isEmpty() || txt_codseccion.getText().isEmpty() || txt_codaula.getText().isEmpty() || txt_codcurso.getText().isEmpty() || txt_codmaestro.getText().isEmpty()){
+        String codc, codj, coda, codm, cods, codsec, codcur;
+        codc = cboCodigoCarrera.getSelectedItem().toString();
+        codj = cboCodigoJornada.getSelectedItem().toString();
+        coda = cboCodigoAula.getSelectedItem().toString();
+        codm = cboCodigoMaestro.getSelectedItem().toString();
+        cods = cboCodigoSede.getSelectedItem().toString();
+        codsec = cboCodigoSeccion.getSelectedItem().toString();
+        codcur = cboCodigoCurso.getSelectedItem().toString();
 
-            JOptionPane.showMessageDialog(null, "NO SE PUEDE DEJAR CAMPOS VACIOS");
+        if (codc == "." || codj == "." || coda == "." || cods == "." || codsec == "." || codcur == "." || codc == "" || codj == "" || coda == "" || cods == "" || codsec == "" || codcur == "") {
 
-            txt_codcarrera.setText("");
-            txt_codsede.setText("");
-            txt_codjornada.setText("");
-            txt_codseccion.setText("");
-            txt_codaula.setText("");
-            txt_codcurso.setText("");
-            txt_codmaestro.setText("");
+            JOptionPane.showMessageDialog(null, "Complete los campos vacios.");
 
-        }else{
+            cboCodigoCarrera.setSelectedItem(0);
+            cboCodigoJornada.setSelectedItem(0);
+            cboCodigoAula.setSelectedItem(0);
+            cboCodigoMaestro.setSelectedItem(0);
+            cboCodigoSede.setSelectedItem(0);
+            cboCodigoSeccion.setSelectedItem(0);
+            cboCodigoCurso.setSelectedItem(0);
+
+        } else {
 
             try{
+                
+
+            try {
                 Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+
                 PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosmastros values(?,?,?,?,?,?,?)");
 
-                pst.setString(1, txt_codcarrera.getText().trim());
-                pst.setString(2, txt_codsede.getText().trim());
-                pst.setString(3, txt_codjornada.getText().trim());
-                pst.setString(4, txt_codseccion.getText().trim());
-                pst.setString(5, txt_codaula.getText().trim());
-                pst.setString(6, txt_codcurso.getText().trim());
-                pst.setString(7, txt_codmaestro.getText().trim());
+                pst.setString(1, codc);
+                pst.setString(2, cods);
+                pst.setString(3, codj);
+                pst.setString(4, codsec);
+                pst.setString(5, coda);
+                pst.setString(6, codcur);
+                pst.setString(7, codm);
                 pst.executeUpdate();
 
-                txt_codcarrera.setText("");
-                txt_codsede.setText("");
-                txt_codjornada.setText("");
-                txt_codseccion.setText("");
-                txt_codaula.setText("");
-                txt_codcurso.setText("");
-                txt_codmaestro.setText("");
-                label_status.setText("Registro exitoso.");
-            }catch (Exception e){
-                label_status.setText("Error al registrar");
-            }
-        }
-    }//GEN-LAST:event_buttonG1MouseClicked
+                cboCodigoCarrera.setSelectedItem(0);
+                cboCodigoJornada.setSelectedItem(0);
+                cboCodigoAula.setSelectedItem(0);
+                cboCodigoMaestro.setSelectedItem(0);
+                cboCodigoSede.setSelectedItem(0);
+                cboCodigoSeccion.setSelectedItem(0);
+                cboCodigoCurso.setSelectedItem(0);
 
+                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "MENSAJE", JOptionPane.INFORMATION_MESSAGE);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, "ERROR NO SE PUEDE ACCEDER A LOS DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+            
+    }//GEN-LAST:event_buttonG1MouseClicked
+    }
+    private void cboCodigoCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCodigoCarreraActionPerformed
+        
+    }//GEN-LAST:event_cboCodigoCarreraActionPerformed
+    
+    public void cboDBMaestroAlumnos() {
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+
+            PreparedStatement pst = cn.prepareStatement("select nombre_carrera from carreras");
+            ResultSet rs = pst.executeQuery();
+
+            cboCodigoCarrera.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboCodigoCarrera.addItem(rs.getString("nombre_carrera"));
+            }
+            PreparedStatement pst1 = cn.prepareStatement("select nombre_sede from sedes");
+            ResultSet rs1 = pst1.executeQuery();
+
+            cboCodigoSede.addItem("Seleccione una opción");
+            while (rs1.next()) {
+                cboCodigoSede.addItem(rs.getString("nombre_sede"));
+            }
+            PreparedStatement pst2 = cn.prepareStatement("select nombre_jornada from jornadas");
+            ResultSet rs2 = pst2.executeQuery();
+
+            cboCodigoJornada.addItem("Seleccione una opción");
+            while (rs2.next()) {
+                cboCodigoJornada.addItem(rs.getString("nombre_jornada"));
+            }
+            PreparedStatement pst3 = cn.prepareStatement("select nombre_seccion from secciones");
+            ResultSet rs3 = pst3.executeQuery();
+
+            cboCodigoSeccion.addItem("Seleccione una opción");
+            while (rs3.next()) {
+                cboCodigoSeccion.addItem(rs.getString("nombre_seccion"));
+            }
+            PreparedStatement pst4 = cn.prepareStatement("select nombre_aula from aulas");
+            ResultSet rs4 = pst4.executeQuery();
+
+            cboCodigoAula.addItem("Seleccione una opción");
+            while (rs4.next()) {
+                cboCodigoAula.addItem(rs.getString("nombre_aula"));
+            }
+            PreparedStatement pst5 = cn.prepareStatement("select nombre_curso from cursos");
+            ResultSet rs5 = pst5.executeQuery();
+
+            cboCodigoCurso.addItem("Seleccione una opción");
+            while (rs5.next()) {
+                cboCodigoCurso.addItem(rs.getString("nombre_curso"));
+            }
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_maestro from maestros");
+            ResultSet rs6 = pst6.executeQuery();
+
+            cboCodigoMaestro.addItem("Seleccione una opción");
+            while (rs6.next()) {
+                cboCodigoMaestro.addItem(rs.getString("nombre_maestro"));
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private BottonGuardar.buttonG buttonG1;
+    private javax.swing.JComboBox<String> cboCodigoAula;
+    private javax.swing.JComboBox<String> cboCodigoCarrera;
+    private javax.swing.JComboBox<String> cboCodigoCurso;
+    private javax.swing.JComboBox<String> cboCodigoJornada;
+    private javax.swing.JComboBox<String> cboCodigoMaestro;
+    private javax.swing.JComboBox<String> cboCodigoSeccion;
+    private javax.swing.JComboBox<String> cboCodigoSede;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -272,12 +323,5 @@ public class AsignacionCursoMaestro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_codaula;
-    private javax.swing.JTextField txt_codcarrera;
-    private javax.swing.JTextField txt_codcurso;
-    private javax.swing.JTextField txt_codjornada;
-    private javax.swing.JTextField txt_codmaestro;
-    private javax.swing.JTextField txt_codseccion;
-    private javax.swing.JTextField txt_codsede;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
      */
     public MantenimientoJornadas() {
         initComponents();
+        buscarJornada();
     }
 
     /**
@@ -31,8 +32,6 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
-        label_status = new javax.swing.JLabel();
-        txt_buscar = new javax.swing.JTextField();
         txt_estadojornada = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,6 +42,7 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
         buttonEditar1 = new BottonEditar.buttonEditar();
         buttonG1 = new BottonGuardar.buttonG();
         buttonEliminar1 = new BottonEliminar.buttonEliminar();
+        cboBuscar = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -59,9 +59,6 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
         setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        txt_buscar.setBackground(new java.awt.Color(227, 227, 227));
-        txt_buscar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         txt_estadojornada.setBackground(new java.awt.Color(227, 227, 227));
         txt_estadojornada.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -130,8 +127,14 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cboBuscar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(91, 91, 91))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,19 +143,8 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_nombrejornada, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                             .addComponent(txt_codigojornada)
-                            .addComponent(txt_estadojornada))
-                        .addGap(35, 35, 35))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(110, Short.MAX_VALUE))))
+                            .addComponent(txt_estadojornada))))
+                .addGap(35, 35, 35))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(135, 135, 135)
                 .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,18 +152,19 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
                 .addComponent(buttonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(buttonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 135, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cboBuscar)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_codigojornada, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
@@ -219,13 +212,13 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
    //Codigo que permite consultar registros en la base de datos
-        if(txt_buscar.getText().trim().isEmpty()){
+        if(cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
             JOptionPane.showMessageDialog(this, "NO SE REGISTRO NINGUNA JONADA DE BUSQUEDA");
         }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from jornadas where codigo_jornada = ?");
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
 
             ResultSet rs = pst.executeQuery();
 
@@ -268,21 +261,21 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
     //Codigo que permite borrar registros en la base de datos
-        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||txt_buscar.getText().trim().isEmpty()){
+        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
             JOptionPane.showMessageDialog(this,"NO PUEDE HABER CAMPOS VACIOS");
         }else{
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from jornadas where codigo_jornada= ?");
 
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
             pst.executeUpdate();
 
             txt_codigojornada.setText("");
             txt_nombrejornada.setText("");
             txt_estadojornada.setText("");
 
-            label_status.setText("Eliminacion Exitosa");
+            JOptionPane.showMessageDialog(this, "ELIMINACION EXITOSO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR AL ELIMINAR", "ERROR",JOptionPane.ERROR_MESSAGE);
@@ -292,11 +285,11 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
 
     private void buttonEditar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditar1MouseClicked
  //Codigo que permite actualizar registros en la base de datos
-        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||txt_buscar.getText().trim().isEmpty()){
+        if(txt_codigojornada.getText().trim().isEmpty()||txt_nombrejornada.getText().trim().isEmpty() || txt_estadojornada.getText().trim().isEmpty()||cboBuscar.getSelectedItem().toString()=="Selecctione una opción"){
             JOptionPane.showMessageDialog(this,"NO PUEDE HABER CAMPOS VACIOS");
         }else{
         try {
-            String ID = txt_buscar.getText().trim();
+            String ID = cboBuscar.getSelectedItem().toString();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("update jornadas set codigo_jornada= ?, nombre_jornada=?, estatus_jornada=?  where codigo_jornada= " + ID);
@@ -309,7 +302,7 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
             txt_codigojornada.setText("");
             txt_nombrejornada.setText("");
             txt_estadojornada.setText("");
-            label_status.setText("Modificacion Exitosa");
+            JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSO", "MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR AL MODIFICAR ", "ERROR",JOptionPane.ERROR_MESSAGE);
@@ -317,20 +310,35 @@ public class MantenimientoJornadas extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_buttonEditar1MouseClicked
 
+    public void buscarJornada(){
+        try{
+          
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+        PreparedStatement pst = cn.prepareStatement("select codigo_jornada from jornadas");
+            ResultSet rs = pst.executeQuery();
+
+            cboBuscar.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboBuscar.addItem(rs.getString("codigo_jornada"));
+            }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private BottonEditar.buttonEditar buttonEditar1;
     private BottonEliminar.buttonEliminar buttonEliminar1;
     private BottonGuardar.buttonG buttonG1;
     private buttonPrueba.buttonPrueba buttonPrueba1;
+    private javax.swing.JComboBox<String> cboBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_codigojornada;
     private javax.swing.JTextField txt_estadojornada;
     private javax.swing.JTextField txt_nombrejornada;

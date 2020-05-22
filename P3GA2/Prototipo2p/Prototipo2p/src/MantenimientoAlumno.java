@@ -17,6 +17,7 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
      */
     public MantenimientoAlumno() {
         initComponents();
+        cboBuscarAlumno();
     }
 
     /**
@@ -37,7 +38,6 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
         txt_direccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_correo = new javax.swing.JTextField();
-        txt_buscar = new javax.swing.JTextField();
         txt_estado = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -47,6 +47,7 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
         label_status = new javax.swing.JLabel();
         buttonG1 = new BottonGuardar.buttonG();
         buttonEditar1 = new BottonEditar.buttonEditar();
+        cboBuscar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -90,9 +91,6 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
 
         txt_correo.setBackground(new java.awt.Color(227, 227, 227));
         txt_correo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
-        txt_buscar.setBackground(new java.awt.Color(227, 227, 227));
-        txt_buscar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         txt_estado.setBackground(new java.awt.Color(227, 227, 227));
         txt_estado.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -143,14 +141,8 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 93, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(172, Short.MAX_VALUE)
                 .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(buttonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,27 +168,29 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
                             .addComponent(txt_carnet)
                             .addComponent(txt_direccion)
                             .addComponent(txt_correo)
-                            .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(txt_carnet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_carnet, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txt_nombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,17 +245,17 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
      //Codigo que permite consultar registros en la base de datos
-        if ( txt_buscar.getText().isEmpty()){
+        if ( cboBuscar.getSelectedItem().toString() == "Seleccione una opción"){
 
             JOptionPane.showMessageDialog(null, "NO SE PUEDE DEJAR El CAMPO VACIO");
 
-            txt_buscar.setText("");
+            cboBuscar.setSelectedItem(0);
             
         }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from alumnos where carnet_alumno = ?");
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
 
             ResultSet rs = pst.executeQuery();
 
@@ -289,7 +283,7 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from alumnos where carnet_alumno = ?");
 
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
             pst.executeUpdate();
 
             txt_carnet.setText("");
@@ -299,10 +293,10 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
             txt_correo.setText("");
             txt_estado.setText("");
 
-            label_status.setText("Registro eliminado.");
+            JOptionPane.showMessageDialog(this, "Registro Eliminado","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            label_status.setText("Error al eliminar");
+            JOptionPane.showMessageDialog(this, "Error al Eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_buttonEliminar1MouseClicked
@@ -339,9 +333,9 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
             txt_telefono.setText("");
             txt_correo.setText("");
             txt_estado.setText("");
-            label_status.setText("Registro exitoso.");
+            JOptionPane.showMessageDialog(this, "Registro Exitoso","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
         }catch (Exception e){
-        label_status.setText("Error al registrar");
+        JOptionPane.showMessageDialog(this, "Error al Registrar","ERROR",JOptionPane.ERROR_MESSAGE);;
         }
       }
        
@@ -362,7 +356,7 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
             
         }else{
         try {
-            String ID = txt_buscar.getText().trim();
+            String ID = cboBuscar.getSelectedItem().toString();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("update alumnos set carnet_alumno = ?, nombre_alumno=?, direccion_alumno=?, telefono_alumno=?, email_alumno=?, estatus_alumno=?  where carnet_alumno = " + ID);
@@ -381,20 +375,37 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
             txt_telefono.setText("");
             txt_correo.setText("");
             txt_estado.setText("");
-            label_status.setText("Modificación exitosa.");
+            JOptionPane.showMessageDialog(this, "Modificacion Exitosa","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            label_status.setText("Error al modificar");
+            JOptionPane.showMessageDialog(this, "Error al Modificar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
       }
     }//GEN-LAST:event_buttonEditar1MouseClicked
 
+    public void cboBuscarAlumno(){
+        try{
+          
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+        PreparedStatement pst = cn.prepareStatement("select carnet_alumno from alumnos");
+            ResultSet rs = pst.executeQuery();
+
+            cboBuscar.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboBuscar.addItem(rs.getString("carnet_alumno"));
+            }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private BottonEditar.buttonEditar buttonEditar1;
     private BottonEliminar.buttonEliminar buttonEliminar1;
     private BottonGuardar.buttonG buttonG1;
     private buttonPrueba.buttonPrueba buttonPrueba1;
+    private javax.swing.JComboBox<String> cboBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -403,7 +414,6 @@ public class MantenimientoAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_carnet;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_direccion;

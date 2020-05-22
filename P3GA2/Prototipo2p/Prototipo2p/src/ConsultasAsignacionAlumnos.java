@@ -23,6 +23,7 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
      */
     public ConsultasAsignacionAlumnos() {
         initComponents();
+        cboBuscarConsulta();
     }
 
     /**
@@ -39,8 +40,8 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
         buttonPrueba1 = new buttonPrueba.buttonPrueba();
         jScrollPane3 = new javax.swing.JScrollPane();
         combo = new javax.swing.JTable();
-        txt_buscar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        cboBuscar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setResizable(true);
@@ -83,8 +84,6 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(combo);
 
-        txt_buscar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,15 +95,15 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
                         .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(219, 219, 219)
+                                .addGap(430, 430, 430)
                                 .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(46, 46, 46)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -115,17 +114,14 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,64 +142,110 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
         //Codigo que permite consultar registros en la base de datos
        DefaultTableModel modelo = new DefaultTableModel();
        
-        try{
+       try{
+           
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "compromiso");
+
+           
+
+            PreparedStatement pstR = cn.prepareStatement("select * from asignacioncursosalumnos where carnet_alumno = ?");
+            pstR.setString(1, cboBuscar.getSelectedItem().toString());
+            ResultSet rsR = pstR.executeQuery();
+                     
+            if(rsR.next()){
+                
+                
+           
+           
+                try{
+
+            
             PreparedStatement pst = cn.prepareStatement("select * from asignacioncursosalumnos where carnet_alumno = ?");
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
             modelo.addColumn("Carnet");
             modelo.addColumn("Nombre");
             modelo.addColumn("Curso");
             modelo.addColumn("Nota");
+            ResultSet rs = pst.executeQuery();   
             
-            ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
-                
-                String codigo_curso = "", carnet_alumno = "";
+               while(rs.next()){
+                             
+                String codigo_curso = "", carnet_alumno="";
                 float nota = 0;     
                             
                         codigo_curso = String.valueOf(rs.getString("codigo_curso"));
                         carnet_alumno = String.valueOf(rs.getString("carnet_alumno"));   
                         nota = Float.parseFloat(rs.getString("nota_asignacioncursoalumnos"));
+                
+                        
                         
               PreparedStatement pst1 = cn.prepareStatement("select * from alumnos where carnet_alumno = " + carnet_alumno);
+              ResultSet rs1 = pst1.executeQuery();
                 
-                ResultSet rs1 = pst1.executeQuery();
-                
-            
                 
                 while(rs1.next()){          
                         
-                String nombre_alumno = "";
-                
-                nombre_alumno = String.valueOf(rs1.getString("nombre_alumno"));
-            
+                String nombre_alumno = "";                
+                nombre_alumno = String.valueOf(rs1.getString("nombre_alumno"));            
                 
                 PreparedStatement pst2 = cn.prepareStatement("select * from cursos where codigo_curso = " + codigo_curso);
-                
                 ResultSet rs2 = pst2.executeQuery();
-            while(rs2.next()){
+                
              
                 String nombre_curso = "";
                 
+            while(rs2.next()){
+                
                 nombre_curso = String.valueOf(rs2.getString("nombre_curso"));
+                    
+                    Object filas[] = {carnet_alumno,nombre_alumno,nombre_curso,nota};
+                    modelo.addRow(filas);
+                    
+                    combo.setModel(modelo);
                 
-                Object filas[] = {carnet_alumno,nombre_alumno,nombre_curso,nota};
-                modelo.addRow(filas);
-
-                combo.setModel(modelo);
-                
-                //JOptionPane.showMessageDialog(null, carnet_alumno + " " + nombre_alumno + " " + nombre_curso + " " + nota); 
-            }                
+              }                
                         
-                }
+            }    
                 
-            }
+         }
+            
+          
+            
+        
             
         }catch(Exception e){
               JOptionPane.showMessageDialog(null, "Error");
         }
+                
+                
+                
+           
+           
+           
+           
+           
+       }else{
+               
+               JOptionPane.showMessageDialog(null, "No estan");
+               
+               }
+            
+            
+           
+       }catch(Exception e){
+           
+           JOptionPane.showMessageDialog(null, "Error");
+           
+       }
+       
+       
+           
+        
+        
+          
+        
+        
     }//GEN-LAST:event_buttonPrueba1MouseClicked
 
     private void buttonPrueba1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_buttonPrueba1AncestorAdded
@@ -211,14 +253,30 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_buttonPrueba1AncestorAdded
 
+    public void cboBuscarConsulta(){
+        try{
+          
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+        PreparedStatement pst = cn.prepareStatement("select carnet_alumno from alumnos");
+            ResultSet rs = pst.executeQuery();
+
+            cboBuscar.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboBuscar.addItem(rs.getString("carnet_alumno"));
+            }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private buttonPrueba.buttonPrueba buttonPrueba1;
+    private javax.swing.JComboBox<String> cboBuscar;
     private javax.swing.JTable combo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 }

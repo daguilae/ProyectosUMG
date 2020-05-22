@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,6 +32,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
     private AsignacionCursoAlumno ventantaAsignacionA;
     private AsignacionCursoMaestro ventanaAsignacionM;
     private ConsultasAsignacionAlumnos ventanaconsultas;
+    private AsignacionNota ventanaNota;
     /*private IngresoCliente ventanaCliente;
     private IngresoAutor ventanaAutor;
     private IngresoProducto ventanaProducto;*/
@@ -74,6 +76,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuBuscar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -214,6 +217,14 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem18);
+
+        jMenuItem1.setText("Asignar NOTA Alumno");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem1);
 
         jMenuBar1.add(jMenu6);
 
@@ -359,6 +370,16 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
          ventanaconsultas.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
     }//GEN-LAST:event_jMenuBuscarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+        ventanaNota = new AsignacionNota();
+        jDesktopPane1.add(ventanaNota);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventanaNota.getSize();
+        ventanaNota.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +424,7 @@ public class ContenedorPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuBuscar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;

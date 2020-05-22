@@ -17,6 +17,7 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
      */
     public MantenimientoAulas() {
         initComponents();
+        buscarAula();
     }
 
     /**
@@ -29,7 +30,6 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txt_buscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         label_status = new javax.swing.JLabel();
@@ -41,6 +41,7 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
         buttonEditar1 = new BottonEditar.buttonEditar();
         buttonEliminar1 = new BottonEliminar.buttonEliminar();
         buttonG1 = new BottonGuardar.buttonG();
+        cboBuscar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -50,9 +51,6 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
         setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        txt_buscar.setBackground(new java.awt.Color(227, 227, 227));
-        txt_buscar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Codigo de Aula:");
@@ -145,8 +143,8 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
                             .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(cboBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,9 +153,9 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
                 .addGap(9, 9, 9)
                 .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonPrueba1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,7 +173,7 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
                     .addComponent(buttonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonG1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,9 +213,9 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
             txt_codigoaula.setText("");
             txt_nombreaula.setText("");
             txt_estadoaula.setText("");
-            label_status.setText("Registro exitoso.");
+            JOptionPane.showMessageDialog(this, "Registro Exitoso","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
         }catch (Exception e){
-            label_status.setText("Error al registrar");
+            JOptionPane.showMessageDialog(this, "Error en Registro","ERROR",JOptionPane.ERROR_MESSAGE);
         }
       }
 
@@ -225,24 +223,24 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
 
     private void buttonEliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEliminar1MouseClicked
         //Codigo que permite borrar registros en la base de datos
-        if(txt_buscar.getText().trim().isEmpty()){
+        if(cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
         JOptionPane.showMessageDialog(this,"NO SE INGRESO NINGUN REGISTRO PARA ELIMINAR","WARNING",JOptionPane.WARNING_MESSAGE);
         }else{
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("delete from aulas where codigo_aula= ?");
 
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
             pst.executeUpdate();
 
             txt_codigoaula.setText("");
             txt_nombreaula.setText("");
             txt_estadoaula.setText("");
 
-            label_status.setText("Registro eliminado.");
+            JOptionPane.showMessageDialog(this, "Registro Eliminado","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            label_status.setText("Error al eliminar");
+            JOptionPane.showMessageDialog(this, "Error al Eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_buttonEliminar1MouseClicked
@@ -259,7 +257,7 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
             
         }else{
         try {
-            String ID = txt_buscar.getText().trim();
+            String ID = cboBuscar.getSelectedItem().toString();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("update aulas set codigo_aula= ?, nombre_aula=?, estatus_aula=?  where codigo_aula= " + ID);
@@ -272,10 +270,10 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
             txt_codigoaula.setText("");
             txt_nombreaula.setText("");
             txt_estadoaula.setText("");
-            label_status.setText("Modificación exitosa.");
+            JOptionPane.showMessageDialog(this, "Modificacion Exitosa","MENSAJE",JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            label_status.setText("Error al modificar");
+           JOptionPane.showMessageDialog(this, "Error al Modificar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
       }
 
@@ -283,17 +281,17 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
 
     private void buttonPrueba1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPrueba1MouseClicked
           //Codigo que permite consultar registros en la base de datos
-        if ( txt_buscar.getText().isEmpty()){
+        if ( cboBuscar.getSelectedItem().toString()=="Seleccione una opción"){
 
             JOptionPane.showMessageDialog(null, "NO SE PUEDE DEJAR El CAMPO VACIO");
 
-            txt_buscar.setText("");
+            cboBuscar.setSelectedItem(0);
             
         }else{
         try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pst = cn.prepareStatement("select * from aulas where codigo_aula = ?");
-            pst.setString(1, txt_buscar.getText().trim());
+            pst.setString(1, cboBuscar.getSelectedItem().toString());
 
             ResultSet rs = pst.executeQuery();
 
@@ -324,18 +322,35 @@ public class MantenimientoAulas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_codigoaulaActionPerformed
 
+    public void buscarAula(){
+    try{
+          
+        Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+        PreparedStatement pst = cn.prepareStatement("select codigo_aula from aulas");
+            ResultSet rs = pst.executeQuery();
+
+            cboBuscar.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cboBuscar.addItem(rs.getString("codigo_aula"));
+            }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private BottonEditar.buttonEditar buttonEditar1;
     private BottonEliminar.buttonEliminar buttonEliminar1;
     private BottonGuardar.buttonG buttonG1;
     private buttonPrueba.buttonPrueba buttonPrueba1;
+    private javax.swing.JComboBox<String> cboBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_status;
-    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_codigoaula;
     private javax.swing.JTextField txt_estadoaula;
     private javax.swing.JTextField txt_nombreaula;
