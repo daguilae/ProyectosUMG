@@ -251,12 +251,12 @@ public class Nuevo_Registro extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         if ( txt_Nombre.getText().isEmpty()
-            ||txt_Contraseña.getText().isEmpty() ||txt_Correo.getText().isEmpty()  ){
+            ||txt_Contraseña1.getText().isEmpty() ||txt_Correo.getText().isEmpty()  ){
             JOptionPane.showMessageDialog(null, " NO PUEDE DEJAR CAMPOS VACIOS ");
 
             txt_Nombre.setText("");
 
-            txt_Contraseña.setText("");
+            txt_Contraseña1.setText("");
             txt_Correo.setText("");
         }
         else {
@@ -270,14 +270,14 @@ public class Nuevo_Registro extends javax.swing.JFrame {
                 pst.setString(1, "0");
                 pst.setString(2, txt_Nombre.getText().trim());
 
-                pst.setString(3, txt_Contraseña.getText().trim());
+                pst.setString(3, txt_Contraseña1.getText().trim());
                 pst.setString(4, txt_Correo.getText().trim());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, " USUARIO REGISTRADO CORRECTAMENTE");
 
                 txt_Nombre.setText("");
 
-                txt_Contraseña.setText("");
+                txt_Contraseña1.setText("");
                 txt_Correo.setText("");
                Registrarse1 ventana = new  Registrarse1();
                ventana.setVisible(true);
