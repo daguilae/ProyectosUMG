@@ -59,7 +59,6 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         lblCodigoSeccion = new javax.swing.JLabel();
         lblCodigoAula = new javax.swing.JLabel();
         lblCodigoSede = new javax.swing.JLabel();
-        limpiarbtn1 = new temaclaro.Limpiarbtn();
 
         setClosable(true);
         setIconifiable(true);
@@ -161,12 +160,6 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
 
         lblCodigoSede.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
-        limpiarbtn1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                limpiarbtn1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -195,7 +188,7 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cmbCodigoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,22 +202,17 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_idasig, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCodigoJornada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCodigoCarrera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCodigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCodigoSeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCodigoAula, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(lblCodigoSede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(374, 374, 374)
-                        .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(limpiarbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblCodigoJornada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodigoCarrera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCodigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCodigoSeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCodigoAula, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                    .addComponent(lblCodigoSede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(374, 374, 374)
+                .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(555, 555, 555))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(360, 360, 360)
@@ -238,15 +226,10 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
                 .addComponent(label_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_idasig, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(limpiarbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_idasig, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -293,7 +276,7 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -375,13 +358,33 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
 
     private void cmbCarnteAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCarnteAlumnoActionPerformed
 
+//Nombre alumno de carnet
+      try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
+            PreparedStatement pst = cn.prepareStatement("select nombre_alumno from alumnos where carnet_alumno= ?");
+
+            pst.setString(1, cmbCarnteAlumno.getSelectedItem().toString());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                lblNombreAlumno.setText(rs.getString("nombre_alumno"));
+            } else {
+                lblNombreAlumno.setText("");
+            }
+
+        } catch (Exception e) {            
+            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR.", "ERROR", JOptionPane.ERROR_MESSAGE);            
+        }
+
+
     }//GEN-LAST:event_cmbCarnteAlumnoActionPerformed
 
     private void cmbCodigoCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCodigoCarreraActionPerformed
         // codico carrera de nombre carrera
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_carrera from alumnoswhere nombre_carrera= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_carrera from carreras where nombre_carrera= ?");
 
             pst.setString(1, cmbCodigoCarrera.getSelectedItem().toString());
 
@@ -402,10 +405,9 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
 
     private void cmbCodigoJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCodigoJornadaActionPerformed
         // TODO add your handling code here:
-
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_jornada from alumnoswhere nombre_jornada= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_jornada from jornadas where nombre_jornada= ?");
 
             pst.setString(1, cmbCodigoJornada.getSelectedItem().toString());
 
@@ -428,7 +430,7 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_curso from alumnoswhere nombre_curso= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_curso from cursos where nombre_curso= ?");
 
             pst.setString(1, cmbCodigoCurso.getSelectedItem().toString());
 
@@ -450,7 +452,7 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_seccion from alumnoswhere nombre_seccion= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_seccion from secciones where nombre_seccion= ?");
 
             pst.setString(1, cmdCodigoSeccion.getSelectedItem().toString());
 
@@ -471,7 +473,7 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_aula from alumnoswhere nombre_aula= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_aula from aulas where nombre_aula= ?");
 
             pst.setString(1, cmbCodigoAula.getSelectedItem().toString());
 
@@ -479,7 +481,8 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
 
             if (rs.next()) {
                 lblCodigoAula.setText(rs.getString("codigo_aula"));
-            } else {
+            }
+            if (cmbCodigoAula.getSelectedItem().toString() == "Seleccione una opción") {
                 lblCodigoAula.setText("");
             }
 
@@ -492,14 +495,14 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
-            PreparedStatement pst = cn.prepareStatement("select  codigo_sede from alumnoswhere nombre_sede= ?");
+            PreparedStatement pst = cn.prepareStatement("select  codigo_sede from sedes where nombre_sede= ?");
 
             pst.setString(1, cmbCodigoSede.getSelectedItem().toString());
 
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                lblCodigoSede.setText(rs.getString("codigo_aula"));
+                lblCodigoSede.setText(rs.getString("codigo_sede"));
             } else {
                 lblCodigoSede.setText("");
             }
@@ -532,7 +535,6 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_limpiarbtn1MouseClicked
 
     public void comboDBCursoAlumnos() {
-
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
 
@@ -543,52 +545,55 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 cmbCodigoCarrera.addItem(rs.getString("nombre_carrera"));
             }
+
             PreparedStatement pst1 = cn.prepareStatement("select nombre_sede from sedes");
             ResultSet rs1 = pst1.executeQuery();
 
             cmbCodigoSede.addItem("Seleccione una opción");
             while (rs1.next()) {
-                cmbCodigoSede.addItem(rs.getString("nombre_sede"));
+                cmbCodigoSede.addItem(rs1.getString("nombre_sede"));
             }
             PreparedStatement pst2 = cn.prepareStatement("select nombre_jornada from jornadas");
             ResultSet rs2 = pst2.executeQuery();
 
             cmbCodigoJornada.addItem("Seleccione una opción");
             while (rs2.next()) {
-                cmbCodigoJornada.addItem(rs.getString("nombre_jornada"));
+                cmbCodigoJornada.addItem(rs2.getString("nombre_jornada"));
             }
             PreparedStatement pst3 = cn.prepareStatement("select nombre_seccion from secciones");
             ResultSet rs3 = pst3.executeQuery();
 
             cmdCodigoSeccion.addItem("Seleccione una opción");
             while (rs3.next()) {
-                cmdCodigoSeccion.addItem(rs.getString("nombre_seccion"));
+                cmdCodigoSeccion.addItem(rs3.getString("nombre_seccion"));
             }
             PreparedStatement pst4 = cn.prepareStatement("select nombre_aula from aulas");
             ResultSet rs4 = pst4.executeQuery();
 
             cmbCodigoAula.addItem("Seleccione una opción");
             while (rs4.next()) {
-                cmbCodigoAula.addItem(rs.getString("nombre_aula"));
+                cmbCodigoAula.addItem(rs4.getString("nombre_aula"));
             }
             PreparedStatement pst5 = cn.prepareStatement("select nombre_curso from cursos");
             ResultSet rs5 = pst5.executeQuery();
 
             cmbCodigoCurso.addItem("Seleccione una opción");
             while (rs5.next()) {
-                cmbCodigoCurso.addItem(rs.getString("nombre_curso"));
+                cmbCodigoCurso.addItem(rs5.getString("nombre_curso"));
             }
             PreparedStatement pst6 = cn.prepareStatement("select carnet_alumno from alumnos");
             ResultSet rs6 = pst6.executeQuery();
 
             cmbCarnteAlumno.addItem("Seleccione una opción");
             while (rs6.next()) {
-                cmbCarnteAlumno.addItem(rs.getString("carnet_alumno"));
+                cmbCarnteAlumno.addItem(rs6.getString("carnet_alumno"));
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -617,7 +622,6 @@ public class AsignacionCursoAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCodigoSeccion;
     private javax.swing.JLabel lblCodigoSede;
     private javax.swing.JLabel lblNombreAlumno;
-    private temaclaro.Limpiarbtn limpiarbtn1;
     private javax.swing.JTextField txt_idasig;
     // End of variables declaration//GEN-END:variables
 }

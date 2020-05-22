@@ -145,11 +145,10 @@ public class ConsultasAsignacionAlumnos extends javax.swing.JInternalFrame {
        try{
            
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "compromiso");
 
-           
-
+           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "jorgito5828H");
             PreparedStatement pstR = cn.prepareStatement("select * from asignacioncursosalumnos where carnet_alumno = ?");
+
             pstR.setString(1, cboBuscar.getSelectedItem().toString());
             ResultSet rsR = pstR.executeQuery();
                      
