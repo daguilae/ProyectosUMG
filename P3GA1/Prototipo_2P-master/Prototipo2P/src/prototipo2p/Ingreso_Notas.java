@@ -46,8 +46,6 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         Panel = new javax.swing.JTabbedPane();
         panel_maestro = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,12 +83,6 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        jLabel13.setText("jLabel1");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        jLabel14.setText("jLabel1");
 
         setClosable(true);
         setIconifiable(true);
@@ -760,8 +752,6 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

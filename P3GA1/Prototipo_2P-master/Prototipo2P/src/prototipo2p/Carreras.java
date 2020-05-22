@@ -62,7 +62,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -74,7 +73,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel2.setText("Codigo Carrera:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 173, -1, -1));
 
-        txt_nombre.setBackground(new java.awt.Color(204, 255, 255));
         txt_nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +85,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre Carrera:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 213, -1, -1));
 
-        txt_idcarrera.setBackground(new java.awt.Color(204, 255, 255));
         txt_idcarrera.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_idcarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +101,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel5.setText("Ingresa el código del carrera: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 13, -1, -1));
 
-        txt_buscar.setBackground(new java.awt.Color(204, 255, 255));
         txt_buscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, 520, 30));
 
@@ -156,7 +152,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jLabel6.setText("Estatus Carrera");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 295, -1, -1));
 
-        txt_estatus.setBackground(new java.awt.Color(204, 255, 255));
         txt_estatus.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_estatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,10 +211,6 @@ public class Carreras extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 275, 350, 130));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -482,7 +473,6 @@ public class Carreras extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
