@@ -275,7 +275,6 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
         cbx_jornada = new javax.swing.JComboBox<>();
         lbl_carrera = new javax.swing.JLabel();
         lbl_jornada = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -299,7 +298,6 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
         jLabel5.setText("Ingresa el código de Asignacion: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
-        txt_buscar.setBackground(new java.awt.Color(204, 255, 255));
         txt_buscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 520, 30));
 
@@ -353,7 +351,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Codigo Aula:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 276, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Codigo Curso:");
@@ -379,7 +377,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
         getContentPane().add(lbl_seccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 234, -1, -1));
 
         lbl_aula.setText("Codigo");
-        getContentPane().add(lbl_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 262, -1, -1));
+        getContentPane().add(lbl_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
         cbx_aula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -391,7 +389,7 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
                 cbx_aulaActionPerformed(evt);
             }
         });
-        getContentPane().add(cbx_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 262, 130, -1));
+        getContentPane().add(cbx_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 130, -1));
 
         cbx_curso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -495,9 +493,6 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
 
         lbl_jornada.setText("Codigo");
         getContentPane().add(lbl_jornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 206, -1, -1));
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -973,7 +968,6 @@ public class Asignacion_cursos_alumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
