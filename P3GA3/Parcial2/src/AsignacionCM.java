@@ -74,24 +74,24 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                     columnas[1] = rSede.getString("nombre_sede");
 
                 }
-                 while (rJornada.next()) {
+                while (rJornada.next()) {
                     columnas[2] = rJornada.getString("nombre_jornada");
 
                 }
-                 while (rSeccion.next()) {
+                while (rSeccion.next()) {
                     columnas[3] = rSeccion.getString("nombre_seccion");
 
                 }
-                 
-                 while (rAula.next()) {
+
+                while (rAula.next()) {
                     columnas[4] = rAula.getString("nombre_aula");
 
                 }
-                 while (rCurso.next()) {
+                while (rCurso.next()) {
                     columnas[5] = rCurso.getString("nombre_curso");
 
                 }
-                 while (rMaestro.next()) {
+                while (rMaestro.next()) {
                     columnas[6] = rMaestro.getString("nombre_maestro");
 
                 }
@@ -110,7 +110,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
      */
     public AsignacionCM() {
         initComponents();
-        
+
         try {
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select nombre_carrera from carreras");
@@ -127,9 +127,6 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
             PreparedStatement pst5 = cn.prepareStatement("select nombre_aula from aulas");
             ResultSet rs5 = pst5.executeQuery();
-
-            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos");
-            ResultSet rs6 = pst6.executeQuery();
 
             PreparedStatement pst7 = cn.prepareStatement("select nombre_maestro from maestros");
             ResultSet rs7 = pst7.executeQuery();
@@ -160,9 +157,6 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             }
 
             cbox_curso.addItem("Seleccione una opción");
-            while (rs6.next()) {
-                cbox_curso.addItem(rs6.getString("nombre_curso"));
-            }
 
             cbox_alum.addItem("Seleccione una opción");
             while (rs7.next()) {
@@ -173,6 +167,13 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
         }
         
+        cbox_j.setEnabled(false);
+            cbox_curso.setEnabled(false);
+            cbox_sede.setEnabled(false);
+            cbox_alum.setEnabled(false);
+            cbox_sec.setEnabled(false);
+            cbox_aula.setEnabled(false);
+
         MostrarDB("asignacioncursosmastros");
     }
 
@@ -265,6 +266,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Aula");
 
+        cbox_alum.setEnabled(false);
         cbox_alum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_alumActionPerformed(evt);
@@ -281,6 +283,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             }
         });
 
+        cbox_sede.setEnabled(false);
         cbox_sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_sedeActionPerformed(evt);
@@ -329,6 +332,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Codigo");
 
+        cbox_j.setEnabled(false);
         cbox_j.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_jActionPerformed(evt);
@@ -341,6 +345,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             }
         });
 
+        cbox_sec.setEnabled(false);
         cbox_sec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_secActionPerformed(evt);
@@ -355,12 +360,14 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Curso");
 
+        cbox_aula.setEnabled(false);
         cbox_aula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_aulaActionPerformed(evt);
             }
         });
 
+        cbox_curso.setEnabled(false);
         cbox_curso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_cursoActionPerformed(evt);
@@ -529,6 +536,17 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
+            cbox_curso.removeAllItems();
+            cbox_curso.addItem("Seleccione una opción");
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos where codigo_carrera=?");
+            pst6.setString(1, lb1.getText());
+            ResultSet rs6 = pst6.executeQuery();
+
+            while (rs6.next()) {
+                cbox_curso.addItem(rs6.getString("nombre_curso"));
+            }
+
+            cbox_sede.setEnabled(true);
 
         } catch (Exception e) {
 
@@ -552,7 +570,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
-
+            cbox_j.setEnabled(true);
         } catch (Exception e) {
 
         }
@@ -573,13 +591,11 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             pst.setString(6, lb5.getText().trim());
             pst.setString(7, lb6.getText().trim());
             pst.setString(8, lb7.getText().trim());
-           
 
             pst.executeUpdate();
             MostrarDB("asignacioncursosmastros");
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
-           
             txt_id.setText("");
             lb1.setText("");
             lb2.setText("");
@@ -595,6 +611,14 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             cbox_alum.setSelectedIndex(0);
             cbox_sec.setSelectedIndex(0);
             cbox_aula.setSelectedIndex(0);
+            
+            cbox_j.setEnabled(false);
+            cbox_curso.setEnabled(false);
+            cbox_sede.setEnabled(false);
+            cbox_alum.setEnabled(false);
+            cbox_sec.setEnabled(false);
+            cbox_aula.setEnabled(false);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGITRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -625,7 +649,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                 lb5.setText(rs.getString("codigo_aula"));
                 lb6.setText(rs.getString("codigo_curso"));
                 lb7.setText(rs.getString("codigo_maestro"));
-               
+                
 
                 btnEliminar.setEnabled(true);
                 btnModificar.setEnabled(true);
@@ -633,6 +657,67 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, " no registrado.");
             }
+            
+            PreparedStatement pst1 = cn.prepareStatement("select nombre_carrera from carreras where codigo_carrera=?");
+            pst1.setString(1, lb1.getText().trim());
+            ResultSet rs1 = pst1.executeQuery();
+
+            PreparedStatement pst2 = cn.prepareStatement("select nombre_sede from sedes where codigo_sede=?");
+            pst2.setString(1, lb2.getText().trim());
+            ResultSet rs2 = pst2.executeQuery();
+
+            PreparedStatement pst3 = cn.prepareStatement("select nombre_jornada from jornadas where codigo_jornada=?");
+             pst3.setString(1, lb3.getText().trim());
+            ResultSet rs3 = pst3.executeQuery();
+
+            PreparedStatement pst4 = cn.prepareStatement("select nombre_seccion from secciones where codigo_seccion=?");
+             pst4.setString(1, lb4.getText().trim());
+            ResultSet rs4 = pst4.executeQuery();
+
+            PreparedStatement pst5 = cn.prepareStatement("select nombre_aula from aulas where codigo_aula=?");
+             pst5.setString(1, lb5.getText().trim());
+            ResultSet rs5 = pst5.executeQuery();
+
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos where codigo_curso=?");
+            pst6.setString(1, lb2.getText().trim());
+            ResultSet rs6 = pst6.executeQuery();
+            
+            PreparedStatement pst7 = cn.prepareStatement("select nombre_maestro from maestros where codigo_maestro=?");
+            pst7.setString(1, lb2.getText().trim());
+            ResultSet rs7 = pst7.executeQuery();
+            
+            
+            while (rs1.next()) {
+                 cbox_carrera.setSelectedItem(rs1.getString("nombre_carrera"));
+            }
+            while (rs2.next()) {
+                 cbox_sede.setSelectedItem(rs2.getString("nombre_sede"));
+            }
+            while (rs3.next()) {
+                 cbox_j.setSelectedItem(rs3.getString("nombre_jornada"));
+            }
+            while (rs4.next()) {
+                 cbox_sec.setSelectedItem(rs4.getString("nombre_seccion"));
+            }
+             while (rs5.next()) {
+                 cbox_aula.setSelectedItem(rs5.getString("nombre_aula"));
+            }
+              while (rs6.next()) {
+                 cbox_curso.setSelectedItem(rs6.getString("nombre_curso"));
+            }
+             while (rs7.next()) {
+                 cbox_alum.setSelectedItem(rs7.getString("nombre_maestro"));
+            }
+           
+            
+            
+            
+            cbox_j.setEnabled(true);
+            cbox_curso.setEnabled(true);
+            cbox_sede.setEnabled(true);
+            cbox_alum.setEnabled(true);
+            cbox_sec.setEnabled(true);
+            cbox_aula.setEnabled(true);
 
         } catch (Exception err) {
             err.printStackTrace();
@@ -656,7 +741,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             btnModificar.setEnabled(false);
 
             txt_id.setText("");
-           
+
             lb1.setText("");
             lb2.setText("");
             lb3.setText("");
@@ -672,6 +757,13 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             cbox_sede.setSelectedIndex(0);
             cbox_curso.setSelectedIndex(0);
             txtbuscado.setText("");
+            
+            cbox_j.setEnabled(false);
+            cbox_curso.setEnabled(false);
+            cbox_sede.setEnabled(false);
+            cbox_alum.setEnabled(false);
+            cbox_sec.setEnabled(false);
+            cbox_aula.setEnabled(false);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -687,7 +779,6 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update asignacioncursosmastros set codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,codigo_maestro= ? where id_Alumno = " + codigo);
 
-           
             pst.setString(1, lb1.getText().trim());
             pst.setString(2, lb2.getText().trim());
             pst.setString(3, lb3.getText().trim());
@@ -695,7 +786,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             pst.setString(5, lb5.getText().trim());
             pst.setString(6, lb6.getText().trim());
             pst.setString(7, lb7.getText().trim());
-            
+
             pst.executeUpdate();
             MostrarDB("asignacioncursosmastros");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -703,7 +794,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             btnEliminar.setEnabled(false);
             btnModificar.setEnabled(false);
             txt_id.setText("");
-           
+
             lb1.setText("");
             lb2.setText("");
             lb3.setText("");
@@ -719,6 +810,13 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             cbox_sede.setSelectedIndex(0);
             cbox_curso.setSelectedIndex(0);
             txtbuscado.setText("");
+            
+            cbox_j.setEnabled(false);
+            cbox_curso.setEnabled(false);
+            cbox_sede.setEnabled(false);
+            cbox_alum.setEnabled(false);
+            cbox_sec.setEnabled(false);
+            cbox_aula.setEnabled(false);
 
         } catch (Exception e) {
             System.out.println(e);
@@ -741,7 +839,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
-
+            cbox_sec.setEnabled(true);
         } catch (Exception e) {
 
         }        // TODO add your handling code here:
@@ -765,7 +863,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
-
+            cbox_aula.setEnabled(true);
         } catch (Exception e) {
 
         }  // TODO add your handling code here:
@@ -785,7 +883,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
-
+            cbox_curso.setEnabled(true);
         } catch (Exception e) {
 
         }
@@ -807,7 +905,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
 
             }
-
+            cbox_alum.setEnabled(true);
         } catch (Exception e) {
 
         }

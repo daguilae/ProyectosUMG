@@ -128,6 +128,17 @@ public Laboratorios() {
 
         jLabel3.setText("Nota Laboratorio");
 
+        txt_Nota_Laboratorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Nota_LaboratorioActionPerformed(evt);
+            }
+        });
+        txt_Nota_Laboratorio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_Nota_LaboratorioKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("ID Alumno");
 
         jLabel5.setText("ID Maestro");
@@ -294,10 +305,11 @@ public Laboratorios() {
                             .addComponent(cbox_alum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbID1))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cbox_maestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbID2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbID2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(cbox_maestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(61, 61, 61)
                         .addComponent(jButton_Ingresar)
                         .addGap(18, 18, 18)
@@ -432,6 +444,21 @@ public Laboratorios() {
        
         // TODO add your handling code here:
     }//GEN-LAST:event_cbox_maestroActionPerformed
+
+    private void txt_Nota_LaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Nota_LaboratorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Nota_LaboratorioActionPerformed
+
+    private void txt_Nota_LaboratorioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Nota_LaboratorioKeyTyped
+ char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Nota_LaboratorioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -88,6 +88,12 @@ String[] NombresColumnasSedes = {"codigo_sede" ,"nombre_sede" ,"estatus_sede"};
 
         jLabel5.setText("Codigo");
 
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,6 +354,16 @@ MostrarDB("sedes");
     private void tblSedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSedesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSedesMouseClicked
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+ char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+             JOptionPane.showMessageDialog(rootPane, "Ingrese solo letras");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

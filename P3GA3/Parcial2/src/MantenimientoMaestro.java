@@ -102,6 +102,18 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Email");
 
+        txt_tel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telKeyTyped(evt);
+            }
+        });
+
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Telefono");
 
         jLabel4.setText("Direccion");
@@ -147,6 +159,11 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
         ));
         tblMaestros.setGridColor(new java.awt.Color(255, 255, 255));
         tblMaestros.setSelectionBackground(new java.awt.Color(102, 204, 255));
+        tblMaestros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMaestrosMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblMaestros);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -392,6 +409,31 @@ public class MantenimientoMaestro extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblMaestrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMaestrosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblMaestrosMouseClicked
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+             JOptionPane.showMessageDialog(rootPane, "Ingrese solo letras");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_telKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telKeyTyped
+char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

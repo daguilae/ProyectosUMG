@@ -9,12 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ranbr
  */
 public class MantenimientoAlumno extends javax.swing.JInternalFrame {
-String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_alumno","telefono_alumno","email_alumno","estatus_alumno"};
+
+    String[] NombresColumnasAlumnos = {"carnet_alumno", "nombre_alumno", "direccion_alumno", "telefono_alumno", "email_alumno", "estatus_alumno"};
+
     /**
      * Creates new form Mantenimiento
      */
@@ -60,6 +63,12 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
         setTitle("Mantenimiento Alumno");
         setVisible(true);
 
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Direccion");
 
         jLabel3.setText("Nombre");
@@ -67,6 +76,12 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
         jLabel5.setText("Carnet");
 
         jLabel7.setText("Email");
+
+        txt_tel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Telefono");
 
@@ -242,10 +257,9 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
         String query;
         try {
 
-            Connection c = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
-           
-                query = "SELECT * FROM " + Tabla;
-           
+            Connection c = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+
+            query = "SELECT * FROM " + Tabla;
 
             PreparedStatement consulta = c.prepareStatement(query);
             ResultSet resultado = consulta.executeQuery();
@@ -267,8 +281,8 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
     }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        try{
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into alumnos values(?,?,?,?,?,?)");
 
             pst.setString(1, txt_id.getText().trim());
@@ -277,7 +291,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
             pst.setString(4, txt_tel.getText().trim());
             pst.setString(5, txt_email.getText().trim());
             pst.setString(6, "A");
-        
+
             pst.executeUpdate();
             MostrarDB("alumnos");
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -287,8 +301,8 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
             txt_direccion.setText("");
             txt_tel.setText("");
             txt_email.setText("");
-            
-        }catch (Exception e){
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGITRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -298,25 +312,24 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String buscar = txtbuscado.getText().trim();
-        if(buscar.isEmpty()) {
+        if (buscar.isEmpty()) {
             JOptionPane.showMessageDialog(this, "¡No se ingreso el campo de busqueda!", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        try{
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+        try {
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from alumnos where carnet_alumno = ?");
             pst.setString(1, txtbuscado.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 txt_id.setText(rs.getString("carnet_alumno"));
                 txt_nombre.setText(rs.getString("nombre_alumno"));
                 txt_direccion.setText(rs.getString("direccion_alumno"));
                 txt_tel.setText(rs.getString("telefono_alumno"));
                 txt_email.setText(rs.getString("email_alumno"));
                 txt_estatus.setText(rs.getString("estatus_alumno"));
-              
 
                 btnEliminar.setEnabled(true);
                 btnModificar.setEnabled(true);
@@ -326,7 +339,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
                 JOptionPane.showMessageDialog(null, "Alumno no registrado.");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -335,7 +348,7 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from alumnos where carnet_alumno = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -347,16 +360,14 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
             btnEliminar.setEnabled(false);
             btnModificar.setEnabled(false);
 
-          
-             txt_id.setText("");
+            txt_id.setText("");
             txt_nombre.setText("");
             txt_direccion.setText("");
             txt_tel.setText("");
             txt_email.setText("");
             txtbuscado.setText("");
-         
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -367,15 +378,14 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
         try {
             String codigo = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update alumnos set nombre_alumno = ? , direccion_alumno= ? , telefono_alumno=? , email_alumno= ?, estatus_alumno= ?  where carnet_alumno = " + codigo);
 
-           
             pst.setString(1, txt_nombre.getText().trim());
             pst.setString(2, txt_direccion.getText().trim());
             pst.setString(3, txt_tel.getText().trim());
             pst.setString(4, txt_email.getText().trim());
-             pst.setString(5, txt_estatus.getText().trim());
+            pst.setString(5, txt_estatus.getText().trim());
             pst.executeUpdate();
             MostrarDB("alumnos");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -398,6 +408,27 @@ String[] NombresColumnasAlumnos = {"carnet_alumno","nombre_alumno","direccion_al
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txt_telKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telKeyTyped
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+             JOptionPane.showMessageDialog(rootPane, "Ingrese solo letras");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

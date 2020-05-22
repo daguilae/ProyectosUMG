@@ -1,12 +1,20 @@
+
+
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,11 +24,56 @@ import javax.swing.table.DefaultTableModel;
  * @author ranbr
  */
 public class AsignacionCA extends javax.swing.JInternalFrame {
-
-    String[] NombresColumnasAsignacionA = {"codigo_carrera", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno", "nota_asignacioncursoalumnos"};
+    String Semestre = "Semestre" ;
+    String Trimestre = "Trimestre" ;
+    String Unidad = "Unidad" ;
+    String Bimestre = "Bimestre";
+    String Extraordinario = "Extraordinario";
+    String Privado = "Privado";
+    String Zona = "Zona";
+    String Item = "";
+    String Item2 = "";
+    String Parcial_1 = "";
+    String Parcial_2 = "";
+    String Parcial_3 = "";
+    String Parcial_1T = "";
+    String Parcial_2T = "";
+    String Parcial_3T = "";
+    String Parcial_1B = "";
+    String Unidad_1 = "";
+    String Unidad_2 = "";
+    String Unidad_3 = "";
+    String Unidad_4 = "";
+    String ExtraordinarioS = "";
+    String PrivadoS = "";
+    String ZonaS = "";
+    String NotaS = "";
+    String SumaS = "";
+    
+    float Parcial_Flotante = 0;
+    float Parcial2_Flotante = 0;
+    float Parcial3_Flotante = 0;
+    float Parcial_FlotanteT = 0;
+    float Parcial2_FlotanteT = 0;
+    float Parcial3_FlotanteT = 0;
+    float Parcial_FlotanteB = 0;
+    float Unidad1_Flotante = 0;
+    float Unidad2_Flotante = 0;
+    float Unidad3_Flotante = 0;
+    float Unidad4_Flotante = 0;
+    float Extraordinario_Flotante = 0;
+    float Privado_Flotante = 0;
+    float Zona_Flotante = 0;
+    float Nota_Flotante = 0;
+    float Suma = 0;
+    
+    boolean Encontrado;
+    boolean EncontradoMayorCero = false;
+   
+    String[] NombresColumnasAsignacionA = {"id_Alumno", "codigo_sede", "codigo_jornada", "codigo_seccion", "codigo_aula", "codigo_curso", "carnet_alumno","Tipo_Nota","Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos"};
 
     public void MostrarDB(String Tabla) {
-        String[] columnas = new String[8];
+        String[] columnas = new String[24];
         String query;
         try {
 
@@ -34,7 +87,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             DefaultTableModel md = new DefaultTableModel(null, NombresColumnasAsignacionA);
 
             while (resultado.next()) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 23; i++) {
                     columnas[i] = resultado.getString(NombresColumnasAsignacionA[i]);
                 }
                 md.addRow(columnas);
@@ -50,6 +103,23 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
     public AsignacionCA() {
         initComponents();
+        jLabel_Tipo.setVisible(false);
+        jLabel_Extra.setVisible(false);
+        jLabel_Extra.setEnabled(false);
+        txt_Nuevo.setVisible(false);
+        Busqueda();
+
+            
+
+        jComboBox_Parcial.addItem("Ingrese Una Opcion");
+        jComboBox_Parcial.addItem(Semestre);
+        jComboBox_Parcial.addItem(Trimestre);
+        jComboBox_Parcial.addItem(Unidad);
+        jComboBox_Parcial.addItem(Bimestre);
+        jComboBox_Parcial.addItem(Extraordinario);
+        jComboBox_Parcial.addItem(Privado);
+        jComboBox_Parcial.addItem(Zona);        
+            
         try {
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select nombre_carrera from carreras");
@@ -107,11 +177,144 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             while (rs7.next()) {
                 cbox_alum.addItem(rs7.getString("nombre_alumno"));
             }
+            
 
-        } catch (Exception e) {
+            
+
+        } catch (Exception e) 
+        {
 
         }
         MostrarDB("asignacioncursosalumnos");
+    }
+    
+    public String[]datos(String datos)
+    {
+        Item = jComboBox_Parcial.getSelectedItem().toString();
+        int i = 0, j = 0, suma = j+1;
+        
+        if(Item == "Semestre")
+        {
+            i = 3;
+        }
+        else if(Item == "Trimestre")
+        {
+            i = 3;
+        }
+        else if(Item == "Bimestre")
+        {
+            i = 1;
+        }
+        else if(Item == "Unidad")
+        {
+            i=4;
+        }
+        else if(Item == "Extraordinario")
+        {
+            i=1;
+        }
+        else if(Item == "Privado")
+        {
+            i=1;
+        }      
+        else if(Item == "Zona")
+        {
+            i=1;
+        }        
+      
+        String[] informacion = new String[i];
+        
+    
+        if(datos.equalsIgnoreCase("Semestre"))
+        {
+            /*while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            
+            informacion[0] = "Parcial 1";
+            informacion[1] = "Parcial 2";
+            informacion[2] = "Parcial 3";
+        }
+        
+        if(datos.equalsIgnoreCase("Trimestre"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Parcial 1";
+            informacion[1] = "Parcial 2";
+            informacion[2] = "Parcial 3"; 
+        }
+        
+        if(datos.equalsIgnoreCase("Unidad"))
+        {
+            
+           /* while(j<i)
+            {
+                informacion[j] = "Unidad " + suma;
+                j++;
+                suma++;
+            }*/
+            
+            informacion[0] = "Unidad 1";
+            informacion[1] = "Unidad 2";
+            informacion[2] = "Unidad 3"; 
+            informacion[3] = "Unidad 4"; 
+        }
+            
+        if(datos.equalsIgnoreCase("Bimestre"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Parcial 1";
+        }
+        
+        if(datos.equalsIgnoreCase("Extraordinario"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Extraordinario";
+        }       
+        
+        if(datos.equalsIgnoreCase("Privado"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Privado";
+        }        
+        
+        if(datos.equalsIgnoreCase("Zona"))
+        {
+           /* while(j<i)
+            {
+                informacion[j] = "Parcial " + suma;
+                j++;
+                suma++;
+            }*/
+            informacion[0] = "Zona";
+        }             
+         
+        
+        return informacion;
+   
     }
 
     /**
@@ -145,102 +348,132 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         lb7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txt_n = new javax.swing.JTextField();
+        txt_Nota = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         txtbuscado = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
+        txt_Codigo = new javax.swing.JTextField();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAsignacionA = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox_Parcial = new javax.swing.JComboBox<>();
+        txt_Nuevo = new javax.swing.JTextField();
+        jComboBox_Parcial2 = new javax.swing.JComboBox<>();
+        jLabel_Extra = new javax.swing.JLabel();
+        jLabel_Tipo = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Asignacion cursos alumnos");
         setVisible(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbox_carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_carreraActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 36, 219, -1));
 
         cbox_sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_sedeActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 68, 219, -1));
 
         lb1.setText("...");
+        getContentPane().add(lb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 41, -1, -1));
 
         lb2.setText("...");
+        getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 73, -1, -1));
 
         jLabel5.setText("Carrera");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 41, -1, -1));
 
         jLabel6.setText("Sede");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 73, -1, -1));
 
         jLabel7.setText("Seccion");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 137, -1, -1));
 
         cbox_j.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_jActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_j, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 100, 219, -1));
 
         cbox_sec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_secActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 132, 219, -1));
 
         lb3.setText("...");
+        getContentPane().add(lb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 105, -1, -1));
 
         lb4.setText("...");
+        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 137, -1, -1));
 
         jLabel8.setText("Jornada");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 105, -1, -1));
 
         jLabel9.setText("Curso");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 207, -1, -1));
 
         cbox_aula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_aulaActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 170, 219, -1));
 
         cbox_curso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_cursoActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 202, 219, -1));
 
         lb5.setText("...");
+        getContentPane().add(lb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 175, -1, -1));
 
         lb6.setText("...");
+        getContentPane().add(lb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 207, -1, -1));
 
         jLabel10.setText("Aula");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 175, -1, -1));
 
         cbox_alum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_alumActionPerformed(evt);
             }
         });
+        getContentPane().add(cbox_alum, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 240, 220, -1));
 
         lb7.setText("...");
+        getContentPane().add(lb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 245, -1, -1));
 
         jLabel11.setText("Alumno");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 245, -1, -1));
 
         jLabel3.setText("Nota");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
-        txt_n.addActionListener(new java.awt.event.ActionListener() {
+        txt_Nota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nActionPerformed(evt);
+                txt_NotaActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 220, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +481,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 95, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +489,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 95, -1));
+        getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 102, -1));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
@@ -263,6 +499,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 95, -1));
 
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
@@ -271,16 +508,21 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 btnModificarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 95, -1));
 
         jLabel4.setText("Codigo");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
-        txt_id.addActionListener(new java.awt.event.ActionListener() {
+        txt_Codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_idActionPerformed(evt);
+                txt_CodigoActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 6, 219, -1));
 
         jTabbedPane3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblAsignacionA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -297,161 +539,31 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         tblAsignacionA.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane3.setViewportView(tblAsignacionA);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 310));
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(711, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbox_j, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbox_sec, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb3)
-                                    .addComponent(lb4)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel3))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cbox_aula, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbox_curso, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lb5)
-                                            .addComponent(lb6)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(131, 131, 131)
-                                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txt_n)
-                                            .addComponent(cbox_alum, 0, 220, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lb7))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                                    .addComponent(cbox_carrera, javax.swing.GroupLayout.Alignment.LEADING, 0, 219, Short.MAX_VALUE)
-                                    .addComponent(cbox_sede, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb1)
-                                    .addComponent(lb2))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cbox_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cbox_sede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cbox_j, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(cbox_sec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(cbox_aula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(cbox_curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(cbox_alum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegistrar))
-                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnModificar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 1010, 360));
+
+        jLabel1.setText("Tipo de Nota");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 283, -1, -1));
+
+        jComboBox_Parcial.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_ParcialItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(jComboBox_Parcial, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 278, 221, -1));
+        getContentPane().add(txt_Nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 88, -1));
+
+        jComboBox_Parcial2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        getContentPane().add(jComboBox_Parcial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 220, -1));
+
+        jLabel_Extra.setText("Usted Asistio a Sus Parciales ,No tiene permiso de Extraordinario.");
+        getContentPane().add(jLabel_Extra, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 380, 380, 60));
+
+        jLabel_Tipo.setText("Alumno ya ingresado en Semestre o Trimestre o Bimestre o Unidad,ingrese en correcto.");
+        getContentPane().add(jLabel_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 510, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -606,7 +718,409 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        try {
+            jLabel_Extra.setVisible(false);
+            Busqueda();
+            Item = jComboBox_Parcial.getSelectedItem().toString();
+            Item2 = jComboBox_Parcial2.getSelectedItem().toString();        
+            if(Encontrado == true)
+            {
+                
+                
+                if(Item == "Semestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,10,"Parcial_1",Parcial_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMAC(Item,Item2,11,"Parcial_2",Parcial2_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMAC(Item,Item2,12,"Parcial_3",Parcial3_Flotante);
+                    MostrarDB("asignacioncursosalumnos");
+                }     
+                else if(Item == "Trimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,13,"Parcial_1T",Parcial_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
+                }            
+                else if(Item == "Trimestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMAC(Item,Item2,14,"Parcial_2T",Parcial2_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMAC(Item,Item2,15,"Parcial_3T",Parcial3_FlotanteT);
+                            MostrarDB("asignacioncursosalumnos");
+                }    
+                else if(Item == "Bimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMAC(Item,Item2,16,"Parcial_1B",Parcial_FlotanteB);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Unidad" && Item2 == "Unidad 1")
+                {
+                    IngresarMAC(Item,Item2,17,"Unidad_1",Unidad1_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }      
+                else if(Item == "Unidad" && Item2 == "Unidad 2")
+                {
+                    IngresarMAC(Item,Item2,18,"Unidad_2",Unidad2_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }    
+                else if(Item == "Unidad" && Item2 == "Unidad 3")
+                {
+                    IngresarMAC(Item,Item2,19,"Unidad_3",Unidad3_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }             
+                else if(Item == "Unidad" && Item2 == "Unidad 4")
+                {
+                    IngresarMAC(Item,Item2,20,"Unidad_4",Unidad4_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }           
+                else if(Item == "Extraordinario" && Item2 == "Extraordinario")
+                {
+                    IngresarMAC(Item,Item2,21,"Extraordinario",Extraordinario_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }      
+                else if(Item == "Privado" && Item2 == "Privado")
+                {
+                    IngresarMAC(Item,Item2,22,"Privado",Privado_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }  
+                else if(Item == "Zona" && Item2 == "Zona")
+                {
+                    IngresarMAC(Item,Item2,23,"Zona",Zona_Flotante);
+                            MostrarDB("asignacioncursosalumnos");
+                }        
+                
+                /*try
+                {
+         
+                Item = jComboBox_Parcial.getSelectedItem().toString();
+                Item2 = jComboBox_Parcial2.getSelectedItem().toString();
+                //System.out.println(Item2);
+            
+                String ID = txt_Codigo.getText().trim();
+            
+                Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+                PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_4=?,Parcial_5=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + ID);
+            
+                pst.setString(1, txt_Codigo.getText().trim());
+                pst.setString(2, lb1.getText().trim());
+                pst.setString(3, lb2.getText().trim());
+                pst.setString(4, lb3.getText().trim());
+                pst.setString(5, lb4.getText().trim());
+                pst.setString(6, lb5.getText().trim());
+                pst.setString(7, lb6.getText().trim());
+                pst.setString(8, lb7.getText().trim());
+                
+            
+                if(Item == "Semestre")
+                {
+                    pst.setString(9,Item);
+                    if(Item2 == "Parcial 1")
+                    {
+                    BusquedaMayor("Parcial_1");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(10,txt_Nota.getText().trim());
+                    }
+                    else
+                    {
+                    System.out.println("Ya ingresado");
+                    }
+                    BusquedaMayor("Parcial_2");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(11,txt_Nuevo.getText().trim());
+                    }
+                    BusquedaMayor("Parcial_3");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(12,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_4");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(13,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_5");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(14,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Extraordinario");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(15,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Privado");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(16,txt_Nuevo.getText().trim());
+                    }
+                    BusquedaMayor("Zona");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(17,txt_Nuevo.getText().trim());
+                    }
+     
+                    pst.setString(18, txt_Nota.getText().trim());
+                    pst.executeUpdate();
+            
+                    System.out.println("Registrado");
+                    }
+                }
+
+                if(Item == "Semestre")
+                {
+                    pst.setString(9,Item);
+                    if(Item2 == "Parcial 2")
+                    {
+                    BusquedaMayor("Parcial_1");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(10,txt_Nuevo.getText().trim());
+                    }
+                    else
+                    {
+                    System.out.println("Ya ingresado");
+                    }
+                    BusquedaMayor("Parcial_2");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(11,txt_Nota.getText().trim());
+                    }
+                    BusquedaMayor("Parcial_3");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(12,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_4");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(13,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_5");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(14,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Extraordinario");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(15,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Privado");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(16,txt_Nuevo.getText().trim());
+                    }
+                    BusquedaMayor("Zona");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(17,txt_Nuevo.getText().trim());
+                    }
+     
+                    pst.setString(18, txt_Nota.getText().trim());
+                    pst.executeUpdate();
+            
+                    System.out.println("Registrado");
+                    }
+                }
+
+                if(Item == "Semestre")
+                {
+                    pst.setString(9,Item);
+                    if(Item2 == "Parcial 3")
+                    {
+                    BusquedaMayor("Parcial_1");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(10,txt_Nuevo.getText().trim());
+                    }
+                    else
+                    {
+                    System.out.println("Ya ingresado");
+                    }
+                    BusquedaMayor("Parcial_2");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(11,txt_Nuevo.getText().trim());
+                    }
+                    BusquedaMayor("Parcial_3");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(12,txt_Nota.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_4");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(13,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Parcial_5");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(14,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Extraordinario");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(15,txt_Nuevo.getText().trim());
+                    }
+                    
+                    BusquedaMayor("Privado");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(16,txt_Nuevo.getText().trim());
+                    }
+                    BusquedaMayor("Zona");
+                    txt_Nuevo.setText(Parcial_1);
+                    if(Parcial_Flotante >= 0)
+                    {
+                    pst.setString(17,txt_Nuevo.getText().trim());
+                    }
+     
+                    pst.setString(18, txt_Nota.getText().trim());
+                    pst.executeUpdate();
+            
+                    System.out.println("Registrado");
+                    }
+                }
+
+
+                }catch(Exception e)
+                {
+                System.out.println(e);
+                }*/
+            }     
+            else if(Encontrado == false)
+        {
+            Item = jComboBox_Parcial.getSelectedItem().toString();
+            Item2 = jComboBox_Parcial2.getSelectedItem().toString();
+            
+              
+            try
+            {
+
+                System.out.println(Item);
+                System.out.println(Item2);
+            
+            
+                if(Item == "Semestre" && Item2 == "Parcial 1")
+                {
+                   IngresarMA(Item,Item2,10);
+                           MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMA(Item,Item2,11);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Semestre" && Item2 == "Parcial 3")
+                {
+                   IngresarMA(Item,Item2,12);
+                           MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 1")
+                {
+                    IngresarMA(Item,Item2,13);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 2")
+                {
+                    IngresarMA(Item,Item2,14);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Trimestre" && Item2 == "Parcial 3")
+                {
+                    IngresarMA(Item,Item2,15);
+                            MostrarDB("asignacioncursosalumnos");
+                }  
+                else if(Item == "Bimestre" && Item2 == "Bimestre")
+                {
+                    IngresarMA(Item,Item2,16);
+                    MostrarDB("asignacioncursosalumnos");
+                }                     
+                else if(Item == "Unidad" && Item2 == "Unidad 1")
+                {
+                    IngresarMA(Item,Item2,17);
+                            MostrarDB("asignacioncursosalumnos");
+                }                
+                else if(Item == "Unidad" && Item2 == "Unidad 2")
+                {
+                    IngresarMA(Item,Item2,18);
+                            MostrarDB("asignacioncursosalumnos");
+                }
+                else if(Item == "Unidad" && Item2 == "Unidad 3")
+                {
+                    IngresarMA(Item,Item2,19);
+                    MostrarDB("asignacioncursosalumnos");
+                }                  
+                else if(Item == "Unidad" && Item2 == "Unidad 4")
+                {
+                    IngresarMA(Item,Item2,20);
+                            MostrarDB("asignacioncursosalumnos");
+                }     
+                else if(Item == "Extraordinario" && Item2 == "Extraordinario")
+                {                     
+                    IngresarMA(Item,Item2,21);
+                    MostrarDB("asignacioncursosalumnos");
+                }               
+                else if(Item == "Privado" && Item2 == "Privado")
+                {
+                    IngresarMA(Item,Item2,22);
+                            MostrarDB("asignacioncursosalumnos");
+                }  
+                else if(Item == "Zona" && Item2 == "Zona")
+                {
+                    IngresarMA(Item,Item2,23);
+                    MostrarDB("asignacioncursosalumnos");
+                }                    
+            }catch(Exception e)
+            {
+            System.out.println(e);
+            }  
+        }
+       /* try {
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, txt_id.getText().trim());
@@ -642,12 +1156,311 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGITRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
 
-        }
+        }*/
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    public void IngresarMA(String ItemMA,String Item2MA,int Lugar)
+    {
+         try
+            {
+                String cero = "0";
+                if(Item == ItemMA && Item2 == Item2MA)
+                {
+                    boolean prueba = true;
+                    System.out.println(prueba);
+                    if(prueba == true)
+                    {
+                        Connection cn4 = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+                        PreparedStatement pst4 = cn4.prepareStatement("insert into asignacioncursosalumnos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    
+                        pst4.setString(1, txt_Codigo.getText().trim());
+                        pst4.setString(2, lb1.getText().trim());
+                        pst4.setString(3, lb2.getText().trim());
+                        pst4.setString(4, lb3.getText().trim());
+                        pst4.setString(5, lb4.getText().trim());
+                        pst4.setString(6, lb5.getText().trim());
+                        pst4.setString(7, lb6.getText().trim());
+                        pst4.setString(8, lb7.getText().trim());
+                        pst4.setString(9,Item);
+                        for(int i = 10;i<=24;i++)
+                        {
+                            if(i == Lugar)
+                            {
+                                pst4.setString(i,txt_Nota.getText().trim());
+                             
+                            }
+                            else
+                            {
+                                pst4.setString(i,"0");
+                            }   
+
+                        }
+
+                        pst4.executeUpdate();
+                        txt_Codigo.setText("");
+
+                        System.out.println("Registrado");
+                    }
+                }
+            }catch(Exception e)
+            {
+            System.out.println(e);
+            }  
+    }
+    
+    public void IngresarMAC(String ItemMAC,String Item2MAC,int LugarC,String ParcialMAC,Float ParcialFloat)
+    {
+        try
+                {
+         
+                Item = jComboBox_Parcial.getSelectedItem().toString();
+                Item2 = jComboBox_Parcial2.getSelectedItem().toString();
+                //System.out.println(Item2);
+            
+                String ID = txt_Codigo.getText().trim();
+            
+                Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+                PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + ID);
+            
+                pst.setString(1, txt_Codigo.getText().trim());
+                pst.setString(2, lb1.getText().trim());
+                pst.setString(3, lb2.getText().trim());
+                pst.setString(4, lb3.getText().trim());
+                pst.setString(5, lb4.getText().trim());
+                pst.setString(6, lb5.getText().trim());
+                pst.setString(7, lb6.getText().trim());
+                pst.setString(8, lb7.getText().trim());
+                
+            
+                if(Item == ItemMAC)
+                {
+                     
+                    pst.setString(9,Item);
+                    System.out.println(Item);
+
+                    if(Item2 == Item2MAC)
+                    {
+                        System.out.println(Item2);
+                        BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                        for(int i = 10;i<=24;i++)
+                        {
+                            if(ParcialFloat == 0)
+                            {
+                                if(i == LugarC)
+                                {
+                                    System.out.println(i);
+                                    pst.setString(i,txt_Nota.getText().trim());
+                               
+                                }
+                                
+                                if(Item == ItemMAC && i == 21)
+                                {
+                                    if(Parcial_Flotante > 0  && Parcial2_Flotante >0 && Parcial3_Flotante>0)
+                                    {
+                                        jLabel_Extra.setVisible(true);
+                                        pst.setString(i,"0");
+                                        
+                                    }
+                                }
+                                
+                                if(Item == ItemMAC && i == 21)
+                                {
+                                    if(Parcial_FlotanteT > 0  && Parcial2_FlotanteT >0 && Parcial3_FlotanteT>0)
+                                    {
+                                        jLabel_Extra.setVisible(true);
+                                        pst.setString(i,"0");
+                                                                              
+                                        
+                                       // JOptionPane.showMessageDialog(null,"El Alumno No puede Tener Extraordinario, Asistio a todos sus cursos,Ingrese de Nuevo.");
+                            
+                                    }                                       
+                                }
+                                
+                                if(Item == ItemMAC && i == 21)
+                                {
+                                    if(Parcial_FlotanteB > 0)
+                                    {
+                                        jLabel_Extra.setVisible(true);
+                                        pst.setString(i,"0");
+                                                                            
+                                        
+                                       // JOptionPane.showMessageDialog(null,"El Alumno No puede Tener Extraordinario, Asistio a todos sus cursos,Ingrese de Nuevo.");
+                            
+                                    }                                       
+                                }                                   
+                                
+                                if(Item == ItemMAC && i == 21)
+                                {
+                                    if(Unidad1_Flotante > 0  && Unidad2_Flotante >0 && Unidad3_Flotante>0 && Unidad4_Flotante ==0)
+                                    {
+                                        jLabel_Extra.setVisible(true);
+                                        pst.setString(i,"0");
+                                                                                
+                                        
+                                       // JOptionPane.showMessageDialog(null,"El Alumno No puede Tener Extraordinario, Asistio a todos sus cursos,Ingrese de Nuevo.");
+                            
+                                    }                                       
+                                } 
+                                
+                                
+                                if(Item == ItemMAC && i == 21)
+                                {
+                                    if(Parcial_FlotanteB >0)
+                                    {
+                                        jLabel_Extra.setVisible(true);
+                                        pst.setString(i,"0");
+                                         
+                                    }                                      
+                                }           
+                            }
+                            
+                            if(ParcialFloat >=0)
+                            {
+                                System.out.println("Hola2");
+                                if(Parcial_FlotanteT == 0 && Parcial2_FlotanteT == 0 && Parcial3_FlotanteT ==0 && Parcial_FlotanteB==0 && Unidad1_Flotante ==0 && Unidad2_Flotante ==0 && Unidad3_Flotante ==0 && Unidad4_Flotante == 0 )
+                                {
+                               if(i == 10 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_1);
+                                    pst.setString(i,txt_Nuevo.getText().trim());
+                               }
+
+                               else if(i== 11 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_2);
+                                    pst.setString(i,txt_Nuevo.getText().trim());
+                               }
+                               else if( i == 12 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_3);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }                                    
+                                }
+                                else if(i==10 || i==11 || i==12)
+                                {
+                                    pst.setString(i,"0");  
+                                    jLabel_Tipo.setVisible(true);
+                                }
+
+                               if(Parcial_Flotante == 0 && Parcial2_Flotante == 0 && Parcial3_Flotante ==0 && Parcial_FlotanteB==0 && Unidad1_Flotante ==0 && Unidad2_Flotante ==0 && Unidad3_Flotante ==0 && Unidad4_Flotante == 0 )    
+                               {
+                               if( i == 13 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_1T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               } 
+                             
+                               else if( i == 14 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_2T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }        
+                               
+                               else if( i == 15 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Parcial_3T);
+                                    pst.setString(i,txt_Nuevo.getText().trim());     
+                               }    
+
+                               }
+                               else if(i==13 || i==14 || i==15)
+                               {
+                                    pst.setString(i,"0");  
+                                    jLabel_Tipo.setVisible(true);    
+                                    
+                               }     
+                                    
+                                if(Parcial_Flotante == 0 && Parcial2_Flotante == 0 && Parcial3_Flotante ==0 &&Parcial_FlotanteT == 0 && Parcial2_FlotanteT == 0 && Parcial3_FlotanteT ==0  && Unidad1_Flotante ==0 && Unidad2_Flotante ==0 && Unidad3_Flotante ==0 && Unidad4_Flotante == 0 )   
+                                {
+                                    if( i == 16 && i != LugarC)
+                                    {
+                                    txt_Nuevo.setText(Parcial_1B);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                                    }                                        
+                                }
+                                else if(i == 16)
+                                {
+                                    pst.setString(i,"0");  
+                                    jLabel_Tipo.setVisible(true);                                     
+                                }
+                                if(Parcial_Flotante == 0 && Parcial2_Flotante == 0 && Parcial3_Flotante ==0 && Parcial_FlotanteT == 0 && Parcial2_FlotanteT == 0 && Parcial3_FlotanteT ==0 && Parcial_FlotanteB==0)
+                                {
+                               if( i == 17 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_1);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }   
+                               else if( i == 18 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_2);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }          
+                               else if( i == 19 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(Unidad_3);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 20 && i != LugarC)
+                               {
+                                   System.out.println("Entre");
+                                    txt_Nuevo.setText(Unidad_4);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }                                      
+                                }
+                                else if(i==17 || i==18 || i==19 || i == 20)
+                                {
+                                    pst.setString(i,"0");  
+                                    jLabel_Tipo.setVisible(true); 
+                                }
+
+    
+                               if( i == 21 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(ExtraordinarioS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 22 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(PrivadoS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }          
+                               else if( i == 23 && i != LugarC)
+                               {
+                                    txt_Nuevo.setText(ZonaS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());                                   
+                               }    
+                               else if( i == 24 && i != LugarC)
+                               {
+                                   
+                                    txt_Nuevo.setText(SumaS);
+                                    pst.setString(i,txt_Nuevo.getText().trim());  
+                                    
+                               }                                
+
+                               
+                            }
+                        }
+           
+                    
+                    pst.executeUpdate();
+                    txt_Codigo.setText("");
+                    System.out.println("Registrado");
+                    }
+                }
+                }catch(Exception e)
+                {
+                System.out.println(e);
+                
+                }
+        
+        
+    }
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        jLabel_Extra.setVisible(false);
+        jLabel_Tipo.setVisible(false);
         String buscar = txtbuscado.getText().trim();
         if (buscar.isEmpty()) {
             JOptionPane.showMessageDialog(this, "¡No se ingreso el campo de busqueda!", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -661,7 +1474,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                txt_id.setText(rs.getString("id_Alumno"));
+                txt_Codigo.setText(rs.getString("id_Alumno"));
                 lb1.setText(rs.getString("codigo_carrera"));
                 lb2.setText(rs.getString("codigo_sede"));
                 lb3.setText(rs.getString("codigo_jornada"));
@@ -669,7 +1482,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 lb5.setText(rs.getString("codigo_aula"));
                 lb6.setText(rs.getString("codigo_curso"));
                 lb7.setText(rs.getString("carnet_alumno"));
-                txt_n.setText(rs.getString("nota_asignacioncursoalumnos"));
+                txt_Nota.setText(rs.getString("nota_asignacioncursoalumnos"));
 
                 btnEliminar.setEnabled(true);
                 btnModificar.setEnabled(true);
@@ -699,8 +1512,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             btnEliminar.setEnabled(false);
             btnModificar.setEnabled(false);
 
-            txt_id.setText("");
-            txt_n.setText("");
+            txt_Codigo.setText("");
+            txt_Nota.setText("");
             lb1.setText("");
             lb2.setText("");
             lb3.setText("");
@@ -725,13 +1538,73 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try {
+        
+        Item = jComboBox_Parcial.getSelectedItem().toString();
+        Item2 = jComboBox_Parcial2.getSelectedItem().toString();  
+        if(Item == "Semestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,10);
+        }
+        else if(Item == "Semestre" && Item2== "Parcial 2")
+        {
+            ModificarT(Item,Item2,11);
+        }
+        else if(Item == "Semestre" && Item2== "Parcial 3")
+        {
+            ModificarT(Item,Item2,12);
+        }    
+        else if(Item == "Trimestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,13);
+        }           
+        else if(Item == "Trimestre" && Item2== "Parcial 2")
+        {
+            ModificarT(Item,Item2,14);
+        }     
+        else if(Item == "Trimestre" && Item2== "Parcial 3")
+        {
+            ModificarT(Item,Item2,15);
+        }       
+        else if(Item == "Bimestre" && Item2== "Parcial 1")
+        {
+            ModificarT(Item,Item2,16);
+        }     
+        else if(Item == "Unidad" && Item2== "Unidad 1")
+        {
+            ModificarT(Item,Item2,17);
+        }  
+        else if(Item == "Unidad" && Item2== "Unidad 2")
+        {
+            ModificarT(Item,Item2,18);
+        }          
+        else if(Item == "Unidad" && Item2== "Unidad 3")
+        {
+            ModificarT(Item,Item2,19);
+        }     
+        else if(Item == "Unidad" && Item2== "Unidad 4")
+        {
+            ModificarT(Item,Item2,20);
+        }     
+        else if(Item == "Extraordinario" && Item2== "Extraordinario")
+        {
+            ModificarT(Item,Item2,21);
+        }   
+        else if(Item == "Privado" && Item2== "Privado")
+        {
+            ModificarT(Item,Item2,22);
+        }             
+        else if(Item == "Zona" && Item2== "Zona")
+        {
+            ModificarT(Item,Item2,23);
+        }             
+
+        /*try {
             String codigo = txtbuscado.getText().trim();
 
             Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set id_Alumno =?,codigo_carrera = ? , codigo_sede= ? , codigo_jornada=? , codigo_seccion= ?, codigo_aula= ?,codigo_curso= ?,carnet_alumno= ?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
 
-            pst.setString(1, txt_id.getText().trim());
+            pst.setString(1, txt_Codigo.getText().trim());
             pst.setString(2, lb1.getText().trim());
             pst.setString(3, lb2.getText().trim());
             pst.setString(4, lb3.getText().trim());
@@ -739,15 +1612,176 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             pst.setString(6, lb5.getText().trim());
             pst.setString(7, lb6.getText().trim());
             pst.setString(8, lb7.getText().trim());
-            pst.setString(9, txt_n.getText().trim());
+            pst.setString(9, txt_Nota.getText().trim());
             pst.executeUpdate();
             MostrarDB("asignacioncursosalumnos");
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
             btnEliminar.setEnabled(false);
             btnModificar.setEnabled(false);
-            txt_id.setText("");
-            txt_n.setText("");
+            txt_Codigo.setText("");
+            txt_Nota.setText("");
+            lb1.setText("");
+            lb2.setText("");
+            lb3.setText("");
+            lb4.setText("");
+            lb5.setText("");
+            lb6.setText("");
+            lb7.setText("");
+            cbox_carrera.setSelectedIndex(0);
+            cbox_j.setSelectedIndex(0);
+            cbox_aula.setSelectedIndex(0);
+            cbox_alum.setSelectedIndex(0);
+            cbox_sec.setSelectedIndex(0);
+            cbox_sede.setSelectedIndex(0);
+            cbox_curso.setSelectedIndex(0);
+            txtbuscado.setText("");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }*/
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    public void ModificarT(String ItemT,String Item2T,int Lugar)
+    {
+        Item = jComboBox_Parcial.getSelectedItem().toString();
+        Item2 = jComboBox_Parcial2.getSelectedItem().toString();        
+        
+            try {
+            String codigo = txtbuscado.getText().trim();
+
+            Connection cn = DriverManager.getConnection(Principal.BD, Principal.Usuario, Principal.Contraseña);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosalumnos set  id_Alumno = ?, codigo_carrera = ?,codigo_sede = ?,codigo_jornada = ?, codigo_seccion = ?,codigo_aula=?,codigo_curso=?,carnet_alumno=?,Tipo_Nota=?,Parcial_1=?,Parcial_2=?,Parcial_3=?,Parcial_1T=?,Parcial_2T=?,Parcial_3T=?,Parcial_1B=?,Unidad_1=?,Unidad_2=?,Unidad_3=?,Unidad_4=?,Extraordinario=?,Privado=?,Zona=?,nota_asignacioncursoalumnos=? where id_Alumno = " + codigo);
+
+            pst.setString(1, txt_Codigo.getText().trim());
+            pst.setString(2, lb1.getText().trim());
+            pst.setString(3, lb2.getText().trim());
+            pst.setString(4, lb3.getText().trim());
+            pst.setString(5, lb4.getText().trim());
+            pst.setString(6, lb5.getText().trim());
+            pst.setString(7, lb6.getText().trim());
+            pst.setString(8, lb7.getText().trim());
+
+            
+            if(Item == ItemT)
+            {
+                pst.setString(9,ItemT);
+                
+                if(Item2 == Item2T)
+                {
+                    BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                    for(int i = 10;i<=24;i++)
+                    {
+                        if(i == Lugar)
+                        {
+                            pst.setString(i, txt_Nota.getText().trim());
+                        }
+                        else if(i ==10 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }
+                        else if(i ==11 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_2);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }              
+                        else if(i ==12 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_3);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }
+                        else if(i ==13 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }    
+                        else if(i ==14 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_2T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==15 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_3T);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==16 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Parcial_1B);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }          
+                        else if(i ==17 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_1);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }          
+                        else if(i ==18 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_2);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }   
+                        else if(i ==19 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_3);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }  
+                        else if(i ==20 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(Unidad_4);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }       
+                        else if(i ==21 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(ExtraordinarioS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }         
+                        else if(i ==22 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(PrivadoS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }             
+                        else if(i ==23 && i != Lugar)
+                        {
+                           // BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(ZonaS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }           
+                        else if(i ==24 && i != Lugar)
+                        {
+                            BusquedaMayor("Parcial_1","Parcial_2","Parcial_3","Parcial_1T","Parcial_2T","Parcial_3T","Parcial_1B","Unidad_1","Unidad_2","Unidad_3","Unidad_4","Extraordinario","Privado","Zona","nota_asignacioncursoalumnos");
+                            txt_Nuevo.setText(SumaS);
+                            pst.setString(i,txt_Nuevo.getText().trim());
+                        }                        
+
+                    }
+                }
+            }
+            
+            
+            pst.executeUpdate();
+            MostrarDB("asignacioncursosalumnos");
+            JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+            btnEliminar.setEnabled(false);
+            btnModificar.setEnabled(false);
+            txt_Codigo.setText("");
+            txt_Nota.setText("");
             lb1.setText("");
             lb2.setText("");
             lb3.setText("");
@@ -767,17 +1801,142 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+        public boolean Busqueda()
+    {
+        try
+        {
+            Connection cnB = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pstB = cnB.prepareStatement("select * from asignacioncursosalumnos where id_Alumno = ?");
+            
+            pstB.setString(1,txt_Codigo.getText().trim());
+            ResultSet rsB = pstB.executeQuery();
+           
+            
+            if(rsB.next())
+            {
+                Encontrado = true;
+                
+            }
+            else
+            {
+                Encontrado = false;
+               
+            }
+            
+            
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+        return Encontrado;
+    }
+        
+        
+    public void BusquedaMayor(String Parcial,String Parcial2,String Parcial3,String Parcial_T, String Parcial2_T,String Parcial3_T,String Parcial_B,String Unidad1,String Unidad2,String Unidad3,String Unidad4,String Extraordinario,String Privado,String Zona,String Nota)
+    {
+        try
+        {
+            Connection cnB = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
+            PreparedStatement pstB = cnB.prepareStatement("select * from asignacioncursosalumnos where id_Alumno = ?");
+            
+            pstB.setString(1,txt_Codigo.getText().trim());
+            ResultSet rsB = pstB.executeQuery();
+           
+            
+            if(rsB.next())
+            {
+                Parcial_1 = rsB.getString(Parcial);
+                Parcial_Flotante = Float.parseFloat(Parcial_1);
+                
+                Parcial_2 = rsB.getString(Parcial2);
+                Parcial2_Flotante = Float.parseFloat(Parcial_2);
+                
+                Parcial_3 = rsB.getString(Parcial3);
+                Parcial3_Flotante = Float.parseFloat(Parcial_3);
+                
+                Parcial_1T = rsB.getString(Parcial_T);
+                Parcial_FlotanteT = Float.parseFloat(Parcial_1T);        
+                
+                Parcial_2T = rsB.getString(Parcial2_T);
+                Parcial2_FlotanteT = Float.parseFloat(Parcial_2T);
+                
+                Parcial_3T = rsB.getString(Parcial3_T);
+                Parcial3_FlotanteT = Float.parseFloat(Parcial_3T);       
+                
+                Parcial_1B = rsB.getString(Parcial_B);
+                Parcial_FlotanteB = Float.parseFloat(Parcial_1B);                   
+                
+                Unidad_1 = rsB.getString(Unidad1);
+                Unidad1_Flotante = Float.parseFloat(Unidad_1);               
+                
+                Unidad_2 = rsB.getString(Unidad2);
+                Unidad2_Flotante = Float.parseFloat(Unidad_2);
+                
+                Unidad_3 = rsB.getString(Unidad3);
+                Unidad3_Flotante = Float.parseFloat(Unidad_3);
 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarActionPerformed
+                Unidad_4 = rsB.getString(Unidad4);
+                Unidad4_Flotante = Float.parseFloat(Unidad_4);                
+                
+                ExtraordinarioS = rsB.getString(Extraordinario);
+                Extraordinario_Flotante = Float.parseFloat(ExtraordinarioS);        
+                
+                PrivadoS = rsB.getString(Privado);
+                Privado_Flotante = Float.parseFloat(PrivadoS);
+                
+                ZonaS = rsB.getString(Zona);
+                Zona_Flotante = Float.parseFloat(ZonaS);
 
-    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_idActionPerformed
+                NotaS = rsB.getString(Nota);
+                Nota_Flotante = Float.parseFloat(NotaS);        
+                
+                Suma =  Parcial_Flotante + Parcial2_Flotante + Parcial3_Flotante +Parcial_FlotanteT + Parcial2_FlotanteT+Parcial3_FlotanteT
+                +Parcial_FlotanteB+Unidad1_Flotante+Unidad2_Flotante+Unidad3_Flotante+Unidad4_Flotante+Extraordinario_Flotante+Privado_Flotante
+                +Zona_Flotante;     
+                
+       
+                SumaS = Float.toString(Suma);
+                
+                if(Parcial_Flotante > 0  && Parcial_Flotante !=0)
+                {
+                    EncontradoMayorCero = true;
+                    System.out.println("Este "+ Parcial_1T);
+                  // Lugar(cnB,pstB,rsB,Parcial,Lugar);
+                }
+                else
+                {
+                EncontradoMayorCero = false;
+                System.out.println(EncontradoMayorCero);
+                }
+                
+            }
 
-    private void txt_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nActionPerformed
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+        
+    private void txt_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nActionPerformed
+    }//GEN-LAST:event_txt_CodigoActionPerformed
+
+    private void txt_NotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NotaActionPerformed
+
+    private void jComboBox_ParcialItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_ParcialItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            if(this.jComboBox_Parcial.getSelectedIndex() >0)
+            {
+                this.jComboBox_Parcial2.setModel(new DefaultComboBoxModel(this.datos(this.jComboBox_Parcial.getSelectedItem().toString())));
+            }
+        }
+    }//GEN-LAST:event_jComboBox_ParcialItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -792,6 +1951,9 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbox_j;
     private javax.swing.JComboBox<String> cbox_sec;
     private javax.swing.JComboBox<String> cbox_sede;
+    private javax.swing.JComboBox<String> jComboBox_Parcial;
+    private javax.swing.JComboBox<String> jComboBox_Parcial2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
@@ -801,6 +1963,8 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_Extra;
+    private javax.swing.JLabel jLabel_Tipo;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -812,8 +1976,9 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb6;
     private javax.swing.JLabel lb7;
     private javax.swing.JTable tblAsignacionA;
-    private javax.swing.JTextField txt_id;
-    private javax.swing.JTextField txt_n;
+    private javax.swing.JTextField txt_Codigo;
+    private javax.swing.JTextField txt_Nota;
+    private javax.swing.JTextField txt_Nuevo;
     private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }
