@@ -33,7 +33,7 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
      */
     public Ingreso_Notas() {
         initComponents();
-        
+      
     }
     
 
@@ -54,16 +54,16 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cbx_sede = new javax.swing.JComboBox<>();
-        cbx_carrera = new javax.swing.JComboBox<>();
+        cbx_sede = new javax.swing.JComboBox<String>();
+        cbx_carrera = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
-        cbx_jornada = new javax.swing.JComboBox<>();
+        cbx_jornada = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
-        cbx_seccion = new javax.swing.JComboBox<>();
+        cbx_seccion = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
-        cbx_aula = new javax.swing.JComboBox<>();
+        cbx_aula = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        cbx_curso = new javax.swing.JComboBox<>();
+        cbx_curso = new javax.swing.JComboBox<String>();
         lblCarrera = new javax.swing.JLabel();
         lblSede = new javax.swing.JLabel();
         lbl_jornada = new javax.swing.JLabel();
@@ -74,9 +74,9 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         panel_nota = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        cbx_alumno = new javax.swing.JComboBox<>();
+        cbx_alumno = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
-        cbx_nota = new javax.swing.JComboBox<>();
+        cbx_nota = new javax.swing.JComboBox<String>();
         jLabel12 = new javax.swing.JLabel();
         txtNota = new javax.swing.JTextField();
         lblTipo = new javax.swing.JLabel();
@@ -219,7 +219,7 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         jLabel11.setText("Tipo Nota:");
         panel_nota.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
-        cbx_nota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primer Parcial", "Segundo Parcial", "Tercer Parcial", "Actividades", "Extraordinario1", "Extraordinario2", "Recuperacion" }));
+        cbx_nota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primer Parcial", "Segundo Parcial", "Tercer Parcial", "Actividades", "Extraordinario1", "Extraordinario2", "Recuperacion" }));
         cbx_nota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbx_notaActionPerformed(evt);
@@ -242,12 +242,13 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
         });
         panel_nota.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Si el alumno no se\npresento o no se \nrealizo el examen\ncoloque 0 pts en la \nnota para poder \nrealizarle un Examen \nExtraordinario ");
         jScrollPane1.setViewportView(jTextArea1);
 
-        panel_nota.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 220, 150));
+        panel_nota.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 210, 150));
 
         Panel.addTab("Ingreso Nota", panel_nota);
 
@@ -352,6 +353,11 @@ public class Ingreso_Notas extends javax.swing.JInternalFrame {
                     }
                 }
             }
+            cbx_nota.setSelectedIndex(0);
+            cbx_alumno.setSelectedIndex(0);
+            lblTipo.setText("");
+            txtNota.setText("");
+
         } catch (Exception e) {
             System.out.println(e);
         }

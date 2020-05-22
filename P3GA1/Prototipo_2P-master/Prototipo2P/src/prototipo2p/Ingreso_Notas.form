@@ -475,7 +475,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="380" y="100" width="220" height="150"/>
+                  <AbsoluteConstraints x="370" y="100" width="210" height="150"/>
                 </Constraint>
               </Constraints>
 
@@ -483,6 +483,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="jTextArea1">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="text" type="java.lang.String" value="Si el alumno no se&#xa;presento o no se &#xa;realizo el examen&#xa;coloque 0 pts en la &#xa;nota para poder &#xa;realizarle un Examen &#xa;Extraordinario "/>

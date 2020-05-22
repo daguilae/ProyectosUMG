@@ -108,35 +108,28 @@ public class Login extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Cagada1234");
-            PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = ?");
+            String usuario = txtUsuario.getText();
+            String contrasenia=txtContraseña.getText();
             
-            pst.setString(1, txtUsuario.getText().trim());
-            //pst.setString(2,txtContraseña.getText().trim());
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "Cagada1234");
+           
+            PreparedStatement pst = cn.prepareStatement("select * from usuarios where Usuario = '" + usuario + "' and contraseña ='" + contrasenia + "'");
+           
             
             ResultSet rs = pst.executeQuery();
             
-            if(rs.next()){
-                pass.setText(rs.getString("Contraseña"));
-                
-            } else {
-                
-            }
-            
-            String password=pass.getText().trim();
-            String contrasenia=txtContraseña.getText().trim();
-                    
-            int c1=Integer.valueOf(password);
-            int c2=Integer.valueOf(contrasenia);
-                    
-            if(c1==c2){
-                    new Inicio().setVisible(true);
+        
+            rs.last();
+            int encontrado = rs.getRow();
+
+            if (encontrado == 1) {
+                new Inicio().setVisible(true);
                     this.dispose();
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
-                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
             
+            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(this, "Usuario no registrado", "Warning", JOptionPane.WARNING_MESSAGE);
         }
