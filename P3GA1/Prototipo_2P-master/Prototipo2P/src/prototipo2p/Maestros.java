@@ -103,7 +103,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -115,7 +114,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel2.setText("Codigo Maestro:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 155, -1, -1));
 
-        txt_nombre.setBackground(new java.awt.Color(204, 255, 255));
         txt_nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +126,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre Maestro:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
-        txt_codigo.setBackground(new java.awt.Color(204, 255, 255));
         txt_codigo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +138,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel4.setText("Direccion Maestro:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 218, -1, -1));
 
-        txt_direccion.setBackground(new java.awt.Color(204, 255, 255));
         txt_direccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +150,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel5.setText("Ingresa el código de Maestro: ");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
-        txt_buscar.setBackground(new java.awt.Color(204, 255, 255));
         txt_buscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 40, 490, 30));
 
@@ -206,7 +201,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel6.setText("Telefono Maestro: ");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 248, -1, -1));
 
-        txt_telefono.setBackground(new java.awt.Color(204, 255, 255));
         txt_telefono.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +213,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel7.setText("Email Maestro:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 285, -1, -1));
 
-        txt_email.setBackground(new java.awt.Color(204, 255, 255));
         txt_email.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +225,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jLabel8.setText("Estatus Maestro:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 315, -1, -1));
 
-        txt_estatusmaes.setBackground(new java.awt.Color(204, 255, 255));
         txt_estatusmaes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txt_estatusmaes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,10 +269,6 @@ public class Maestros extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 350, 130));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -473,7 +461,6 @@ public class Maestros extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

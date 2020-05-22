@@ -51,7 +51,7 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon= new ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpg"));
+        ImageIcon icon= new ImageIcon(getClass().getResource("/Imagenes/fondoMDI.jpeg"));
         Image image= icon.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -74,7 +74,6 @@ public class Inicio extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -207,9 +206,6 @@ public class Inicio extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem16);
 
-        jMenuItem17.setText("Recepcion Actas de Registro");
-        jMenu3.add(jMenuItem17);
-
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Informes");
@@ -291,18 +287,6 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
        dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        venta_as2= new Asignacion_cursos_alumno();
-        jDesktopPane1.add(venta_as2);
-        
-        //centrar intenal
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = venta_as2.getSize();
-        venta_as2.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        venta_as2.show();
-        
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
@@ -425,10 +409,40 @@ public class Inicio extends javax.swing.JFrame {
         ventana_ma.show();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        
+        ventana_tn= new M_TipoNota();
+       jDesktopPane1.add(ventana_tn);
+       
+       Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_tn.getSize();
+        ventana_tn.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        
+        /*Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_tn.getSize();
+        ventana_tn.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_tn.show();*/
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+
+        ventana_ingreso= new Ingreso_Notas();
+        jDesktopPane1.add(ventana_ingreso);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_ingreso.getSize();
+        ventana_ingreso.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        //centrar intenal
+        /*Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana_ingreso.getSize();
+        ventana_ingreso.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ventana_ingreso.show(); */
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         ventana_as1= new Asignacion_cursos_maestros();
         jDesktopPane1.add(ventana_as1);
-        
+
         //centrar intenal
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana_as1.getSize();
@@ -436,28 +450,17 @@ public class Inicio extends javax.swing.JFrame {
         ventana_as1.show();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-       
-       ventana_ingreso= new Ingreso_Notas();
-       jDesktopPane1.add(ventana_ingreso);
-       //centrar intenal
-        /*Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana_ingreso.getSize();
-        ventana_ingreso.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        ventana_ingreso.show(); */
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        venta_as2= new Asignacion_cursos_alumno();
+        jDesktopPane1.add(venta_as2);
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
-        
-        ventana_tn= new M_TipoNota();
-       jDesktopPane1.add(ventana_tn);
-        
-        /*Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana_tn.getSize();
-        ventana_tn.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        ventana_tn.show();*/
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+        //centrar intenal
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = venta_as2.getSize();
+        venta_as2.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        venta_as2.show();
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,7 +517,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
