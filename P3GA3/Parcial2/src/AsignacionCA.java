@@ -418,20 +418,20 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 cbox_carreraActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 36, 219, -1));
+        getContentPane().add(cbox_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 36, 150, -1));
 
         cbox_sede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_sedeActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 68, 219, -1));
+        getContentPane().add(cbox_sede, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 68, 150, -1));
 
         lb1.setText("...");
-        getContentPane().add(lb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 41, -1, -1));
+        getContentPane().add(lb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         lb2.setText("...");
-        getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 73, -1, -1));
+        getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
         jLabel5.setText("Carrera");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 41, -1, -1));
@@ -447,20 +447,20 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 cbox_jActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_j, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 100, 219, -1));
+        getContentPane().add(cbox_j, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 100, 150, -1));
 
         cbox_sec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_secActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 132, 219, -1));
+        getContentPane().add(cbox_sec, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 132, 150, -1));
 
         lb3.setText("...");
-        getContentPane().add(lb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 105, -1, -1));
+        getContentPane().add(lb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         lb4.setText("...");
-        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 137, -1, -1));
+        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
 
         jLabel8.setText("Jornada");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 105, -1, -1));
@@ -473,20 +473,20 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 cbox_aulaActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 170, 219, -1));
+        getContentPane().add(cbox_aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 170, 150, -1));
 
         cbox_curso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbox_cursoActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 202, 219, -1));
+        getContentPane().add(cbox_curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 202, 150, -1));
 
         lb5.setText("...");
-        getContentPane().add(lb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 175, -1, -1));
+        getContentPane().add(lb5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
         lb6.setText("...");
-        getContentPane().add(lb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 207, -1, -1));
+        getContentPane().add(lb6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
         jLabel10.setText("Aula");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 175, -1, -1));
@@ -496,10 +496,10 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 cbox_alumActionPerformed(evt);
             }
         });
-        getContentPane().add(cbox_alum, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 240, 220, -1));
+        getContentPane().add(cbox_alum, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 240, 150, -1));
 
         lb7.setText("...");
-        getContentPane().add(lb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 245, -1, -1));
+        getContentPane().add(lb7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
 
         jLabel11.setText("Alumno");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 245, -1, -1));
@@ -512,7 +512,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 txt_NotaActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 220, -1));
+        getContentPane().add(txt_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 150, -1));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -557,7 +557,7 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 txt_CodigoActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 6, 219, -1));
+        getContentPane().add(txt_Codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 6, 150, -1));
 
         jTabbedPane3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -578,11 +578,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         tblAsignacionA.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane3.setViewportView(tblAsignacionA);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 310));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 310));
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
-        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 930, 360));
+        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 1000, 360));
 
         jLabel1.setText("Tipo de Nota");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 283, -1, -1));
@@ -592,16 +592,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
                 jComboBox_ParcialItemStateChanged(evt);
             }
         });
-        jComboBox_Parcial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_ParcialActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBox_Parcial, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 278, 221, -1));
+        getContentPane().add(jComboBox_Parcial, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 278, 150, -1));
         getContentPane().add(txt_Nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 88, -1));
 
         jComboBox_Parcial2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        getContentPane().add(jComboBox_Parcial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 220, -1));
+        getContentPane().add(jComboBox_Parcial2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 150, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1767,11 +1762,6 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jComboBox_ParcialItemStateChanged
-
-    private void jComboBox_ParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_ParcialActionPerformed
-        jComboBox_Parcial2.setEnabled(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_ParcialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
