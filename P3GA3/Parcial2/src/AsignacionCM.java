@@ -649,6 +649,7 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
                 lb5.setText(rs.getString("codigo_aula"));
                 lb6.setText(rs.getString("codigo_curso"));
                 lb7.setText(rs.getString("codigo_maestro"));
+                
 
                 btnEliminar.setEnabled(true);
                 btnModificar.setEnabled(true);
@@ -656,6 +657,60 @@ public class AsignacionCM extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, " no registrado.");
             }
+            
+            PreparedStatement pst1 = cn.prepareStatement("select nombre_carrera from carreras where codigo_carrera=?");
+            pst1.setString(1, lb1.getText().trim());
+            ResultSet rs1 = pst1.executeQuery();
+
+            PreparedStatement pst2 = cn.prepareStatement("select nombre_sede from sedes where codigo_sede=?");
+            pst2.setString(1, lb2.getText().trim());
+            ResultSet rs2 = pst2.executeQuery();
+
+            PreparedStatement pst3 = cn.prepareStatement("select nombre_jornada from jornadas where codigo_jornada=?");
+             pst3.setString(1, lb3.getText().trim());
+            ResultSet rs3 = pst3.executeQuery();
+
+            PreparedStatement pst4 = cn.prepareStatement("select nombre_seccion from secciones where codigo_seccion=?");
+             pst4.setString(1, lb4.getText().trim());
+            ResultSet rs4 = pst4.executeQuery();
+
+            PreparedStatement pst5 = cn.prepareStatement("select nombre_aula from aulas where codigo_aula=?");
+             pst5.setString(1, lb5.getText().trim());
+            ResultSet rs5 = pst5.executeQuery();
+
+            PreparedStatement pst6 = cn.prepareStatement("select nombre_curso from cursos where codigo_curso=?");
+            pst6.setString(1, lb2.getText().trim());
+            ResultSet rs6 = pst6.executeQuery();
+            
+            PreparedStatement pst7 = cn.prepareStatement("select nombre_maestro from maestros where codigo_maestro=?");
+            pst7.setString(1, lb2.getText().trim());
+            ResultSet rs7 = pst7.executeQuery();
+            
+            
+            while (rs1.next()) {
+                 cbox_carrera.setSelectedItem(rs1.getString("nombre_carrera"));
+            }
+            while (rs2.next()) {
+                 cbox_sede.setSelectedItem(rs2.getString("nombre_sede"));
+            }
+            while (rs3.next()) {
+                 cbox_j.setSelectedItem(rs3.getString("nombre_jornada"));
+            }
+            while (rs4.next()) {
+                 cbox_sec.setSelectedItem(rs4.getString("nombre_seccion"));
+            }
+             while (rs5.next()) {
+                 cbox_aula.setSelectedItem(rs5.getString("nombre_aula"));
+            }
+              while (rs6.next()) {
+                 cbox_curso.setSelectedItem(rs6.getString("nombre_curso"));
+            }
+             while (rs7.next()) {
+                 cbox_alum.setSelectedItem(rs7.getString("nombre_maestro"));
+            }
+           
+            
+            
             
             cbox_j.setEnabled(true);
             cbox_curso.setEnabled(true);

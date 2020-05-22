@@ -70,25 +70,96 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
     public void MostrarDB(String Tabla) {
         String[] columnas = new String[24];
         String query;
+        String query2, query3, query4, query5, query6, query7, query8;
         try {
 
             Connection c = DriverManager.getConnection(Principal.BD,Principal.Usuario,Principal.Contraseña);
 
             query = "SELECT * FROM " + Tabla;
+            query2 = "SELECT nombre_carrera FROM carreras where codigo_carrera = ?";
+            query3 = "SELECT nombre_sede FROM sedes where codigo_sede = ?";
+            query4 = "SELECT nombre_jornada FROM jornadas where codigo_jornada = ?";
+            query5 = "SELECT nombre_seccion FROM secciones where codigo_seccion = ?";
+            query6 = "SELECT nombre_aula FROM aulas where codigo_aula = ?";
+            query7 = "SELECT nombre_curso FROM cursos where codigo_curso = ?";
+            query8 = "SELECT nombre_maestro FROM maestros where codigo_maestro = ?";
 
 
             PreparedStatement consulta = c.prepareStatement(query);
             ResultSet resultado = consulta.executeQuery();
             DefaultTableModel md = new DefaultTableModel(null, NombresColumnasAsignacionA);
+            tblAsignacionA.setModel(md);
+            PreparedStatement cCarrera = c.prepareStatement(query2);
+            PreparedStatement cSede = c.prepareStatement(query3);
+            PreparedStatement cJornada = c.prepareStatement(query4);
+            PreparedStatement cSeccion = c.prepareStatement(query5);
+            PreparedStatement cAula = c.prepareStatement(query6);
+            PreparedStatement cCurso = c.prepareStatement(query7);
+            PreparedStatement cMaestro = c.prepareStatement(query8);
+            
+            String[] info = new String[7];
 
             while (resultado.next()) {
-                for (int i = 0; i < 23; i++) {
-                    columnas[i] = resultado.getString(NombresColumnasAsignacionA[i]);
+                for (int i = 0; i < 7; i++) {
+                    info[i] = resultado.getString(i + 1);
+                  
                 }
+                  for (int i = 7; i < 23; i++) {
+                   
+                    columnas[i] = resultado.getString(NombresColumnasAsignacionA[i]);
+                   
+                }
+                
+                cCarrera.setString(1, info[0]);
+                cSede.setString(1, info[1]);
+                cJornada.setString(1, info[2]);
+                cSeccion.setString(1, info[3]);
+                cAula.setString(1, info[4]);
+                cCurso.setString(1, info[5]);
+                cMaestro.setString(1, info[6]);
+                ResultSet rCarrera = cCarrera.executeQuery();
+                ResultSet rSede = cSede.executeQuery();
+                ResultSet rJornada = cJornada.executeQuery();
+                ResultSet rSeccion = cSeccion.executeQuery();
+                ResultSet rAula = cAula.executeQuery();
+                ResultSet rCurso = cCurso.executeQuery();
+                ResultSet rMaestro = cMaestro.executeQuery();
+                
+                while (rCarrera.next()) {
+                    columnas[0] = rCarrera.getString("nombre_carrera");
+
+                }
+                while (rSede.next()) {
+                    columnas[1] = rSede.getString("nombre_sede");
+
+                }
+                while (rJornada.next()) {
+                    columnas[2] = rJornada.getString("nombre_jornada");
+
+                }
+                while (rSeccion.next()) {
+                    columnas[3] = rSeccion.getString("nombre_seccion");
+
+                }
+
+                while (rAula.next()) {
+                    columnas[4] = rAula.getString("nombre_aula");
+
+                }
+                while (rCurso.next()) {
+                    columnas[5] = rCurso.getString("nombre_curso");
+
+                }
+                while (rMaestro.next()) {
+                    columnas[6] = rMaestro.getString("nombre_maestro");
+
+                }
+                
+                
                 md.addRow(columnas);
 
             }
-            tblAsignacionA.setModel(md);
+            
 
         } catch (Exception err) {
             err.printStackTrace();
@@ -530,11 +601,11 @@ public class AsignacionCA extends javax.swing.JInternalFrame {
         tblAsignacionA.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jScrollPane3.setViewportView(tblAsignacionA);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 310));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 310));
 
         jTabbedPane3.addTab("Datos", jPanel3);
 
-        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 540, 360));
+        getContentPane().add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 930, 360));
 
         jLabel1.setText("Tipo de Nota");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 283, -1, -1));
