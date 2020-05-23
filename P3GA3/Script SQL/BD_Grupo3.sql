@@ -32,6 +32,7 @@ CorreoUsuario varchar (40) not null
 
 -- Table `educativo`.`Maestros`
 -- -----------------------------------------------------
+select * from  maestros;
 CREATE TABLE maestros
 (
   codigo_maestro VARCHAR(5),
@@ -42,6 +43,7 @@ CREATE TABLE maestros
   estatus_maestro VARCHAR(1),
   PRIMARY KEY (codigo_maestro)
  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+  
 -- -----------------------------------------------------
 -- Table `educativo`.`Facultades`
 -- -----------------------------------------------------
@@ -52,6 +54,9 @@ CREATE TABLE facultades
   estatus_facultad VARCHAR(1),
   PRIMARY KEY (codigo_facultad)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+
+
 -- -----------------------------------------------------
 -- Table `educativo`.`Carreras`
 -- -----------------------------------------------------
@@ -64,6 +69,7 @@ CREATE TABLE carreras
   PRIMARY KEY (codigo_carrera),
   FOREIGN KEY (codigo_facultad) REFERENCES facultades(codigo_facultad)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
 -- -----------------------------------------------------
 -- Table `educativo`.`Cursos`
 -- -----------------------------------------------------
@@ -76,6 +82,8 @@ CREATE TABLE cursos
   PRIMARY KEY (codigo_curso),
    FOREIGN KEY (codigo_carrera) REFERENCES carreras(codigo_carrera)
  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+ 
+
 -- -----------------------------------------------------
 -- Table `educativo`.`Secciones`
 -- -----------------------------------------------------
@@ -86,6 +94,8 @@ CREATE TABLE secciones
   estatus_seccion VARCHAR(1),
   PRIMARY KEY (codigo_seccion)
  ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
+
 -- -----------------------------------------------------
 -- Table `educativo`.`Sedes`
 -- -----------------------------------------------------
@@ -96,6 +106,7 @@ CREATE TABLE sedes
   estatus_sede VARCHAR(1),
   PRIMARY KEY (codigo_sede)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
 -- -----------------------------------------------------
 -- Table `educativo`.`Aulas`
 -- -----------------------------------------------------
@@ -106,6 +117,7 @@ CREATE TABLE aulas
   estatus_aula VARCHAR(1),
   PRIMARY KEY (codigo_aula)
 ) ENGINE = InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE jornadas
 (
 	codigo_jornada VARCHAR(5),
@@ -113,6 +125,7 @@ CREATE TABLE jornadas
     estatus_jornada VARCHAR(1),
     PRIMARY KEY (codigo_jornada)
 ) ENGINE=INNODB DEFAULT CHARSET=latin1;
+ 
 -- -----------------------------------------------------
 -- Table `educativo`.`Asignacion_cursos_alumnos`
 -- -----------------------------------------------------
@@ -186,8 +199,25 @@ CREATE TABLE asignacioncursosmastros
     foreign key(id_Alumno) references asignacioncursosalumnos(id_Alumno),
     foreign key(id_Maestro) references asignacioncursosmastros(id_Maestro)
   )ENGINE = InnoDB DEFAULT CHARSET=latin1;
-  
-  #insert into usuarios(NombreUsuario,Pass,CorreoUsuario) values ("123","123","dfsdfa");
+
+ 
   select *from asignacioncursosalumnos;
   select *from Laboratorios;
   select *from usuarios ;
+  select * from alumnos;
+  select * from cursos;
+  
+  
+  insert into usuarios(ID,NombreUsuario,Pass,CorreoUsuario) values (1,"123","123","root@gamil.com" );
+  insert into alumnos(carnet_alumno,nombre_alumno,direccion_alumno,telefono_alumno,email_alumno,estatus_alumno) values ("1","Esduardo","zona 14"," 548784512","Esduardo@gamil.com","T");
+	insert into maestros(codigo_maestro,nombre_maestro,direccion_maestro,telefono_maetro,email_maestro,estatus_maestro)values("2","Eddy","zona 18","54123657","eddybatres@gmail.com","T");
+  insert into facultades (codigo_facultad,nombre_facultad,estatus_facultad) values ("8","Ingenieria","T");
+  insert into carreras (codigo_carrera,nombre_carrera,codigo_facultad,estatus_carrera) values ("8","sistemas","8","T");
+   insert into secciones (codigo_seccion,nombre_seccion,estatus_seccion) values ("10","A","T"); 
+   insert into cursos(codigo_curso,codigo_carrera,nombre_curso,estatus_curso) values ("9","8","Programacion","T");
+    insert into sedes (codigo_sede,nombre_sede,estatus_sede) values ("11","jutiapa","T");
+      insert into aulas (codigo_aula,nombre_aula,estatus_aula) values ("12","b","T");
+       insert into jornadas (codigo_jornada,nombre_jornada,estatus_jornada) values ("13","Matutina","T");
+          #insert into Laboratorios (Codigo_Laboratorio,Nombre_Laboratorio,Nota_Laboratorio,id_Alumno,id_Maestro) values ("14","OBJETOS","50","1","2");
+  
+  
